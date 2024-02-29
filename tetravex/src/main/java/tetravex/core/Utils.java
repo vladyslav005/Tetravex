@@ -7,7 +7,7 @@ import java.util.Random;
 public class Utils {
     public static int getRandInt(int max) {
         Random rand = new Random();
-        return rand.nextInt(max);
+        return rand.nextInt(max + 1);
     }
 
     public static <T> List<List<T>> initTwoDimensionalArray(int width, int height) {

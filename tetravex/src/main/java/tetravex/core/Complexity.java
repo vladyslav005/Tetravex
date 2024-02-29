@@ -1,9 +1,9 @@
 package tetravex.core;
 
 public enum Complexity {
-    EASY(4),
+    EASY(3),
     MEDIUM(7),
-    HARD(10);
+    HARD(9);
 
     private final int numberOfColors;
 

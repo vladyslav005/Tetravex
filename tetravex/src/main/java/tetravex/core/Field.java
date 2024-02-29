@@ -1,6 +1,8 @@
 package tetravex.core;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Field {
 
@@ -15,9 +17,28 @@ public class Field {
         this.height = height;
         initBoards(width, height);
         generate(complexity);
+        shuffle();
 
     }
 
+
+    private void shuffle() {
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                Tile tile = solved.get(i).get(j);
+                int x = Utils.getRandInt(width-1), y = Utils.getRandInt(height-1);
+
+                while (shuffled.get(y).get(x) != null) {
+                    int decide = Utils.getRandInt(1);
+                    if (decide == 1) x = Utils.getRandInt(width - 1);
+                    else y = Utils.getRandInt(height - 1);
+                }
+
+                shuffled.get(y).set(x, tile);
+            }
+        }
+    }
     private void generate(Complexity complexity) {
         for (int i = 0; i < solved.size(); i++) {
             for (int j = 0; j < solved.get(0).size(); j++) {
@@ -69,4 +90,11 @@ public class Field {
         return played;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }
