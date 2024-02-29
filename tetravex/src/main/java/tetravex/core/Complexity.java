@@ -5,9 +5,9 @@ public enum Complexity {
     MEDIUM(7),
     HARD(10);
 
-    private int numberOfColors;
+    private final int numberOfColors;
 
-    Complexity (int numberOfColors) {
+    Complexity(int numberOfColors) {
         this.numberOfColors = numberOfColors;
     }
 

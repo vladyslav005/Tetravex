@@ -15,12 +15,13 @@ public class Utils {
         for (int i = 0; i < height; i++) {
             array.add(new ArrayList<>(width));
 
-            for (int j = 0; j < width; j++) {array.get(i).add(null);}
+            for (int j = 0; j < width; j++) {
+                array.get(i).add(null);
+            }
         }
 
         return array;
     }
-
 
 
 }

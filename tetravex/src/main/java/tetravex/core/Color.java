@@ -1,6 +1,6 @@
 package tetravex.core;
 
-public enum Colors {
+public enum Color {
 
     RED("\u001b[31m", "\u001b[41m", 0),
     GREEN("\u001b[32m", "\u001b[42m", 1),
@@ -12,21 +12,20 @@ public enum Colors {
     WHITE("\u001b[37m", "\u001b[47m", 7),
     BRIGHT_GREEN("", "", 0);
 
-    private String symbolColorCode;
-    private String backgroundColorCode;
-    private int nubmer;
-    public static String reset = "\u001B[0m";
+    public static final String reset = "\u001B[0m";
+    private final String symbolColorCode;
+    private final String backgroundColorCode;
+    private final int number;
 
-    Colors(String symbolColorCode, String backgroundColorCode, int number) {
+    Color(String symbolColorCode, String backgroundColorCode, int number) {
         this.symbolColorCode = symbolColorCode;
         this.backgroundColorCode = backgroundColorCode;
-        this.nubmer = number;
+        this.number = number;
     }
 
     public String getColoredBackground() {
         return getBackgroundColorCode() + getNumber() + reset;
     }
-
 
 
     public String getSymbolColorCode() {
@@ -38,6 +37,6 @@ public enum Colors {
     }
 
     public int getNumber() {
-        return nubmer;
+        return number;
     }
 }
