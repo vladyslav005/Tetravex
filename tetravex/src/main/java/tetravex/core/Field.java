@@ -97,4 +97,24 @@ public class Field {
     public int getHeight() {
         return height;
     }
+
+    public static Integer[] findTilePosition(Tile tile, List<List<Tile>> board) {
+        Integer x = null, y = null;
+
+        for (int i = 0; i < board.size(); i++) {
+            if (!board.get(i).contains(tile)) continue;
+
+            for (int j = 0; j < board.get(0).size(); j++) {
+                if (board.get(i).get(j) == tile) {
+                    x = j; y = i;
+                }
+            }
+        }
+
+        return new Integer[] {x, y};
+    }
+
+    public static Tile findTile(List<List<Tile>> board, int x, int y) {
+        return board.get(y).get(x);
+    }
 }
