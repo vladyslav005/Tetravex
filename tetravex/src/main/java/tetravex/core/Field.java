@@ -66,25 +66,26 @@ public class Field {
         }
     }
     private void generate() {
-        for (int i = 0; i < solved.size(); i++) {
-            for (int j = 0; j < solved.get(0).size(); j++) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 Color N, S, W, E;
-                N = generateColor(j, i, 0);
-                S = generateColor(j, i, 1);
-                W = generateColor(j, i, 2);
-                E = generateColor(j, i, 3);
+                N = generateColor(i, j, 0);
+                S = generateColor(i, j, 1);
+                W = generateColor(i, j, 2);
+                E = generateColor(i, j, 3);
                 solved.get(i).set(j, new Tile(N, S, W, E));
             }
         }
     }
 
-    private Color generateColor(int tileX, int tileY, int colorIdx) {
+    private Color generateColor(int tileY, int tileX, int colorIdx) {
         if (colorIdx < 0 || colorIdx > 3) return null;
 
-        int neighborX = 0, neighborY = 0;
+        int neighborX = tileX, neighborY = tileY;
+
         switch (colorIdx) {
-            case 0 -> neighborY = tileY + 1;
-            case 1 -> neighborY = tileY - 1;
+            case 0 -> neighborY = tileY - 1;
+            case 1 -> neighborY = tileY + 1;
             case 2 -> neighborX = tileX - 1;
             case 3 -> neighborX = tileX + 1;
         }

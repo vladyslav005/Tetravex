@@ -40,6 +40,18 @@ public class DrawingUtils {
         setCursorPos(1, 1);
     }
 
+    public static void printMessage(String message, int y, int x) {
+        DrawingUtils.deleteMessage(y, x);
+        DrawingUtils.setCursorPos(y, x);
+        System.out.print(message);
+        setCursorPos(1, 1);
+    }
+
+
+    public static void deleteMessage(int y, int x) {
+        DrawingUtils.setCursorPos(y, x);
+        System.out.print("                                            ");
+    }
     public static void deleteMessage() {
         DrawingUtils.setCursorPos(49, 0);
         System.out.print("                                            ");

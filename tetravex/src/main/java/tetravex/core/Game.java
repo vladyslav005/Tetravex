@@ -11,6 +11,10 @@ public class Game {
         this.field = field;
     }
 
+    public Game(Complexity complexity, int height, int width) {
+        this.field = new Field(width, height, complexity);
+    }
+
     public void updateState() {
         for (int i = 0; i < field.getPlayed().size(); i++) {
             for (int j = 0; j < field.getPlayed().get(0).size(); j++) {

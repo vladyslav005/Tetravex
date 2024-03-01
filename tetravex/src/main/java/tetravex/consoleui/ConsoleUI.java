@@ -1,46 +1,98 @@
 package tetravex.consoleui;
 
 import tetravex.core.Color;
+import tetravex.core.Complexity;
 import tetravex.core.Field;
 import tetravex.core.Game;
 import tetravex.core.tile.Tile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class ConsoleUI {
 
-    private final Cursor cursor;
-    private final Game game;
+    private Cursor cursor;
+    private  Game game;
+
+    private boolean rawMode = false;
+    private boolean showSolution = false;
+    private boolean playAgain = false;
+
+    public ConsoleUI(Cursor cursor, Game game) {
+        this.cursor = cursor;
+        this.game = game;
+    }
+
+    public ConsoleUI() {
+
+    }
+
+    public boolean start() {
+        int width = 0, height = 0;
+        Complexity complexity;
 
 
-    //TODO : render
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0 ; !(width > 1 && width < 11 && height > 1 && height < 11); i++) {
+            try  {
+                if (i != 0) System.out.println("Wrong input");
+                System.out.print("Type width of the field (2 - 10): ");
+                width = sc.nextInt();
+                System.out.print("Type height of the field (2 - 10): ");
+                height = sc.nextInt();
+            } catch (Exception ignored) {
+                sc.next();
+            }
+        }
 
+        for (int input=0, i = 0 ; true; i++) {
+            try  {
+                if (i != 0 ) System.out.println("Wrong input");
+                System.out.print("Choose complexity (1 - EASY, 2 - MEDIUM, 3 - HARD)");
+                input = sc.nextInt();
 
-    public ConsoleUI(Game game) {
+                if (input > 0 && input < 4) {
+                    complexity = Complexity.values()[input - 1];
+                    break;
+                }
+            } catch (Exception ignored) {
+                sc.next();
+            }
+        }
+
+        Game game = new Game(complexity, height, width);
         this.game = game;
         this.cursor = new Cursor(game, null, game.getField().getPlayed());
+        mainLoop();
+
+        return playAgain;
     }
 
-    public void start() {
-        mainLoop();
-    }
 
     public void mainLoop() {
         DrawingUtils.clearScreen();
+        if (!rawMode) enableRawMode();
 
-        enableRawMode();
+        int key;
         while (true) {
+            render();
+
             if (game.isSolved()) {
                 DrawingUtils.printMessage("Congratulations!!!");
+                DrawingUtils.printMessage("Press R if you want to play again or any key to quit", 49, 20);
+                key = getInputChar();
+                inputHandler(key);
+                DrawingUtils.clearScreen();
+                disableRawMode();
                 break;
             }
 
-            render();
-            int key = getInputChar();
+            key = getInputChar();
 
             if (key == -1 || key == 'q') {
                 DrawingUtils.clearScreen();
+                playAgain = false;
                 break;
             }
 
@@ -56,11 +108,13 @@ public class ConsoleUI {
         if (asciKey == null) return;
 
         switch (asciKey) {
-            case LOWERCASE_W -> {cursor.moveUp();}
-            case LOWERCASE_S -> {cursor.moveDown();}
-            case LOWERCASE_D -> {cursor.moveRight();}
-            case LOWERCASE_A -> {cursor.moveLeft();}
-            case LOWERCASE_E -> {cursor.pickOrDropTile();}
+            case LOWERCASE_W, UPPERCASE_W -> cursor.moveUp();
+            case LOWERCASE_S, UPPERCASE_S -> cursor.moveDown();
+            case LOWERCASE_D, UPPERCASE_D -> cursor.moveRight();
+            case LOWERCASE_A, UPPERCASE_A -> cursor.moveLeft();
+            case LOWERCASE_E, UPPERCASE_E -> cursor.pickOrDropTile();
+            case LOWERCASE_R, UPPERCASE_R -> playAgain = !playAgain;
+            case LOWERCASE_X, UPPERCASE_X -> showSolution = !showSolution;
         }
     }
 
@@ -73,25 +127,30 @@ public class ConsoleUI {
         } catch (IOException e) {throw new RuntimeException(e);}
 
         DrawingUtils.setCursorPos(0, 0);
-        System.out.print("     ");
+        System.out.print("  ");
 
         return key;
     }
 
     public void render() {
-        int x = 2, y = 2;
+        DrawingUtils.clearScreen();
+        DrawingUtils.printMessage("Play again: " + playAgain, 45, 1);
+        int x = 4, y = 4;
         Field field = game.getField();
         int boardCharWidth = (field.getWidth() + 1) * 5 + 7;
 
         drawBoard(field.getPlayed(), x, y);
         drawBoard(field.getShuffled(), x + boardCharWidth, y);
-        drawBoard(field.getSolved(), x + boardCharWidth * 2, y);
+
+        if (showSolution) drawBoard(field.getSolved(), x + boardCharWidth * 2, y);
     }
 
     private void disableRawMode() {
+
         String[] cmd2 = {"/bin/sh", "-c", "stty cooked </dev/tty"};
         try {
             Runtime.getRuntime().exec(cmd2).waitFor();
+            rawMode = false;
         } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -100,6 +159,7 @@ public class ConsoleUI {
         String[] cmd = {"/bin/sh", "-c", "stty raw </dev/tty"};
         try {
             Runtime.getRuntime().exec(cmd).waitFor();
+            rawMode = true;
         } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
