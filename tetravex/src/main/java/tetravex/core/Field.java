@@ -1,8 +1,9 @@
 package tetravex.core;
 
-import java.util.HashSet;
+import tetravex.core.tile.Tile;
+import tetravex.core.tile.TileState;
+
 import java.util.List;
-import java.util.Set;
 
 public class Field {
 
@@ -21,6 +22,30 @@ public class Field {
 
     }
 
+    public void placeTile(Tile tile, List<List<Tile>> destinationBoard, int x, int y) {
+        List<List<Tile>> source = played;
+
+        Integer[] pos = findTilePosition(tile, played);
+        if (pos[0] == null) {
+            pos = findTilePosition(tile, shuffled);
+            source = shuffled;
+        }
+
+        if (destinationBoard.get(y).get(x) != null) return;
+
+        destinationBoard.get(y).set(x, tile);
+        source.get(pos[1]).set(pos[0], null);
+        if (destinationBoard == shuffled) destinationBoard.get(y).set(x, tile).setState(TileState.UNPOSSITIONED);
+        else updateState(x, y);
+    }
+
+    void updateState(int x, int y) {
+        if (solved.get(y).get(x) == played.get(y).get(x)) {
+            played.get(y).get(x).setState(TileState.CORRECT);
+        } else {
+            played.get(y).get(x).setState(TileState.WRONG);
+        }
+    }
 
     private void shuffle() {
 
@@ -65,18 +90,16 @@ public class Field {
         }
     }
 
+    //TODO: eliminate repeating ^^^^^^
     private Color generateColor(int tileX, int tileY, int colorIdx) {
         return null;
     }
-
 
     private void initBoards(int width, int height) {
         solved = Utils.initTwoDimensionalArray(width, height);
         shuffled = Utils.initTwoDimensionalArray(width, height);
         played = Utils.initTwoDimensionalArray(width, height);
     }
-
-    //TODO : shuffle
 
     public List<List<Tile>> getSolved() {
         return solved;
@@ -97,6 +120,7 @@ public class Field {
     public int getHeight() {
         return height;
     }
+
 
     public static Integer[] findTilePosition(Tile tile, List<List<Tile>> board) {
         Integer x = null, y = null;

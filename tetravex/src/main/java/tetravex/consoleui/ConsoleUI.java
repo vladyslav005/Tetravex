@@ -3,7 +3,7 @@ package tetravex.consoleui;
 import tetravex.core.Color;
 import tetravex.core.Field;
 import tetravex.core.Game;
-import tetravex.core.Tile;
+import tetravex.core.tile.Tile;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,28 +20,35 @@ public class ConsoleUI {
     public ConsoleUI(Game game) {
         this.game = game;
         this.cursor = new Cursor(game, null, game.getField().getPlayed());
-        mainloop();
     }
 
-    public void mainloop() {
+    public void start() {
+        mainLoop();
+    }
+
+    public void mainLoop() {
         DrawingUtils.clearScreen();
 
         enableRawMode();
         while (true) {
+            if (game.isSolved()) {
+                DrawingUtils.printMessage("Congratulations!!!");
+                break;
+            }
             render();
             int key = getInputChar();
+
             if (key == -1 || key == 'q') {
                 DrawingUtils.clearScreen();
                 break;
             }
 
             inputHandler(key);
-
+            game.updateState();
         }
 
         disableRawMode();
     }
-
 
     private void inputHandler(int key) {
         Key asciKey = Key.getASCIIKeyCode(key);
@@ -52,7 +59,7 @@ public class ConsoleUI {
             case LOWERCASE_S -> {cursor.moveDown();}
             case LOWERCASE_D -> {cursor.moveRight();}
             case LOWERCASE_A -> {cursor.moveLeft();}
-            case CARRIAGE_RETURN -> {cursor.pickOrDropTile();}
+            case LOWERCASE_E -> {cursor.pickOrDropTile();}
         }
     }
 
@@ -96,8 +103,6 @@ public class ConsoleUI {
             throw new RuntimeException(e);
         }
     }
-
-
 
     public void drawBoard(List<List<Tile>> board, int x, int y) {
         int height = board.size(), width = board.get(0).size();
@@ -220,10 +225,11 @@ public class ConsoleUI {
             else return " ";
         }
 
-        if (tile == cursor.getSelectedTile().getTile())
+        if (cursor.getPickedTile().getTile() == tile)
+            return Color.BLACK.getBackgroundColorCode() + " " + "\u001B[0m";
+        else if (tile == cursor.getSelectedTile().getTile())
             return Color.WHITE.getBackgroundColorCode() + " " + "\u001B[0m";
 
         return Color.TILE_BACKGROUND.getBackgroundColorCode() + " " + "\u001B[0m";
     }
-
 }

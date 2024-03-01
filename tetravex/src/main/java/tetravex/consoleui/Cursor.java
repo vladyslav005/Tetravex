@@ -1,36 +1,61 @@
 package tetravex.consoleui;
 
-import tetravex.core.Field;
 import tetravex.core.Game;
-import tetravex.core.Tile;
+import tetravex.core.tile.Tile;
+import tetravex.core.tile.TileWrapper;
 
 import java.util.List;
 
 public class Cursor {
-//    private Tile selectedTile;
-//    private Tile pickedTile;
-
     private TileWrapper selectedTile;
     private TileWrapper pickedTile;
     private Game game;
-
 
     public Cursor(Game game, Tile selectedTile, List<List<Tile>> currentBoard) {
         this.selectedTile = new TileWrapper(
                 selectedTile, currentBoard,
                 0, 0);
 
-
+        this.pickedTile = new TileWrapper(null, currentBoard, 0, 0);
         this.game = game;
     }
 
-
     public void pickOrDropTile() {
-        if (pickedTile == null) pickedTile = selectedTile;
-        else {
-
+        if (pickedTile.getTile() == null) {
+            pickTile();
+        } else {
+            dropTile();
         }
+    }
 
+    public void dropTile() {
+        if (selectedTile.getTile() != null)
+            DrawingUtils.printMessage("You can't place tile there");
+        else if (pickedTile.getTile() == null)
+            DrawingUtils.printMessage("Pick a tile!");
+        else {
+            game.getField().placeTile(pickedTile.getTile(), selectedTile.getBoard(),
+                    selectedTile.getX(), selectedTile.getY());
+            pickedTile.setTile(null);
+            DrawingUtils.printMessage("You've placed a tile");
+        }
+    }
+
+    public void pickTile() {
+        if (selectedTile.getTile() == null) {
+            DrawingUtils.printMessage("You can't pick empty tile");
+        } else {
+            setPicked();
+            DrawingUtils.deleteMessage();
+            DrawingUtils.printMessage("You've picked a tile");
+        }
+    }
+
+    private void setPicked() {
+        pickedTile.setTile(selectedTile.getTile());
+        pickedTile.setBoard(selectedTile.getBoard());
+        pickedTile.setX(selectedTile.getX());
+        pickedTile.setY(selectedTile.getY());
     }
 
     public void moveDown()  {
@@ -61,8 +86,7 @@ public class Cursor {
                 selectedTile.setBoard(game.getField().getShuffled());
                 selectedTile.setX(0);
                 selectedTile.setTile(selectedTile.getBoard().get(selectedTile.getY()).get(selectedTile.getX()));
-            } else return;
-
+            }
         } else {
             selectedTile.setX(selectedTile.getX() + 1);
             selectedTile.setTile(selectedTile.getBoard().get(selectedTile.getY()).get(selectedTile.getX()));
@@ -77,8 +101,7 @@ public class Cursor {
                 selectedTile.setBoard(game.getField().getPlayed());
                 selectedTile.setX(width-1);
                 selectedTile.setTile(selectedTile.getBoard().get(selectedTile.getY()).get(selectedTile.getX()));
-            } else return;
-
+            }
         } else {
             selectedTile.setX(selectedTile.getX() - 1);
             selectedTile.setTile(selectedTile.getBoard().get(selectedTile.getY()).get(selectedTile.getX()));

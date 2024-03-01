@@ -1,10 +1,13 @@
-package tetravex.core;
+package tetravex.core.tile;
+
+import tetravex.core.Color;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Tile {
     final List<Color> borderColors = new ArrayList<>(4);
+    private TileState state = TileState.UNPOSSITIONED;
 
     public Tile(Color north, Color south, Color west, Color east) {
         borderColors.add(north);
@@ -33,5 +36,11 @@ public class Tile {
         return borderColors.get(3);
     }
 
+    public TileState getState() {
+        return state;
+    }
 
+    public void setState(TileState state) {
+        this.state = state;
+    }
 }

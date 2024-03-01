@@ -15,8 +15,9 @@ public enum Color {
 
     TILE_BACKGROUND("\u001b[90m", "\033[48;2;180;180;180m", 10),
 
-    GRAY("\033[38;2;255;255;204m", "\033[48;2;255;255;204m", 10),
-    WHITE("\u001b[37m", "\033[48;2;255;255;255m", 11);
+    GRAY("\033[38;2;255;255;204m", "\033[48;2;255;255;204m", 11),
+    WHITE("\u001b[37m", "\033[48;2;255;255;255m", 12),
+    ORANGE("\033[38;2;255;178;102m", "\033[48;2;255;178;102m", 12);
 
     public static final String reset = "\u001B[0m";
     private final String symbolColorCode;

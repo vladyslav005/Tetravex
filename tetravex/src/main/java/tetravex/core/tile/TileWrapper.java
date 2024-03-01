@@ -1,6 +1,4 @@
-package tetravex.consoleui;
-
-import tetravex.core.Tile;
+package tetravex.core.tile;
 
 import java.util.List;
 
@@ -47,5 +45,15 @@ public class TileWrapper {
 
     public void setX(int x) {
         this.x = x;
+    }
+
+    @Override
+    public String toString() {
+        return "TileWrapper{" +
+                "tile=" + tile +
+                ", board=" + board +
+                ", y=" + y +
+                ", x=" + x +
+                '}';
     }
 }
