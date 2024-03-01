@@ -2,7 +2,7 @@ package tetravex.consoleui;
 
 import tetravex.core.Color;
 
-public class ConsoleUtils {
+public abstract class ConsoleUtils {
 
     public static void setColor(Color color) {
         setTextColor(color);

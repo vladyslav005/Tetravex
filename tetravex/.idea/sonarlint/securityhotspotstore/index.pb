@@ -11,8 +11,6 @@ _
 /src/main/java/tetravex/core/tile/TileState.java,3/b/3bf79725e33bad8c2adcc671d65dcc0ad94f0ddc
 _
 /src/main/java/tetravex/consoleui/ConsoleUI.java,1/2/12b625161fe12b41d892105b3c05bf6552286aa4
-Y
-)src/main/java/tetravex/consoleui/Key.java,f/0/f091a6ba2ec84a2a970f61d40f9fb5cdc2f35827
 a
 1src/main/java/tetravex/consoleui/BoardDrawer.java,d/4/d4b543ad0bf15ffbed6250bebe3977018167d570
 a

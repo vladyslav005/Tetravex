@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Utils {
+public abstract class Utils {
     public static int getRandInt(int max) {
         Random rand = new Random();
         return rand.nextInt(max + 1);

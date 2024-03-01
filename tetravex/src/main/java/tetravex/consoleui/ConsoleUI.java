@@ -63,7 +63,7 @@ public class ConsoleUI {
 
 
     private void inputHandler(int key) {
-        Key asciKey = Key.getASCIIKeyCode(key);
+        ANSIKey asciKey = ANSIKey.getASCIIKeyCode(key);
         if (asciKey == null) return;
 
         switch (asciKey) {
