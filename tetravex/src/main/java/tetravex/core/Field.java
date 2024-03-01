@@ -6,20 +6,21 @@ import tetravex.core.tile.TileState;
 import java.util.List;
 
 public class Field {
-
     private final int width;
     private final int height;
     private List<List<Tile>> solved;
     private List<List<Tile>> shuffled;
     private List<List<Tile>> played;
+    private final Complexity complexity;
 
     public Field(int width, int height, Complexity complexity) {
         this.width = width;
         this.height = height;
-        initBoards(width, height);
-        generate(complexity);
-        shuffle();
+        this.complexity = complexity;
 
+        initBoards(width, height);
+        generate();
+        shuffle();
     }
 
     public void placeTile(Tile tile, List<List<Tile>> destinationBoard, int x, int y) {
@@ -36,11 +37,11 @@ public class Field {
         destinationBoard.get(y).set(x, tile);
         source.get(pos[1]).set(pos[0], null);
         if (destinationBoard == shuffled) destinationBoard.get(y).set(x, tile).setState(TileState.UNPOSSITIONED);
-        else updateState(x, y);
+        else updateTileState(x, y);
     }
 
-    void updateState(int x, int y) {
-        if (solved.get(y).get(x) == played.get(y).get(x)) {
+    void updateTileState(int x, int y) {
+        if (solved.get(y).get(x).equals(played.get(y).get(x))) {
             played.get(y).get(x).setState(TileState.CORRECT);
         } else {
             played.get(y).get(x).setState(TileState.WRONG);
@@ -64,35 +65,35 @@ public class Field {
             }
         }
     }
-    private void generate(Complexity complexity) {
+    private void generate() {
         for (int i = 0; i < solved.size(); i++) {
             for (int j = 0; j < solved.get(0).size(); j++) {
                 Color N, S, W, E;
-
-                if (i - 1 < 0 || solved.get(i - 1).get(j) == null) {
-                    N = Color.values()[Utils.getRandInt(complexity.getNumberOfColors())];
-                } else N = solved.get(i - 1).get(j).getS();
-
-                if (i + 1 >= height || solved.get(i + 1).get(j) == null) {
-                    S = Color.values()[Utils.getRandInt(complexity.getNumberOfColors())];
-                } else S = solved.get(i + 1).get(j).getN();
-
-                if (j - 1 < 0 || solved.get(i).get(j - 1) == null) {
-                    W = Color.values()[Utils.getRandInt(complexity.getNumberOfColors())];
-                } else W = solved.get(i).get(j - 1).getE();
-
-                if (j + 1 >= width || solved.get(i).get(j + 1) == null) {
-                    E = Color.values()[Utils.getRandInt(complexity.getNumberOfColors())];
-                } else E = solved.get(i).get(j + 1).getW();
-
+                N = generateColor(j, i, 0);
+                S = generateColor(j, i, 1);
+                W = generateColor(j, i, 2);
+                E = generateColor(j, i, 3);
                 solved.get(i).set(j, new Tile(N, S, W, E));
             }
         }
     }
 
-    //TODO: eliminate repeating ^^^^^^
     private Color generateColor(int tileX, int tileY, int colorIdx) {
-        return null;
+        if (colorIdx < 0 || colorIdx > 3) return null;
+
+        int neighborX = 0, neighborY = 0;
+        switch (colorIdx) {
+            case 0 -> neighborY = tileY + 1;
+            case 1 -> neighborY = tileY - 1;
+            case 2 -> neighborX = tileX - 1;
+            case 3 -> neighborX = tileX + 1;
+        }
+
+        if (neighborX < 0 || neighborX >= width || neighborY < 0 || neighborY >= height
+            || solved.get(neighborY).get(neighborX) == null)
+            return Color.values()[Utils.getRandInt(complexity.getNumberOfColors())];
+
+        return solved.get(neighborY).get(neighborX).getOpositeSideColor(colorIdx);
     }
 
     private void initBoards(int width, int height) {

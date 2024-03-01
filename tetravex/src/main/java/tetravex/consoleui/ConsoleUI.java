@@ -35,6 +35,7 @@ public class ConsoleUI {
                 DrawingUtils.printMessage("Congratulations!!!");
                 break;
             }
+
             render();
             int key = getInputChar();
 
@@ -104,6 +105,8 @@ public class ConsoleUI {
         }
     }
 
+
+
     public void drawBoard(List<List<Tile>> board, int x, int y) {
         int height = board.size(), width = board.get(0).size();
         int start_x = x + 1, start_y = y + 2;
@@ -170,7 +173,6 @@ public class ConsoleUI {
             System.out.print("\u001b[1C");
         }
     }
-
 
     public String emptyTileLayer(List<List<Tile>> board,int y, int x) {
         return getSpace(board, y, x) +
