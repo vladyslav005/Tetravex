@@ -137,11 +137,6 @@ public enum Key {
         this.keyCode = keyCode;
     }
 
-    public int getCode() {
-        return keyCode;
-    }
-
-
     public static Key getASCIIKeyCode(int code) {
         for (Key key : Key.values()) {
             if (key.getCode() == code) {
@@ -150,5 +145,9 @@ public enum Key {
         }
 
         return null; // Handle unknown key codes
+    }
+
+    public int getCode() {
+        return keyCode;
     }
 }

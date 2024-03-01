@@ -5,8 +5,8 @@ import java.util.List;
 public class TileWrapper {
     private Tile tile;
     private List<List<Tile>> board;
-    private int y ;
-    private int x ;
+    private int y;
+    private int x;
 
     public TileWrapper(Tile tile, List<List<Tile>> board, int x, int y) {
         this.tile = tile;

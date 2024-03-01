@@ -4,7 +4,7 @@ import tetravex.core.tile.TileState;
 
 public class Game {
 
-    private Field field;
+    private final Field field;
     private GameState state = GameState.PLAYING;
 
     public Game(Field field) {

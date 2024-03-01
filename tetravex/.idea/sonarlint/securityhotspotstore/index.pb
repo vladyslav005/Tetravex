@@ -1,0 +1,27 @@
+
+V
+&src/main/java/tetravex/core/Utils.java,b/a/bac8dffa15963383dde4641a1efd4cbb860d2ec6
+P
+ src/main/java/tetravex/Main.java,f/0/f0ba53b4ac4259bf5fb2ff8dbe2e17f280799ee5
+\
+,src/main/java/tetravex/consoleui/Cursor.java,e/0/e012ed5b3ea4db6aaed5f2a1452d84654443a03d
+b
+2src/main/java/tetravex/consoleui/ConsoleUtils.java,5/2/5249fe9b64dfaf32ae3615b95b3ad717dcb4861e
+_
+/src/main/java/tetravex/core/tile/TileState.java,3/b/3bf79725e33bad8c2adcc671d65dcc0ad94f0ddc
+_
+/src/main/java/tetravex/consoleui/ConsoleUI.java,1/2/12b625161fe12b41d892105b3c05bf6552286aa4
+Y
+)src/main/java/tetravex/consoleui/Key.java,f/0/f091a6ba2ec84a2a970f61d40f9fb5cdc2f35827
+a
+1src/main/java/tetravex/consoleui/BoardDrawer.java,d/4/d4b543ad0bf15ffbed6250bebe3977018167d570
+a
+1src/main/java/tetravex/core/tile/TileWrapper.java,b/6/b68bcadc8c262a3f4f4283e9c1a13b30ae43d47b
+Z
+*src/main/java/tetravex/core/tile/Tile.java,f/8/f8fffbf19abfc4a550334a20aa3ac82bae0bd63c
+?
+settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
+X
+(gradle/wrapper/gradle-wrapper.properties,f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
+A
+gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4

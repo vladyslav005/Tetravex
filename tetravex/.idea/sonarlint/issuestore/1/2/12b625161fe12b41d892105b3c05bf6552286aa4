@@ -1,0 +1,25 @@
+
+g	java:S112m"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ß…Òß1
+h	java:S112§"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8æ…Òß1
+h	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ç…Òß1
+z	java:S135-"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆÿÿÿÿÿ8ÿ…Òß1
+t	java:S127~"XRefactor the code in order to not assign to this loop counter from within the loop body.(œÑæ8†Òß1
+F
+java:S1659"$Declare "height" on a separate line.(·ğÛ¹ÿÿÿÿÿ8­Òß1
+Z
+java:S1117"8Rename "game" which hides the field declared at line 13.(äÉğñùÿÿÿÿ8ÁÒß1
+E	java:S108R")Either remove or fill this block of code.(”ì­è8‘Òß1
+<
+java:S1659["Declare "y" on a separate line.(ˆƒ—®8‘Òß1
+G	java:S106q"+Replace this use of System.out by a logger.(×•œ²8­‘Òß1
+L	java:S106|"+Replace this use of System.out by a logger.(‚¢ëøÿÿÿÿ8Ğ‘Òß1
+L	java:S106}"+Replace this use of System.out by a logger.(ßä´şùÿÿÿÿ8Ò‘Òß1
+G
+java:S1659"$Declare "height" on a separate line.(“·ñ˜şÿÿÿÿ8Û‘Òß1
+M	java:S106’"+Replace this use of System.out by a logger.(‚¢ëøÿÿÿÿ8â‘Òß1
+M	java:S106“"+Replace this use of System.out by a logger.(êîÂÌûÿÿÿÿ8ã‘Òß1
+M	java:S106•"+Replace this use of System.out by a logger.(Ô™°Òøÿÿÿÿ8æ‘Òß1
+
+java:S2142¦"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(üÍ”ûÿÿÿÿ8î‘Òß1
+
+java:S2142°"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(üÍ”ûÿÿÿÿ8ô‘Òß1

@@ -29,57 +29,48 @@ public class Cursor {
     }
 
     public void dropTile() {
-        if (selectedTile.getTile() != null)
-            DrawingUtils.printMessage("You can't place tile there");
-        else if (pickedTile.getTile() == null)
-            DrawingUtils.printMessage("Pick a tile!");
-        else {
+        if (pickedTile.getTile() != null && selectedTile.getTile() == null) {
             game.getField().placeTile(pickedTile.getTile(), selectedTile.getBoard(),
                     selectedTile.getX(), selectedTile.getY());
+            selectedTile.setTile(pickedTile.getTile());
             pickedTile.setTile(null);
-            DrawingUtils.printMessage("You've placed a tile");
         }
     }
 
     public void pickTile() {
-        if (selectedTile.getTile() == null) {
-            DrawingUtils.printMessage("You can't pick empty tile");
-        } else {
-            setPicked();
-            DrawingUtils.deleteMessage();
-            DrawingUtils.printMessage("You've picked a tile");
+        if (selectedTile.getTile() != null) {
+            setSelectedToPicked();
         }
     }
 
-    private void setPicked() {
+    private void setSelectedToPicked() {
         pickedTile.setTile(selectedTile.getTile());
         pickedTile.setBoard(selectedTile.getBoard());
         pickedTile.setX(selectedTile.getX());
         pickedTile.setY(selectedTile.getY());
     }
 
-    public void moveDown()  {
-        int height = selectedTile.getBoard().size(), width = selectedTile.getBoard().get(0).size();
+    public void moveDown() {
+        int height = selectedTile.getBoard().size();
 
-        if (selectedTile.getY() + 1 >= height) return;
-        else {
+        if (selectedTile.getY() + 1 >= height) {
+
+        } else {
             selectedTile.setY(selectedTile.getY() + 1);
             selectedTile.setTile(selectedTile.getBoard().get(selectedTile.getY()).get(selectedTile.getX()));
         }
     }
 
-    public void moveUp()  {
-        int height = selectedTile.getBoard().size(), width = selectedTile.getBoard().get(0).size();
-
-        if (selectedTile.getY() - 1 < 0) return;
-        else {
+    public void moveUp() {
+        if (selectedTile.getY() - 1 < 0) {
+        } else {
             selectedTile.setY(selectedTile.getY() - 1);
             selectedTile.setTile(selectedTile.getBoard().get(selectedTile.getY()).get(selectedTile.getX()));
         }
     }
 
     public void moveRight() {
-        int height = selectedTile.getBoard().size(), width = selectedTile.getBoard().get(0).size();
+        int width = selectedTile.getBoard().get(0).size();
 
         if (selectedTile.getX() + 1 >= width) {
             if (selectedTile.getBoard() == game.getField().getPlayed()) {
@@ -94,12 +85,12 @@ public class Cursor {
     }
 
     public void moveLeft() {
-        int height = selectedTile.getBoard().size(), width = selectedTile.getBoard().get(0).size();
+        int width = selectedTile.getBoard().get(0).size();
 
         if (selectedTile.getX() - 1 < 0) {
             if (selectedTile.getBoard() == game.getField().getShuffled()) {
                 selectedTile.setBoard(game.getField().getPlayed());
-                selectedTile.setX(width-1);
+                selectedTile.setX(width - 1);
                 selectedTile.setTile(selectedTile.getBoard().get(selectedTile.getY()).get(selectedTile.getX()));
             }
         } else {

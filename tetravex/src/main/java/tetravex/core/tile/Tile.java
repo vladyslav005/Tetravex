@@ -4,11 +4,10 @@ import tetravex.core.Color;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Tile {
     final List<Color> borderColors = new ArrayList<>(4);
-    private TileState state = TileState.UNPOSSITIONED;
+    private TileState state = TileState.UNTOUCHED;
 
     public Tile(Color north, Color south, Color west, Color east) {
         borderColors.add(north);
@@ -16,7 +15,6 @@ public class Tile {
         borderColors.add(west);
         borderColors.add(east);
     }
-
 
 
     public Color getOpositeSideColor(int colorIdx) {
@@ -59,17 +57,14 @@ public class Tile {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o ) return true;
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tile tile = (Tile) o;
 
-        if (tile.getN() == getN() &&
+        return tile.getN() == getN() &&
                 tile.getS() == getS() &&
                 tile.getW() == getW() &&
-                tile.getE() == getE())
-            return true;
-
-        return false;
+                tile.getE() == getE();
     }
 
 }

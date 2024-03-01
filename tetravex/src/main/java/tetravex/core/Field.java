@@ -8,10 +8,10 @@ import java.util.List;
 public class Field {
     private final int width;
     private final int height;
+    private final Complexity complexity;
     private List<List<Tile>> solved;
     private List<List<Tile>> shuffled;
     private List<List<Tile>> played;
-    private final Complexity complexity;
 
     public Field(int width, int height, Complexity complexity) {
         this.width = width;
@@ -21,6 +21,27 @@ public class Field {
         initBoards(width, height);
         generate();
         shuffle();
+    }
+
+    public static Integer[] findTilePosition(Tile tile, List<List<Tile>> board) {
+        Integer x = null, y = null;
+
+        for (int i = 0; i < board.size(); i++) {
+            if (!board.get(i).contains(tile)) continue;
+
+            for (int j = 0; j < board.get(0).size(); j++) {
+                if (board.get(i).get(j) == tile) {
+                    x = j;
+                    y = i;
+                }
+            }
+        }
+
+        return new Integer[]{x, y};
+    }
+
+    public static Tile findTile(List<List<Tile>> board, int x, int y) {
+        return board.get(y).get(x);
     }
 
     public void placeTile(Tile tile, List<List<Tile>> destinationBoard, int x, int y) {
@@ -36,7 +57,7 @@ public class Field {
 
         destinationBoard.get(y).set(x, tile);
         source.get(pos[1]).set(pos[0], null);
-        if (destinationBoard == shuffled) destinationBoard.get(y).set(x, tile).setState(TileState.UNPOSSITIONED);
+        if (destinationBoard == shuffled) destinationBoard.get(y).set(x, tile).setState(TileState.UNTOUCHED);
         else updateTileState(x, y);
     }
 
@@ -53,7 +74,7 @@ public class Field {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 Tile tile = solved.get(i).get(j);
-                int x = Utils.getRandInt(width-1), y = Utils.getRandInt(height-1);
+                int x = Utils.getRandInt(width - 1), y = Utils.getRandInt(height - 1);
 
                 while (shuffled.get(y).get(x) != null) {
                     int decide = Utils.getRandInt(1);
@@ -65,6 +86,7 @@ public class Field {
             }
         }
     }
+
     private void generate() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -91,7 +113,7 @@ public class Field {
         }
 
         if (neighborX < 0 || neighborX >= width || neighborY < 0 || neighborY >= height
-            || solved.get(neighborY).get(neighborX) == null)
+                || solved.get(neighborY).get(neighborX) == null)
             return Color.values()[Utils.getRandInt(complexity.getNumberOfColors())];
 
         return solved.get(neighborY).get(neighborX).getOpositeSideColor(colorIdx);
@@ -121,26 +143,5 @@ public class Field {
 
     public int getHeight() {
         return height;
-    }
-
-
-    public static Integer[] findTilePosition(Tile tile, List<List<Tile>> board) {
-        Integer x = null, y = null;
-
-        for (int i = 0; i < board.size(); i++) {
-            if (!board.get(i).contains(tile)) continue;
-
-            for (int j = 0; j < board.get(0).size(); j++) {
-                if (board.get(i).get(j) == tile) {
-                    x = j; y = i;
-                }
-            }
-        }
-
-        return new Integer[] {x, y};
-    }
-
-    public static Tile findTile(List<List<Tile>> board, int x, int y) {
-        return board.get(y).get(x);
     }
 }

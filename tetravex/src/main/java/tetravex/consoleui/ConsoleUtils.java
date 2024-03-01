@@ -2,7 +2,7 @@ package tetravex.consoleui;
 
 import tetravex.core.Color;
 
-public class DrawingUtils {
+public class ConsoleUtils {
 
     public static void setColor(Color color) {
         setTextColor(color);
@@ -34,26 +34,27 @@ public class DrawingUtils {
     }
 
     public static void printMessage(String message) {
-        DrawingUtils.deleteMessage();
-        DrawingUtils.setCursorPos(49, 0);
+        ConsoleUtils.deleteMessage();
+        ConsoleUtils.setCursorPos(49, 0);
         System.out.print(message);
         setCursorPos(1, 1);
     }
 
     public static void printMessage(String message, int y, int x) {
-        DrawingUtils.deleteMessage(y, x);
-        DrawingUtils.setCursorPos(y, x);
+        ConsoleUtils.deleteMessage(y, x);
+        ConsoleUtils.setCursorPos(y, x);
         System.out.print(message);
         setCursorPos(1, 1);
     }
 
 
     public static void deleteMessage(int y, int x) {
-        DrawingUtils.setCursorPos(y, x);
-        System.out.print("                                            ");
+        ConsoleUtils.setCursorPos(y, x);
+        System.out.print("                                                     ");
     }
+
     public static void deleteMessage() {
-        DrawingUtils.setCursorPos(49, 0);
-        System.out.print("                                            ");
+        ConsoleUtils.setCursorPos(49, 0);
+        System.out.print("                                                     ");
     }
 }
