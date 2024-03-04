@@ -61,7 +61,7 @@ public class Field {
         else updateTileState(x, y);
     }
 
-    void updateTileState(int x, int y) {
+    private void updateTileState(int x, int y) {
         if (solved.get(y).get(x).equals(played.get(y).get(x))) {
             played.get(y).get(x).setState(TileState.CORRECT);
         } else {
