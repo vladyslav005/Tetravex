@@ -21,11 +21,10 @@ public class Cursor {
     }
 
     public void pickOrDropTile() {
-        if (pickedTile.getTile() == null) {
-            pickTile();
-        } else {
+        if (selectedTile.getTile() == null)
             dropTile();
-        }
+        else
+            pickTile();
     }
 
     public void dropTile() {

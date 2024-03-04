@@ -1,7 +1,6 @@
 package tetravex.core;
 
 public enum Color {
-
     RED("\u001b[31m", "\u001b[41m", 0),
     GREEN("\u001b[32m", "\u001b[42m", 1),
     YELLOW("\u001b[33m", "\u001b[43m", 2),
@@ -12,11 +11,9 @@ public enum Color {
     BRIGHT_RED("\u001b[91m", "\u001b[101m", 7),
     BRIGHT_YELLOW("\u001b[93m", "\u001b[103m", 8),
     BRIGHT_MAGENTA("\u001b[95m", "\u001b[105m", 9),
-
-    TILE_BACKGROUND("\u001b[90m", "\033[48;2;180;180;180m", 10),
-
+    TILE_BACKGROUND("\033[38;2;180;180;180m", "\033[48;2;180;180;180m", 10),
     GRAY("\033[38;2;255;255;204m", "\033[48;2;255;255;204m", 11),
-    WHITE("\u001b[37m", "\033[48;2;255;255;255m", 12),
+    WHITE("\033[38;2;255;255;255m", "\033[48;2;255;255;255m", 12),
     ORANGE("\033[38;2;255;178;102m", "\033[48;2;255;178;102m", 12);
 
     public static final String reset = "\u001B[0m";

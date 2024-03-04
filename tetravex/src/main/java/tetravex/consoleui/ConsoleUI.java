@@ -79,7 +79,8 @@ public class ConsoleUI {
                 ConsoleUtils.clearScreen();
                 playAgain = false;
             }
-            default -> {}
+            default -> {
+            }
         }
     }
 
