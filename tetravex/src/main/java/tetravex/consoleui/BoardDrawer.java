@@ -2,15 +2,18 @@ package tetravex.consoleui;
 
 import tetravex.core.Color;
 import tetravex.core.tile.Tile;
+import tetravex.core.tile.TileState;
 
 import java.util.List;
 
 public class BoardDrawer {
 
     private final Cursor cursor;
+    private ConsoleUI consoleUI;
 
-    public BoardDrawer(Cursor cursor) {
-        this.cursor = cursor;
+    public BoardDrawer(ConsoleUI consoleUI) {
+        this.cursor = consoleUI.getCursor();
+        this.consoleUI = consoleUI;
     }
 
 
@@ -40,7 +43,7 @@ public class BoardDrawer {
             ConsoleUtils.setCursorPos(y + i * 4, x - 1);
 
             for (int j = 0; j < width; j++) {
-                ConsoleUtils.setColor(Color.GRAY);
+                ConsoleUtils.setColor(Color.GRID_COLOR);
 
                 if (j != width - 1) System.out.print("+-----");
                 else System.out.print("+-----+");
@@ -52,12 +55,12 @@ public class BoardDrawer {
             for (int k = 1; k < 4; k++) { // k - height of one tile (3)
                 ConsoleUtils.setCursorPos(y + i * 4 + k, x - 1);
                 for (int j = 0; j < width; j++) {
-                    ConsoleUtils.setColor(Color.GRAY);
+                    ConsoleUtils.setColor(Color.GRID_COLOR);
                     System.out.print("|");
                     ConsoleUtils.resetColor();
 
                     if (j == width - 1) {
-                        ConsoleUtils.setColor(Color.GRAY);
+                        ConsoleUtils.setColor(Color.GRID_COLOR);
                         System.out.print("     |");
                         ConsoleUtils.resetColor();
                     } else
@@ -139,6 +142,9 @@ public class BoardDrawer {
         else if (tile == cursor.getSelectedTile().getTile())
             return Color.WHITE.getBackgroundColorCode() + " " + "\u001B[0m";
 
-        return Color.TILE_BACKGROUND.getBackgroundColorCode() + " " + "\u001B[0m";
+        return
+                consoleUI.isHighlightOn() && tile.getState() == TileState.CORRECT ?
+                Color.HIGHLOGHT_COLOR.getBackgroundColorCode() + " " + "\u001B[0m" :
+                        Color.TILE_BACKGROUND.getBackgroundColorCode() + " " + "\u001B[0m";
     }
 }

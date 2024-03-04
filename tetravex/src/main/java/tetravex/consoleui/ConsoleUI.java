@@ -16,6 +16,7 @@ public class ConsoleUI {
     private boolean showSolution = false;
     private boolean playAgain = false;
     private boolean exit = false;
+    private boolean highlightOn = false;
 
 
     public boolean start() {
@@ -25,10 +26,10 @@ public class ConsoleUI {
         int width = dimensions[1], height = dimensions[0];
         Complexity complexity = inputComplexity();
 
-        Game game = new Game(complexity, height, width);
-        this.game = game;
-        this.cursor = new Cursor(game, null, game.getField().getPlayed());
-        boardDrawer = new BoardDrawer(cursor);
+        Game newGame = new Game(complexity, height, width);
+        this.game = newGame;
+        this.cursor = new Cursor(newGame, null, newGame.getField().getPlayed());
+        boardDrawer = new BoardDrawer(this);
 
         mainLoop();
 
@@ -37,14 +38,14 @@ public class ConsoleUI {
 
 
     public void mainLoop() {
-
         ConsoleUtils.clearScreen();
         if (!consoleRawMode) enableRawMode();
 
         int key;
-        while (true) {
+        while (!exit) {
             render();
-            ConsoleUtils.printMessage("WASD - control, E - choose tile, Q - quit, E, X - show solution");
+            ConsoleUtils.printMessage("WASD - control, E - choose tile, Q - quit, E, H - hint, X - show solution");
+            ConsoleUtils.printMessage("Your time: ", 4, 1);
 
             if (game.isSolved()) {
                 printVictoryMessage();
@@ -53,9 +54,7 @@ public class ConsoleUI {
 
             key = getInputChar();
             inputHandler(key);
-            if (exit) break;
             game.updateState();
-
         }
 
         disableRawMode();
@@ -74,19 +73,20 @@ public class ConsoleUI {
             case LOWERCASE_E, UPPERCASE_E -> cursor.pickOrDropTile();
             case LOWERCASE_R, UPPERCASE_R -> playAgain = game.isSolved();
             case LOWERCASE_X, UPPERCASE_X -> showSolution = !showSolution;
+            case LOWERCASE_H, UPPERCASE_H -> highlightOn = !highlightOn;
             case LOWERCASE_Q, UPPERCASE_Q -> {
                 exit = true;
                 ConsoleUtils.clearScreen();
                 playAgain = false;
             }
             default -> {
+
             }
         }
     }
 
-
     public void render() {
-        if (boardDrawer == null) boardDrawer = new BoardDrawer(cursor);
+        if (boardDrawer == null) boardDrawer = new BoardDrawer(this);
 
         ConsoleUtils.clearScreen();
         int x = 4, y = 4;
@@ -98,7 +98,6 @@ public class ConsoleUI {
 
         if (showSolution) boardDrawer.drawBoard(field.getSolved(), x + boardCharWidth * 2, y);
     }
-
 
     private int getInputChar() {
         ConsoleUtils.setCursorPos(0, 0);
@@ -142,12 +141,12 @@ public class ConsoleUI {
         int width = 0, height = 0;
 
         Scanner sc = new Scanner(System.in);
-        for (int i = 0; !(width > 1 && width < 11 && height > 1 && height < 11); i++) {
+        for (int i = 0; !(width > 2 && width < 8 && height > 2 && height < 8); i++) {
             try {
                 if (i != 0) System.out.println("Wrong input");
-                System.out.print("Type width of the field (2 - 10): ");
+                System.out.print("Type width of the field (3 - 7): ");
                 width = sc.nextInt();
-                System.out.print("Type height of the field (2 - 10): ");
+                System.out.print("Type height of the field (3 - 7): ");
                 height = sc.nextInt();
             } catch (Exception ignored) {
                 if (sc.hasNext()) sc.next();
@@ -156,7 +155,6 @@ public class ConsoleUI {
 
         return new int[]{height, width};
     }
-
 
     private void disableRawMode() {
 
@@ -195,4 +193,15 @@ public class ConsoleUI {
         disableRawMode();
     }
 
+    public boolean isHighlightOn() {
+        return highlightOn;
+    }
+
+    public Cursor getCursor() {
+        return cursor;
+    }
+
+    public void setCursor(Cursor cursor) {
+        this.cursor = cursor;
+    }
 }
