@@ -1,7 +1,7 @@
 package tetravex.core;
 
 public enum Complexity {
-    EASY(3),
+    EASY(4),
     MEDIUM(7),
     HARD(9);
 

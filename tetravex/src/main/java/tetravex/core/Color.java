@@ -7,14 +7,14 @@ public enum Color {
     BLACK("\u001b[34m", "\u001b[40m", 3),
     CYAN("\u001b[36m", "\u001b[46m", 4),
     MAGENTA("\u001b[35m", "\u001b[45m", 5),
-    BRIGHT_GREEN("\u001b[92m", "\u001b[102m", 6),
-    BRIGHT_RED("\u001b[91m", "\u001b[101m", 7),
-    BRIGHT_YELLOW("\u001b[93m", "\u001b[103m", 8),
+    BRIGHT_GREEN("\033[38;2;128;255;0m", "\033[48;2;102;204;0m", 6),
+    ORANGE("\033[38;2;255;178;102m", "\033[48;2;255;178;102m", 7),
+    PURPLE("\033[38;2;255;255;0m", "\033[48;2;255;53;255m", 8),
     BRIGHT_MAGENTA("\u001b[95m", "\u001b[105m", 9),
-    TILE_BACKGROUND("\033[38;2;180;180;180m", "\033[48;2;180;180;180m", 10),
-    GRAY("\033[38;2;255;255;204m", "\033[48;2;255;255;204m", 11),
-    WHITE("\033[38;2;255;255;255m", "\033[48;2;255;255;255m", 12),
-    ORANGE("\033[38;2;255;178;102m", "\033[48;2;255;178;102m", 12);
+    TILE_BACKGROUND("\033[38;2;228;253;225m", "\033[48;2;228;253;225m", 10),
+    GRID_COLOR("\033[38;2;69;105;144m", "\033[48;2;69;105;144m", 11),
+    WHITE("\033[38;2;255;255;255m", "\033[48;2;152;152;152m", 12),
+    HIGHLOGHT_COLOR("\033[38;2;204;255;153m", "\033[48;2;204;255;153m", 13);
 
     public static final String reset = "\u001B[0m";
     private final String symbolColorCode;
@@ -28,7 +28,7 @@ public enum Color {
     }
 
     public String getColoredBackground() {
-        return getBackgroundColorCode() + getNumber() + reset;
+        return WHITE.getSymbolColorCode() + getBackgroundColorCode() + getNumber() + reset;
     }
 
 
