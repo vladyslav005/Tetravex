@@ -1,6 +1,6 @@
 package tetravex.consoleui;
 
-public enum ANSIKey {
+public enum ASCIIKey {
     NULL(0),
     START_OF_HEADING(1),
     START_OF_TEXT(2),
@@ -133,12 +133,12 @@ public enum ANSIKey {
     private final int keyCode;
 
 
-    ANSIKey(int keyCode) {
+    ASCIIKey(int keyCode) {
         this.keyCode = keyCode;
     }
 
-    public static ANSIKey getASCIIKeyCode(int code) {
-        for (ANSIKey key : ANSIKey.values()) {
+    public static ASCIIKey getASCIIKeyCode(int code) {
+        for (ASCIIKey key : ASCIIKey.values()) {
             if (key.getCode() == code) {
                 return key;
             }

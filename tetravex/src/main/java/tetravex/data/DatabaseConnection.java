@@ -9,16 +9,18 @@ public class DatabaseConnection {
     private static Connection connection = null;
 
     public static void main(String[] args) {
-        System.out.println(PropertyReader.getDbURL());
+
+
+        DatabaseConnection.getConnection();
     }
 
     public static Connection getConnection() {
         if (connection == null) {
             try {
                 connection = DriverManager.getConnection(
-                        PropertyReader.getDbURL(), PropertyReader.getBdUsername(), PropertyReader.getBdUPassword());
+                        PropertyReader.getDbURL(), PropertyReader.getDBUsername(), PropertyReader.getDBPassword());
             } catch (SQLException e) {
-                throw new RuntimeException("Failed to connect to database");
+                throw new RuntimeException("Failed to connect to database", e);
             }
         }
         return connection;

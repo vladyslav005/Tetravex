@@ -13,14 +13,13 @@ public class RatingServiceJDBC implements RatingService {
     public static final String UPDATE  = "UPDATE rating SET rating = ?, ratedOn = ? WHERE game = ? AND player = ?";
     public static final String AVERAGE  = "SELECT avg(rating) FROM rating WHERE game = ?;";
 
-
     @Override
     public void setRating(Rating rating) throws RatingException {
         try (PreparedStatement insertStatement = DatabaseConnection.getConnection().prepareStatement(INSERT);
              PreparedStatement updateStatement = DatabaseConnection.getConnection().prepareStatement(UPDATE)
         ) {
             int ratingWrittenInDb = getRating(rating.getGame(), rating.getPlayer());
-            if (ratingWrittenInDb != -1) {
+            if (ratingWrittenInDb != 0) {
                 if (ratingWrittenInDb == rating.getRating()) return;
 
                 updateStatement.setInt(1, rating.getRating());
@@ -45,7 +44,7 @@ public class RatingServiceJDBC implements RatingService {
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(AVERAGE)) {
             statement.setString(1, game);
             ResultSet resultSet = statement.executeQuery();
-            int avgRate = -1;
+            int avgRate = 0;
             if (resultSet.next())
                 avgRate = resultSet.getInt(1);
 
@@ -63,7 +62,7 @@ public class RatingServiceJDBC implements RatingService {
             statement.setString(2, player);
             ResultSet resultSet = statement.executeQuery();
 
-            int rate = -1;
+            int rate = 0;
             if (resultSet.next())
                 rate = resultSet.getInt(3);
 

@@ -35,8 +35,8 @@ public class CommentServiceJDBC implements CommentService {
 
             while (resultSet.next()) {
                 Comment comment = new Comment(
-                        resultSet.getString(1),
                         resultSet.getString(2),
+                        resultSet.getString(1),
                         resultSet.getString(3),
                         resultSet.getTimestamp(4)
                 );

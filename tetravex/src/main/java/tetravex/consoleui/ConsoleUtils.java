@@ -2,6 +2,8 @@ package tetravex.consoleui;
 
 import tetravex.core.Color;
 
+import java.io.IOException;
+
 public abstract class ConsoleUtils {
 
     public static void setColor(Color color) {
@@ -16,7 +18,6 @@ public abstract class ConsoleUtils {
     public static void setTextColor(Color color) {
         System.out.print(color.getSymbolColorCode());
     }
-
 
     public static void resetColor() {
         System.out.print("\u001B[0m");
@@ -57,4 +58,23 @@ public abstract class ConsoleUtils {
         ConsoleUtils.setCursorPos(49, 0);
         System.out.print("                                                     ");
     }
+
+    public static void disableRawMode() {
+        String[] cmd2 = {"/bin/sh", "-c", "stty cooked </dev/tty"};
+        try {
+            Runtime.getRuntime().exec(cmd2).waitFor();
+        } catch (InterruptedException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void enableRawMode() {
+        String[] cmd = {"/bin/sh", "-c", "stty raw </dev/tty"};
+        try {
+            Runtime.getRuntime().exec(cmd).waitFor();
+        } catch (InterruptedException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

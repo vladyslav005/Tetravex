@@ -3,24 +3,37 @@ package tetravex.consoleui;
 import tetravex.core.Complexity;
 import tetravex.core.Field;
 import tetravex.core.Game;
+import tetravex.data.entity.Comment;
+import tetravex.data.entity.Rating;
+import tetravex.data.entity.Score;
+import tetravex.data.service.CommentService;
+import tetravex.data.service.RatingService;
+import tetravex.data.service.ScoreService;
+import tetravex.data.service.serviceimpl.CommentServiceJDBC;
+import tetravex.data.service.serviceimpl.RatingServiceJDBC;
+import tetravex.data.service.serviceimpl.ScoreServiceJDBC;
 
-import java.io.IOException;
-import java.util.Scanner;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConsoleUI {
-
+    private Thread threadToPrintTime = null;
     private Cursor cursor;
     private Game game;
     private BoardDrawer boardDrawer;
-    private boolean consoleRawMode = false;
+    private final String gameName = "tetravex";
+    private String playerName;
+    private final AtomicInteger playerScore = new AtomicInteger(0);
     private boolean showSolution = false;
-    private boolean playAgain = false;
     private boolean exit = false;
     private boolean highlightOn = false;
 
-
-    public boolean start() {
+    private void play() {
         reset();
+
+        enterPlayerName();
         int[] dimensions = inputWidthAndHeight();
 
         int width = dimensions[1], height = dimensions[0];
@@ -30,62 +43,87 @@ public class ConsoleUI {
         this.game = newGame;
         this.cursor = new Cursor(newGame, null, newGame.getField().getPlayed());
         boardDrawer = new BoardDrawer(this);
-
         mainLoop();
-
-        return playAgain;
+        mainMenu();
     }
 
+    public void mainMenu() {
+        System.out.println("Choose option: ");
+        System.out.println("\t 1. New game");
+        System.out.println("\t 2. Add comment");
+        System.out.println("\t 3. Rate game");
+        System.out.println("\t 4. Show TOP players");
+        System.out.println("\t 5. Show comments");
+        System.out.println("\t 6. Show average rating");
+        System.out.println("\t 7. Exit");
+
+
+
+        int option = InputUtils.getIntInput(1, 7);
+
+        switch (option) {
+            case 1 -> play();
+            case 2 -> addPlayersComment();
+            case 3 -> addPlayersRating();
+            case 4 -> printBestPlayers();
+            case 5 -> printComments();
+            case 6 -> printAverageRating();
+            case 7 -> {
+                return;
+            }
+        }
+    }
 
     public void mainLoop() {
-        ConsoleUtils.clearScreen();
-        if (!consoleRawMode) enableRawMode();
+        ConsoleUtils.enableRawMode();
+        startThreadToPrintTime();
 
         int key;
-        while (!exit) {
+        while (!exit && !game.isSolved()) {
             render();
-            ConsoleUtils.printMessage("WASD - control, E - choose tile, Q - quit, E, H - hint, X - show solution");
-            ConsoleUtils.printMessage("Your time: ", 4, 1);
-
-            if (game.isSolved()) {
-                printVictoryMessage();
-                break;
-            }
-
-            key = getInputChar();
+            ConsoleUtils.printMessage("WASD - control, E - choose/put tile, Q - quit, H - hint, X - show solution (your score will be zero)");
+            key = InputUtils.getInputChar();
             inputHandler(key);
             game.updateState();
         }
 
-        disableRawMode();
+        stopThreadToPrintTime();
+
+        if (game.isSolved()) {
+            render();
+            printVictoryMessage();
+            ConsoleUtils.disableRawMode();
+            if (playerScore.get() != 0) saveResultsToDB();
+        } else
+            ConsoleUtils.disableRawMode();
     }
 
-
     private void inputHandler(int key) {
-        ANSIKey asciKey = ANSIKey.getASCIIKeyCode(key);
-        if (asciKey == null) return;
+        ASCIIKey asiKey = ASCIIKey.getASCIIKeyCode(key);
+        if (asiKey == null) return;
 
-        switch (asciKey) {
+        switch (asiKey) {
             case LOWERCASE_W, UPPERCASE_W -> cursor.moveUp();
             case LOWERCASE_S, UPPERCASE_S -> cursor.moveDown();
             case LOWERCASE_D, UPPERCASE_D -> cursor.moveRight();
             case LOWERCASE_A, UPPERCASE_A -> cursor.moveLeft();
             case LOWERCASE_E, UPPERCASE_E -> cursor.pickOrDropTile();
-            case LOWERCASE_R, UPPERCASE_R -> playAgain = game.isSolved();
-            case LOWERCASE_X, UPPERCASE_X -> showSolution = !showSolution;
             case LOWERCASE_H, UPPERCASE_H -> highlightOn = !highlightOn;
+            case LOWERCASE_X, UPPERCASE_X -> {
+                stopThreadToPrintTime();
+                playerScore.set(0);
+                showSolution = !showSolution;
+            }
+
             case LOWERCASE_Q, UPPERCASE_Q -> {
                 exit = true;
+                stopThreadToPrintTime();
                 ConsoleUtils.clearScreen();
-                playAgain = false;
-            }
-            default -> {
-
             }
         }
     }
 
-    public void render() {
+    public synchronized void render() {
         if (boardDrawer == null) boardDrawer = new BoardDrawer(this);
 
         ConsoleUtils.clearScreen();
@@ -99,98 +137,164 @@ public class ConsoleUI {
         if (showSolution) boardDrawer.drawBoard(field.getSolved(), x + boardCharWidth * 2, y);
     }
 
-    private int getInputChar() {
-        ConsoleUtils.setCursorPos(0, 0);
+    private void addPlayersScore () {
+        enterPlayerName();
 
-        int key;
-        try {
-            key = System.in.read();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        ScoreService scoreService = new ScoreServiceJDBC();
+        Score score = new Score(gameName, playerName, playerScore.get(), new Timestamp(new Date().getTime()));
+
+        scoreService.addScore(score);
+        System.out.println("\nYour score was written to database\n");
+    }
+
+    private void printAverageRating() {
+        RatingService ratingService = new RatingServiceJDBC();
+        int averageRating = ratingService.getAverageRating(gameName);
+
+        if (averageRating != 0) {
+            System.out.print("\nAverage " + averageRating);
+            for (int i = 0; i < averageRating; i++) System.out.print(" ★");
+            System.out.println("\n");
+        } else
+            System.out.println("\nGame is not rated\n");
+        mainMenu();
+    }
+
+
+    private void printBestPlayers() {
+        ScoreService scoreService = new ScoreServiceJDBC();
+        List<Score> scoreList = scoreService.getTopScores(gameName);
+        if (scoreList.isEmpty()) {
+            System.out.println("\nThere is no played games\n");
+        } else {
+            System.out.println();
+            for (int i = 0; i < scoreList.size(); i++) {
+                Score s = scoreList.get(i);
+                String formatted = String.format("%d. %s %d", i+1, s.getPlayer(), s.getPoints());
+                System.out.println(formatted);
+            }
+            System.out.println();
         }
 
-        ConsoleUtils.setCursorPos(0, 0);
-        System.out.print("  ");
+        mainMenu();
+    }
 
-        return key;
+    private void printComments() {
+        CommentService commentService = new CommentServiceJDBC();
+        List<Comment> commentList = commentService.getComments(gameName);
+        if (commentList.isEmpty()) {
+            System.out.println("\nThere is no comments\n");
+        } else {
+            System.out.println();
+            for (int i = 0; i < commentList.size(); i++) {
+                Comment s = commentList.get(i);
+
+                String formatted = String.format("%s : %s >>> %s", s.getCommentedOn().toString(), s.getPlayer(), s.getComment());
+                System.out.println(formatted);
+            }
+            System.out.println();
+        }
+
+        mainMenu();
+    }
+
+
+    private void addPlayersComment () {
+        enterPlayerName();
+        System.out.println("Enter your comment: ");
+
+        CommentService commentService = new CommentServiceJDBC();
+        String commentString = InputUtils.getStringInput();
+        Comment comment = new Comment(gameName, playerName, commentString, new Timestamp(new Date().getTime()));
+
+        commentService.addComment(comment);
+        System.out.println("\nYour comment was added\n");
+        mainMenu();
+    }
+
+    private void addPlayersRating () {
+        enterPlayerName();
+        System.out.println("Enter your rating (1 - 5)");
+        RatingService ratingService = new RatingServiceJDBC();
+        int ratingValue = InputUtils.getIntInput(1, 5);
+        Rating rating = new Rating(gameName, playerName, ratingValue, new Timestamp(new Date().getTime()));
+        ratingService.setRating(rating);
+        System.out.println("\nYour rating was added\n");
+        mainMenu();
+    }
+
+    private void saveResultsToDB() {
+        System.out.println("Save your results to database? 1 - yes, 2 - no:");
+        int save = InputUtils.getIntInput(1, 2);
+
+        if (save == 1) {
+            addPlayersScore();
+        }
     }
 
     private Complexity inputComplexity() {
         Complexity complexity;
-        Scanner sc = new Scanner(System.in);
-
-        for (int input, i = 0; true; i++) {
-            try {
-                if (i != 0) System.out.println("Wrong input");
-                System.out.print("Choose complexity (1 - EASY, 2 - MEDIUM, 3 - HARD): ");
-                input = sc.nextInt();
-
-                if (input > 0 && input < 4) {
-                    complexity = Complexity.values()[input - 1];
-                    break;
-                }
-            } catch (Exception ignored) {
-                sc.next();
-            }
-        }
+        System.out.println("Choose complexity (1 - EASY, 2 - MEDIUM, 3 - HARD): ");
+        int input = InputUtils.getIntInput(1, 3);
+        complexity = Complexity.values()[input - 1];
 
         return complexity;
+    }
+
+    private void enterPlayerName() {
+        if (playerName == null) {
+            System.out.println("Enter your name: ");
+            playerName = InputUtils.getStringInput();
+        }
     }
 
     private int[] inputWidthAndHeight() {
         int width = 0, height = 0;
 
-        Scanner sc = new Scanner(System.in);
-        for (int i = 0; !(width > 2 && width < 8 && height > 2 && height < 8); i++) {
-            try {
-                if (i != 0) System.out.println("Wrong input");
-                System.out.print("Type width of the field (3 - 7): ");
-                width = sc.nextInt();
-                System.out.print("Type height of the field (3 - 7): ");
-                height = sc.nextInt();
-            } catch (Exception ignored) {
-                if (sc.hasNext()) sc.next();
-            }
-        }
+        System.out.println("Enter width of the field (3 - 6): ");
+        width = InputUtils.getIntInput(3, 6);
+        System.out.println("Enter height of the field (3 - 6): ");
+        height = InputUtils.getIntInput(3, 6);
 
         return new int[]{height, width};
     }
 
-    private void disableRawMode() {
-
-        String[] cmd2 = {"/bin/sh", "-c", "stty cooked </dev/tty"};
-        try {
-            Runtime.getRuntime().exec(cmd2).waitFor();
-            consoleRawMode = false;
-        } catch (InterruptedException | IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void enableRawMode() {
-        String[] cmd = {"/bin/sh", "-c", "stty raw </dev/tty"};
-        try {
-            Runtime.getRuntime().exec(cmd).waitFor();
-            consoleRawMode = true;
-        } catch (InterruptedException | IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private void reset() {
-        playAgain = false;
+        playerScore.set(0);
         exit = false;
         cursor = null;
         game = null;
     }
 
     void printVictoryMessage() {
-        ConsoleUtils.printMessage("Congratulations!!!");
-        ConsoleUtils.printMessage("Press R if you want to play again or any key to quit", 49, 20);
-        int key = getInputChar();
-        inputHandler(key);
+        ConsoleUtils.deleteMessage();
+        ConsoleUtils.printMessage("Congratulations!!!   Press any key to quit");
+        int key = InputUtils.getInputChar();
         ConsoleUtils.clearScreen();
-        disableRawMode();
+    }
+
+    private void stopThreadToPrintTime() {
+        if (threadToPrintTime != null) threadToPrintTime.interrupt();
+    }
+
+    private void startThreadToPrintTime() {
+        stopThreadToPrintTime();
+        Runnable runnable = () -> {
+            try {
+                long time = System.currentTimeMillis();
+                while (true) {
+                    synchronized (this) {
+                        ConsoleUtils.printMessage("Your time/score: " + playerScore.get(), 4, 1);
+                    }
+
+                    playerScore.set((int) (System.currentTimeMillis()/1000 -  game.getStart().getTime()/1000));
+                    Thread.sleep(100);
+                }
+            } catch (InterruptedException e) {}
+        };
+
+        threadToPrintTime = new Thread(runnable);
+        threadToPrintTime.start();
     }
 
     public boolean isHighlightOn() {

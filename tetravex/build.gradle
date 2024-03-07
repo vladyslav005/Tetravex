@@ -13,6 +13,8 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.2'
 }
 
 
@@ -27,5 +29,9 @@ application {
 jar {
     manifest {
         attributes 'Main-Class': 'tetravex.Main'
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }

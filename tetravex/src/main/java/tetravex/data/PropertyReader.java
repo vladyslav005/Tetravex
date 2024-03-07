@@ -10,7 +10,6 @@ public class PropertyReader {
     public static String getDbURL() {
         if (prop == null) getPropSource();
 
-
         return new StringBuilder("jdbc:postgresql://")
                 .append(prop.getProperty("postgres.db.host"))
                 .append(":")
@@ -21,18 +20,17 @@ public class PropertyReader {
                 .toString();
     }
 
-    public static String getBdUsername() {
+    public static String getDBUsername() {
         if (prop == null) getPropSource();
         return prop.getProperty("postgres.db.username");
     }
 
-    public static String getBdUPassword() {
+    public static String getDBPassword() {
         if (prop == null) getPropSource();
         return prop.getProperty("postgres.db.password");
     }
 
     private static Properties getPropSource() {
-
         try (InputStream input = PropertyReader.class.getClassLoader().getResourceAsStream("application.properties")) {
 
             if (input == null)
