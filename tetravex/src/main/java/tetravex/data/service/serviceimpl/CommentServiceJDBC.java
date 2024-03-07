@@ -2,8 +2,9 @@ package tetravex.data.service.serviceimpl;
 
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Comment;
-import tetravex.data.service.exceptions.CommentException;
 import tetravex.data.service.CommentService;
+import tetravex.data.service.exceptions.CommentException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,9 @@ public class CommentServiceJDBC implements CommentService {
             statement.setString(1, comment.getGame());
             statement.setString(2, comment.getPlayer());
             statement.setString(3, comment.getComment());
-            statement.setTimestamp(4,  new Timestamp(comment.getCommentedOn().getTime()));
+            statement.setTimestamp(4, new Timestamp(comment.getCommentedOn().getTime()));
             statement.executeUpdate();
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             throw new CommentException("Problem adding comment", e);
         }
     }
@@ -46,7 +47,7 @@ public class CommentServiceJDBC implements CommentService {
 
             return commentList;
 
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             throw new CommentException("Problem selecting comments", e);
         }
     }

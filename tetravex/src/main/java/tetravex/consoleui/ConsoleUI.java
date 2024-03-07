@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConsoleUI {
+    private final String gameName = "tetravex";
+    private final AtomicInteger playerScore = new AtomicInteger(0);
     private Thread threadToPrintTime = null;
     private Cursor cursor;
     private Game game;
     private BoardDrawer boardDrawer;
-    private final String gameName = "tetravex";
     private String playerName;
-    private final AtomicInteger playerScore = new AtomicInteger(0);
     private boolean showSolution = false;
     private boolean exit = false;
     private boolean highlightOn = false;
@@ -57,8 +57,6 @@ public class ConsoleUI {
         System.out.println("\t 6. Show average rating");
         System.out.println("\t 7. Exit");
 
-
-
         int option = InputUtils.getIntInput(1, 7);
 
         switch (option) {
@@ -69,7 +67,6 @@ public class ConsoleUI {
             case 5 -> printComments();
             case 6 -> printAverageRating();
             case 7 -> {
-                return;
             }
         }
     }
@@ -137,7 +134,7 @@ public class ConsoleUI {
         if (showSolution) boardDrawer.drawBoard(field.getSolved(), x + boardCharWidth * 2, y);
     }
 
-    private void addPlayersScore () {
+    private void addPlayersScore() {
         enterPlayerName();
 
         ScoreService scoreService = new ScoreServiceJDBC();
@@ -170,7 +167,7 @@ public class ConsoleUI {
             System.out.println();
             for (int i = 0; i < scoreList.size(); i++) {
                 Score s = scoreList.get(i);
-                String formatted = String.format("%d. %s %d", i+1, s.getPlayer(), s.getPoints());
+                String formatted = String.format("%d. %s %d", i + 1, s.getPlayer(), s.getPoints());
                 System.out.println(formatted);
             }
             System.out.println();
@@ -186,9 +183,7 @@ public class ConsoleUI {
             System.out.println("\nThere is no comments\n");
         } else {
             System.out.println();
-            for (int i = 0; i < commentList.size(); i++) {
-                Comment s = commentList.get(i);
-
+            for (Comment s : commentList) {
                 String formatted = String.format("%s : %s >>> %s", s.getCommentedOn().toString(), s.getPlayer(), s.getComment());
                 System.out.println(formatted);
             }
@@ -199,7 +194,7 @@ public class ConsoleUI {
     }
 
 
-    private void addPlayersComment () {
+    private void addPlayersComment() {
         enterPlayerName();
         System.out.println("Enter your comment: ");
 
@@ -212,7 +207,7 @@ public class ConsoleUI {
         mainMenu();
     }
 
-    private void addPlayersRating () {
+    private void addPlayersRating() {
         enterPlayerName();
         System.out.println("Enter your rating (1 - 5)");
         RatingService ratingService = new RatingServiceJDBC();
@@ -249,7 +244,7 @@ public class ConsoleUI {
     }
 
     private int[] inputWidthAndHeight() {
-        int width = 0, height = 0;
+        int width, height;
 
         System.out.println("Enter width of the field (3 - 6): ");
         width = InputUtils.getIntInput(3, 6);
@@ -287,10 +282,10 @@ public class ConsoleUI {
                         ConsoleUtils.printMessage("Your time/score: " + playerScore.get(), 4, 1);
                     }
 
-                    playerScore.set((int) (System.currentTimeMillis()/1000 -  game.getStart().getTime()/1000));
+                    playerScore.set((int) (System.currentTimeMillis() / 1000 - game.getStart().getTime() / 1000));
                     Thread.sleep(100);
                 }
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException ignored) {}
         };
 
         threadToPrintTime = new Thread(runnable);
@@ -305,7 +300,4 @@ public class ConsoleUI {
         return cursor;
     }
 
-    public void setCursor(Cursor cursor) {
-        this.cursor = cursor;
-    }
 }

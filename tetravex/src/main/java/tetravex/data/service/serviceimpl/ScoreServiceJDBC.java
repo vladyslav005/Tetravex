@@ -3,8 +3,8 @@ package tetravex.data.service.serviceimpl;
 
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Score;
-import tetravex.data.service.exceptions.ScoreException;
 import tetravex.data.service.ScoreService;
+import tetravex.data.service.exceptions.ScoreException;
 
 import java.sql.*;
 import java.util.ArrayList;

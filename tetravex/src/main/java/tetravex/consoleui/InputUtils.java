@@ -29,7 +29,7 @@ public class InputUtils {
     public static int getIntInput(int min, int max) {
         Scanner sc = new Scanner(System.in);
 
-        int choosedOption = 0;
+        int choosedOption;
         for (int i = 0; true; i++) {
             try {
                 System.out.print(">>>>>> ");

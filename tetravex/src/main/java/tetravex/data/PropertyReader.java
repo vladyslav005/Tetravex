@@ -30,7 +30,7 @@ public class PropertyReader {
         return prop.getProperty("postgres.db.password");
     }
 
-    private static Properties getPropSource() {
+    private static void getPropSource() {
         try (InputStream input = PropertyReader.class.getClassLoader().getResourceAsStream("application.properties")) {
 
             if (input == null)
@@ -38,9 +38,8 @@ public class PropertyReader {
             prop = new Properties();
             prop.load(input);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
 
-        return prop;
     }
 }

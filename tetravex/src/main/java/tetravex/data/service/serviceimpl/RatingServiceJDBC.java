@@ -2,16 +2,17 @@ package tetravex.data.service.serviceimpl;
 
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Rating;
-import tetravex.data.service.exceptions.RatingException;
 import tetravex.data.service.RatingService;
+import tetravex.data.service.exceptions.RatingException;
+
 import java.sql.*;
 
 public class RatingServiceJDBC implements RatingService {
     public static final String SELECT = "SELECT * FROM rating WHERE game = ? AND player = ?";
     public static final String DELETE = "DELETE FROM rating";
     public static final String INSERT = "INSERT INTO rating (game, player, rating, ratedOn) VALUES (?, ?, ?, ?)";
-    public static final String UPDATE  = "UPDATE rating SET rating = ?, ratedOn = ? WHERE game = ? AND player = ?";
-    public static final String AVERAGE  = "SELECT avg(rating) FROM rating WHERE game = ?;";
+    public static final String UPDATE = "UPDATE rating SET rating = ?, ratedOn = ? WHERE game = ? AND player = ?";
+    public static final String AVERAGE = "SELECT avg(rating) FROM rating WHERE game = ?;";
 
     @Override
     public void setRating(Rating rating) throws RatingException {
@@ -34,7 +35,7 @@ public class RatingServiceJDBC implements RatingService {
                 insertStatement.setTimestamp(4, new Timestamp(rating.getRatedOn().getTime()));
                 insertStatement.executeUpdate();
             }
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RatingException("Problem adding rating", e);
         }
     }
@@ -50,7 +51,7 @@ public class RatingServiceJDBC implements RatingService {
 
             return avgRate;
 
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RatingException("Problem selecting rating", e);
         }
     }
@@ -68,7 +69,7 @@ public class RatingServiceJDBC implements RatingService {
 
             return rate;
 
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RatingException("Problem selecting rating", e);
         }
     }

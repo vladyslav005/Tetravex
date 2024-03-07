@@ -9,7 +9,7 @@ import java.util.List;
 public class BoardDrawer {
 
     private final Cursor cursor;
-    private ConsoleUI consoleUI;
+    private final ConsoleUI consoleUI;
 
     public BoardDrawer(ConsoleUI consoleUI) {
         this.cursor = consoleUI.getCursor();
@@ -144,7 +144,7 @@ public class BoardDrawer {
 
         return
                 consoleUI.isHighlightOn() && tile.getState() == TileState.CORRECT ?
-                Color.HIGHLOGHT_COLOR.getBackgroundColorCode() + " " + "\u001B[0m" :
+                        Color.HIGHLOGHT_COLOR.getBackgroundColorCode() + " " + "\u001B[0m" :
                         Color.TILE_BACKGROUND.getBackgroundColorCode() + " " + "\u001B[0m";
     }
 }

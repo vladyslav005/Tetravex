@@ -2,20 +2,17 @@ package tetravex.core;
 
 import tetravex.core.tile.TileState;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Game {
 
     private final Field field;
     private GameState state = GameState.PLAYING;
-    private Timestamp start;
-    private Timestamp end;
+    private final Timestamp start;
 
     public Game(Field field) {
-        start = new Timestamp( new Date().getTime());
+        this.start = new Timestamp(new Date().getTime());
         this.field = field;
     }
 
@@ -36,7 +33,6 @@ public class Game {
         }
 
         state = GameState.SOLVED;
-        end = new Timestamp( new Date().getTime());
     }
 
     public boolean isSolved() {
@@ -53,9 +49,5 @@ public class Game {
 
     public Timestamp getStart() {
         return start;
-    }
-
-    public Timestamp getEnd() {
-        return end;
     }
 }
