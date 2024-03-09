@@ -2,6 +2,7 @@ package tetravex.data.service.serviceimpl;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import tetravex.data.DatabaseConnection;
 import tetravex.data.PropertyReader;
 import tetravex.data.entity.Comment;
 
@@ -22,14 +23,8 @@ class CommentServiceJDBCTest {
 
     @BeforeAll
     static void prepareConnection() {
-        PropertyReader propertyReader = new PropertyReader("application_test.properties");
-        try {
-            Connection connection = DriverManager.getConnection(
-                    propertyReader.getDbURL(), propertyReader.getDBUsername(), propertyReader.getDBPassword());
-            commentServiceJDBC = new CommentServiceJDBC(connection);
-        } catch (SQLException e) {
-            throw new RuntimeException("Test", e);
-        }
+        Connection connection = DatabaseConnection.getConnection();
+        commentServiceJDBC = new CommentServiceJDBC(connection);
     }
 
     @Test
