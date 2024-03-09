@@ -111,7 +111,6 @@ public class ConsoleUI {
                 playerScore.set(0);
                 showSolution = !showSolution;
             }
-
             case LOWERCASE_Q, UPPERCASE_Q -> {
                 exit = true;
                 stopThreadToPrintTime();
@@ -184,7 +183,8 @@ public class ConsoleUI {
         } else {
             System.out.println();
             for (Comment s : commentList) {
-                String formatted = String.format("%s : %s >>> %s", s.getCommentedOn().toString(), s.getPlayer(), s.getComment());
+                String formatted = String.format("%s : %s >>> %s",
+                        s.getCommentedOn().toString(), s.getPlayer(), s.getComment());
                 System.out.println(formatted);
             }
             System.out.println();
@@ -264,7 +264,7 @@ public class ConsoleUI {
     void printVictoryMessage() {
         ConsoleUtils.deleteMessage();
         ConsoleUtils.printMessage("Congratulations!!!   Press any key to quit");
-        int key = InputUtils.getInputChar();
+        InputUtils.getInputChar();
         ConsoleUtils.clearScreen();
     }
 
@@ -276,7 +276,6 @@ public class ConsoleUI {
         stopThreadToPrintTime();
         Runnable runnable = () -> {
             try {
-                long time = System.currentTimeMillis();
                 while (true) {
                     synchronized (this) {
                         ConsoleUtils.printMessage("Your time/score: " + playerScore.get(), 4, 1);

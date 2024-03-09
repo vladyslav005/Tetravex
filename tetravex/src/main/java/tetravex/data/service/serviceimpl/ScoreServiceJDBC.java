@@ -15,9 +15,18 @@ public class ScoreServiceJDBC implements ScoreService {
     public static final String DELETE = "DELETE FROM score";
     public static final String INSERT = "INSERT INTO score (game, player, points, playedOn) VALUES (?, ?, ?, ?)";
 
+    Connection connection = DatabaseConnection.getConnection();
+
+    public ScoreServiceJDBC(Connection connection) {
+        this.connection = connection;
+    }
+
+    public ScoreServiceJDBC() {
+    }
+
     @Override
     public void addScore(Score score) {
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(INSERT)) {
+        try (PreparedStatement statement = connection.prepareStatement(INSERT)) {
             statement.setString(1, score.getGame());
             statement.setString(2, score.getPlayer());
             statement.setInt(3, score.getPoints());
@@ -30,7 +39,7 @@ public class ScoreServiceJDBC implements ScoreService {
 
     @Override
     public List<Score> getTopScores(String game) {
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(SELECT)) {
+        try (PreparedStatement statement = connection.prepareStatement(SELECT)) {
             statement.setString(1, game);
             try (ResultSet rs = statement.executeQuery()) {
                 List<Score> scores = new ArrayList<>();
@@ -46,7 +55,7 @@ public class ScoreServiceJDBC implements ScoreService {
 
     @Override
     public void reset() {
-        try (Statement statement = DatabaseConnection.getConnection().createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(DELETE);
         } catch (SQLException e) {
             throw new ScoreException("Problem deleting score", e);

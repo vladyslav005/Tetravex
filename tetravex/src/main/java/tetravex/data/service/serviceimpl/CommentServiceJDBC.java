@@ -14,9 +14,19 @@ public class CommentServiceJDBC implements CommentService {
     public static final String DELETE = "DELETE FROM comment";
     public static final String INSERT = "INSERT INTO comment (game, player, comment, commentedOn) VALUES (?, ?, ?, ?)";
 
+    Connection connection = DatabaseConnection.getConnection();
+
+
+    public CommentServiceJDBC(Connection connection) {
+        this.connection = connection;
+    }
+
+    public CommentServiceJDBC() {
+    }
+
     @Override
     public void addComment(Comment comment) throws CommentException {
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(INSERT)) {
+        try (PreparedStatement statement = connection.prepareStatement(INSERT)) {
             statement.setString(1, comment.getGame());
             statement.setString(2, comment.getPlayer());
             statement.setString(3, comment.getComment());
@@ -29,7 +39,7 @@ public class CommentServiceJDBC implements CommentService {
 
     @Override
     public List<Comment> getComments(String game) throws CommentException {
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(SELECT)) {
+        try (PreparedStatement statement = connection.prepareStatement(SELECT)) {
             statement.setString(1, game);
             ResultSet resultSet = statement.executeQuery();
             List<Comment> commentList = new ArrayList<>();
@@ -54,7 +64,7 @@ public class CommentServiceJDBC implements CommentService {
 
     @Override
     public void reset() throws CommentException {
-        try (Statement statement = DatabaseConnection.getConnection().createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(DELETE);
         } catch (SQLException e) {
             throw new CommentException("Problem deleting comment", e);

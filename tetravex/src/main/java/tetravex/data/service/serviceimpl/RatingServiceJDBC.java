@@ -14,10 +14,19 @@ public class RatingServiceJDBC implements RatingService {
     public static final String UPDATE = "UPDATE rating SET rating = ?, ratedOn = ? WHERE game = ? AND player = ?";
     public static final String AVERAGE = "SELECT avg(rating) FROM rating WHERE game = ?;";
 
+    Connection connection = DatabaseConnection.getConnection();
+
+    public RatingServiceJDBC(Connection connection) {
+        this.connection = connection;
+    }
+
+    public RatingServiceJDBC() {
+    }
+
     @Override
     public void setRating(Rating rating) throws RatingException {
-        try (PreparedStatement insertStatement = DatabaseConnection.getConnection().prepareStatement(INSERT);
-             PreparedStatement updateStatement = DatabaseConnection.getConnection().prepareStatement(UPDATE)
+        try (PreparedStatement insertStatement = connection.prepareStatement(INSERT);
+             PreparedStatement updateStatement = connection.prepareStatement(UPDATE)
         ) {
             int ratingWrittenInDb = getRating(rating.getGame(), rating.getPlayer());
             if (ratingWrittenInDb != 0) {
@@ -42,7 +51,7 @@ public class RatingServiceJDBC implements RatingService {
 
     @Override
     public int getAverageRating(String game) throws RatingException {
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(AVERAGE)) {
+        try (PreparedStatement statement = connection.prepareStatement(AVERAGE)) {
             statement.setString(1, game);
             ResultSet resultSet = statement.executeQuery();
             int avgRate = 0;
@@ -58,7 +67,7 @@ public class RatingServiceJDBC implements RatingService {
 
     @Override
     public int getRating(String game, String player) throws RatingException {
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(SELECT)) {
+        try (PreparedStatement statement = connection.prepareStatement(SELECT)) {
             statement.setString(1, game);
             statement.setString(2, player);
             ResultSet resultSet = statement.executeQuery();
@@ -76,7 +85,7 @@ public class RatingServiceJDBC implements RatingService {
 
     @Override
     public void reset() throws RatingException {
-        try (Statement statement = DatabaseConnection.getConnection().createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(DELETE);
         } catch (SQLException e) {
             throw new RatingException("Problem deleting rating", e);
