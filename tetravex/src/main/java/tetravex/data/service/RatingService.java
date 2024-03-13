@@ -2,7 +2,7 @@ package tetravex.data.service;
 
 
 import tetravex.data.entity.Rating;
-import tetravex.data.service.exceptions.RatingException;
+import tetravex.data.exceptions.RatingException;
 
 public interface RatingService {
     void setRating(Rating rating) throws RatingException;

@@ -3,7 +3,7 @@ package tetravex.data.service.serviceimpl;
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Comment;
 import tetravex.data.service.CommentService;
-import tetravex.data.service.exceptions.CommentException;
+import tetravex.data.exceptions.CommentException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -56,7 +56,6 @@ public class CommentServiceJDBC implements CommentService {
             }
 
             return commentList;
-
         } catch (SQLException e) {
             throw new CommentException("Problem selecting comments", e);
         }

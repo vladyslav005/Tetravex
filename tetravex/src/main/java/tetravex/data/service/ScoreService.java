@@ -1,7 +1,7 @@
 package tetravex.data.service;
 
 import tetravex.data.entity.Score;
-import tetravex.data.service.exceptions.ScoreException;
+import tetravex.data.exceptions.ScoreException;
 
 import java.util.List;
 

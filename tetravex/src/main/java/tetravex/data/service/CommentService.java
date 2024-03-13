@@ -2,7 +2,7 @@ package tetravex.data.service;
 
 
 import tetravex.data.entity.Comment;
-import tetravex.data.service.exceptions.CommentException;
+import tetravex.data.exceptions.CommentException;
 
 import java.util.List;
 

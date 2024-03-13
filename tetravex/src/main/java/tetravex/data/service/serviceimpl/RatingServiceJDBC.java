@@ -3,7 +3,7 @@ package tetravex.data.service.serviceimpl;
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Rating;
 import tetravex.data.service.RatingService;
-import tetravex.data.service.exceptions.RatingException;
+import tetravex.data.exceptions.RatingException;
 
 import java.sql.*;
 

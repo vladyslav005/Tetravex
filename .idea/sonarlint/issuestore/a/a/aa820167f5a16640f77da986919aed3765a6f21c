@@ -1,0 +1,45 @@
+
+=
+java:S1170"!Make this final field static too.(û¸Ð<8ÉÊ²Ñá1
+F
+java:S1659'"$Declare "height" on a separate line.(·ðÛ¹ÿÿÿÿÿ8ÍÊ²Ñá1
+G	java:S1063"+Replace this use of System.out by a logger.(Ó—ý‡8ÏÊ²Ñá1
+L	java:S1064"+Replace this use of System.out by a logger.(¿‚‹Ëùÿÿÿÿ8ÏÊ²Ñá1
+G	java:S1065"+Replace this use of System.out by a logger.(­èÒ–8ÏÊ²Ñá1
+G	java:S1066"+Replace this use of System.out by a logger.(³ÒÀÜ8ÐÊ²Ñá1
+L	java:S1067"+Replace this use of System.out by a logger.(Ø‡ƒòøÿÿÿÿ8ÐÊ²Ñá1
+G	java:S1068"+Replace this use of System.out by a logger.(€ËŒ8ÐÊ²Ñá1
+G	java:S1069"+Replace this use of System.out by a logger.(…€Ñë8ÐÊ²Ñá1
+L	java:S106:"+Replace this use of System.out by a logger.(Æüæ€ûÿÿÿÿ8ÐÊ²Ñá1
+C	java:S131>""Add a default case to this switch.(­Ö¹§úÿÿÿÿ8ÐÊ²Ñá1
+E	java:S108E")Either remove or fill this block of code.(èóÄÞ8ÑÊ²Ñá1
+z	java:S131f"YComplete cases by adding the missing enum constants or add a default case to this switch.(¯½äÝÿÿÿÿÿ8ÓÊ²Ñá1
+<
+java:S1659~"Declare "y" on a separate line.(ˆƒ—®8ÔÊ²Ñá1
+H	java:S106"+Replace this use of System.out by a logger.(¹Ñè8×Ê²Ñá1
+M	java:S106—"+Replace this use of System.out by a logger.(ë¿ƒËúÿÿÿÿ8×Ê²Ñá1
+M	java:S106˜"+Replace this use of System.out by a logger.(¤ÂÒÕýÿÿÿÿ8ØÊ²Ñá1
+M	java:S106™"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8ØÊ²Ñá1
+M	java:S106›"+Replace this use of System.out by a logger.(„óâÏþÿÿÿÿ8ØÊ²Ñá1
+M	java:S106¤"+Replace this use of System.out by a logger.(ŠÓŸ“üÿÿÿÿ8ÙÊ²Ñá1
+M	java:S106¦"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ÙÊ²Ñá1
+M	java:S106ª"+Replace this use of System.out by a logger.(ì¢È®ùÿÿÿÿ8ÙÊ²Ñá1
+M	java:S106¬"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ÚÊ²Ñá1
+H	java:S106¶"+Replace this use of System.out by a logger.(™Ö ®8ÚÊ²Ñá1
+M	java:S106¸"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ÚÊ²Ñá1
+M	java:S106¼"+Replace this use of System.out by a logger.(ì¢È®ùÿÿÿÿ8ÛÊ²Ñá1
+M	java:S106¾"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ÛÊ²Ñá1
+M	java:S106Ç"+Replace this use of System.out by a logger.(ÔýžÞùÿÿÿÿ8ÜÊ²Ñá1
+M	java:S106Î"+Replace this use of System.out by a logger.(¿¬åúÿÿÿÿ8ÜÊ²Ñá1
+M	java:S106Ô"+Replace this use of System.out by a logger.(µàÍ¦ýÿÿÿÿ8ÝÊ²Ñá1
+H	java:S106Ù"+Replace this use of System.out by a logger.(—„åÃ8ÝÊ²Ñá1
+M	java:S106Þ"+Replace this use of System.out by a logger.(¼þò¾ùÿÿÿÿ8ÝÊ²Ñá1
+M	java:S106è"+Replace this use of System.out by a logger.(Þ—ƒˆûÿÿÿÿ8ÞÊ²Ñá1
+M	java:S106ñ"+Replace this use of System.out by a logger.(òÙŸÑÿÿÿÿÿ8ÞÊ²Ñá1
+B
+java:S1659÷"$Declare "height" on a separate line.(’¼ÊÒ8ßÊ²Ñá1
+H	java:S106ù"+Replace this use of System.out by a logger.(µûãó8ßÊ²Ñá1
+M	java:S106û"+Replace this use of System.out by a logger.(óÔ”æÿÿÿÿÿ8ßÊ²Ñá1
+|
+java:S2142Ÿ"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(´í­Œ8áÊ²Ñá1
+F	java:S108Ÿ")Either remove or fill this block of code.(´í­Œ8áÊ²Ñá1

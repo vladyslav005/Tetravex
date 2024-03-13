@@ -1,17 +1,33 @@
 
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+h
+8tetravex/src/main/java/tetravex/consoleui/ConsoleUI.java,a/a/aa820167f5a16640f77da986919aed3765a6f21c
 Y
 )tetravex/src/main/java/tetravex/Main.java,c/6/c6c8f374b62b97516a9698745d101ae1a1aa8d45
-E
-tetravex/build.gradle,d/0/d02077e19f33250450fd6d37f009a7aff4dfa3d2
-_
-/tetravex/src/main/java/tetravex/core/Field.java,3/3/33f2e4e4de5c3004c6c7cfc031cd6ac2eed2ecfa
+h
+8tetravex/src/main/java/tetravex/data/PropertyReader.java,c/1/c11e056a476593770371778e217370142709fc97
+g
+7tetravex/src/main/java/tetravex/consoleui/ASCIIKey.java,f/7/f77c8065421a617e0e5ac5e71cde8476079d6a85
+l
+<tetravex/src/main/java/tetravex/data/DatabaseConnection.java,6/a/6a55722d07693e0ae819b3865f3aa92d616ec89a
+p
+@tetravex/src/main/java/tetravex/data/service/CommentService.java,c/9/c9b3309c205ba8709dfa9d5501df81d0c588240f
+€
+Ptetravex/src/main/java/tetravex/data/service/serviceimpl/CommentServiceJDBC.java,1/7/1712c3ee4febc7e0631896129bcf42cc4e4e16a4
+
+Otetravex/src/main/java/tetravex/data/service/serviceimpl/RatingServiceJDBC.java,1/8/1866282d3dd1632e3043d3a8aea5dbfe0c76b50b
+~
+Ntetravex/src/main/java/tetravex/data/service/serviceimpl/ScoreServiceJDBC.java,c/c/ccc22e5e9fd8b8354863f5e49c60f541b58ae2d8
+„
+Ttetravex/src/test/java/tetravex/data/service/serviceimpl/CommentServiceJDBCTest.java,9/e/9e06f7dba85485635afd789aa92b89d8022931eb
+ƒ
+Stetravex/src/test/java/tetravex/data/service/serviceimpl/RatingServiceJDBCTest.java,8/9/893cefbfc8372849b3f8715f6255a96c078fd599
 c
 3tetravex/src/test/java/tetravex/core/FieldTest.java,8/f/8f46f693bbe234f083f3be380e84bcbc18a296f2
-^
-.tetravex/src/main/java/tetravex/core/Game.java,e/e/ee44ccb89f7070fff3e6ebb726a28a5b942efacd
-b
-2tetravex/src/test/java/tetravex/core/GameTest.java,1/9/19456c2480dae8c2abe3aaf764da0ed3a797fb15
-c
-3tetravex/src/main/java/tetravex/core/tile/Tile.java,9/f/9f2c7ea511a9b06ab29022753ec006af8f80dadf
+‚
+Rtetravex/src/test/java/tetravex/data/service/serviceimpl/ScoreServiceJDBCTest.java,8/1/81ed2519b14050508ce78951aad5bdfa7c31fffd
+C
+tetravex/.gitignore,d/a/da7bbbb7f6b830b4dfaf66b7f274d0bc5b13162e
+u
+Etetravex/src/main/java/tetravex/data/exceptions/CommentException.java,3/6/36136586ced02eff9726e7f478ccbee35c6aa7d0
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d

@@ -1,0 +1,432 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ConsoleUI</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">tetravex.consoleui</a>
+</div>
+
+<h1>Coverage Summary for Class: ConsoleUI (tetravex.consoleui)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ConsoleUI</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/23)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/162)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ConsoleUI$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/163)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package tetravex.consoleui;
+&nbsp;
+&nbsp;import tetravex.core.Complexity;
+&nbsp;import tetravex.core.Field;
+&nbsp;import tetravex.core.Game;
+&nbsp;import tetravex.data.entity.Comment;
+&nbsp;import tetravex.data.entity.Rating;
+&nbsp;import tetravex.data.entity.Score;
+&nbsp;import tetravex.data.service.CommentService;
+&nbsp;import tetravex.data.service.RatingService;
+&nbsp;import tetravex.data.service.ScoreService;
+&nbsp;import tetravex.data.service.serviceimpl.CommentServiceJDBC;
+&nbsp;import tetravex.data.service.serviceimpl.RatingServiceJDBC;
+&nbsp;import tetravex.data.service.serviceimpl.ScoreServiceJDBC;
+&nbsp;
+&nbsp;import java.sql.Timestamp;
+&nbsp;import java.util.Date;
+&nbsp;import java.util.List;
+&nbsp;import java.util.concurrent.atomic.AtomicInteger;
+&nbsp;
+<b class="nc">&nbsp;public class ConsoleUI {</b>
+<b class="nc">&nbsp;    private final String gameName = &quot;tetravex&quot;;</b>
+<b class="nc">&nbsp;    private final AtomicInteger playerScore = new AtomicInteger(0);</b>
+<b class="nc">&nbsp;    private Thread threadToPrintTime = null;</b>
+&nbsp;    private Cursor cursor;
+&nbsp;    private Game game;
+&nbsp;    private BoardDrawer boardDrawer;
+&nbsp;    private String playerName;
+<b class="nc">&nbsp;    private boolean showSolution = false;</b>
+<b class="nc">&nbsp;    private boolean exit = false;</b>
+<b class="nc">&nbsp;    private boolean highlightOn = false;</b>
+&nbsp;
+&nbsp;    private void play() {
+<b class="nc">&nbsp;        reset();</b>
+&nbsp;
+<b class="nc">&nbsp;        enterPlayerName();</b>
+<b class="nc">&nbsp;        int[] dimensions = inputWidthAndHeight();</b>
+&nbsp;
+<b class="nc">&nbsp;        int width = dimensions[1], height = dimensions[0];</b>
+<b class="nc">&nbsp;        Complexity complexity = inputComplexity();</b>
+&nbsp;
+<b class="nc">&nbsp;        Game newGame = new Game(complexity, height, width);</b>
+<b class="nc">&nbsp;        this.game = newGame;</b>
+<b class="nc">&nbsp;        this.cursor = new Cursor(newGame, null, newGame.getField().getPlayed());</b>
+<b class="nc">&nbsp;        boardDrawer = new BoardDrawer(this);</b>
+<b class="nc">&nbsp;        mainLoop();</b>
+<b class="nc">&nbsp;        mainMenu();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void mainMenu() {
+<b class="nc">&nbsp;        System.out.println(&quot;Choose option: &quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\t 1. New game&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\t 2. Add comment&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\t 3. Rate game&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\t 4. Show TOP players&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\t 5. Show comments&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\t 6. Show average rating&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\t 7. Exit&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        int option = InputUtils.getIntInput(1, 7);</b>
+&nbsp;
+<b class="nc">&nbsp;        switch (option) {</b>
+<b class="nc">&nbsp;            case 1 -&gt; play();</b>
+<b class="nc">&nbsp;            case 2 -&gt; addPlayersComment();</b>
+<b class="nc">&nbsp;            case 3 -&gt; addPlayersRating();</b>
+<b class="nc">&nbsp;            case 4 -&gt; printBestPlayers();</b>
+<b class="nc">&nbsp;            case 5 -&gt; printComments();</b>
+<b class="nc">&nbsp;            case 6 -&gt; printAverageRating();</b>
+&nbsp;            case 7 -&gt; {
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void mainLoop() {
+<b class="nc">&nbsp;        ConsoleUtils.enableRawMode();</b>
+<b class="nc">&nbsp;        startThreadToPrintTime();</b>
+&nbsp;
+&nbsp;        int key;
+<b class="nc">&nbsp;        while (!exit &amp;&amp; !game.isSolved()) {</b>
+<b class="nc">&nbsp;            render();</b>
+<b class="nc">&nbsp;            ConsoleUtils.printMessage(&quot;WASD - control, E - choose/put tile, Q - quit, H - hint, X - show solution (your score will be zero)&quot;);</b>
+<b class="nc">&nbsp;            key = InputUtils.getInputChar();</b>
+<b class="nc">&nbsp;            inputHandler(key);</b>
+<b class="nc">&nbsp;            game.updateState();</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        stopThreadToPrintTime();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (game.isSolved()) {</b>
+<b class="nc">&nbsp;            render();</b>
+<b class="nc">&nbsp;            printVictoryMessage();</b>
+<b class="nc">&nbsp;            ConsoleUtils.disableRawMode();</b>
+<b class="nc">&nbsp;            if (playerScore.get() != 0) saveResultsToDB();</b>
+&nbsp;        } else
+<b class="nc">&nbsp;            ConsoleUtils.disableRawMode();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void inputHandler(int key) {
+<b class="nc">&nbsp;        ASCIIKey asiKey = ASCIIKey.getASCIIKeyCode(key);</b>
+<b class="nc">&nbsp;        if (asiKey == null) return;</b>
+&nbsp;
+<b class="nc">&nbsp;        switch (asiKey) {</b>
+<b class="nc">&nbsp;            case LOWERCASE_W, UPPERCASE_W -&gt; cursor.moveUp();</b>
+<b class="nc">&nbsp;            case LOWERCASE_S, UPPERCASE_S -&gt; cursor.moveDown();</b>
+<b class="nc">&nbsp;            case LOWERCASE_D, UPPERCASE_D -&gt; cursor.moveRight();</b>
+<b class="nc">&nbsp;            case LOWERCASE_A, UPPERCASE_A -&gt; cursor.moveLeft();</b>
+<b class="nc">&nbsp;            case LOWERCASE_E, UPPERCASE_E -&gt; cursor.pickOrDropTile();</b>
+<b class="nc">&nbsp;            case LOWERCASE_H, UPPERCASE_H -&gt; highlightOn = !highlightOn;</b>
+&nbsp;            case LOWERCASE_X, UPPERCASE_X -&gt; {
+<b class="nc">&nbsp;                stopThreadToPrintTime();</b>
+<b class="nc">&nbsp;                playerScore.set(0);</b>
+<b class="nc">&nbsp;                showSolution = !showSolution;</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;            case LOWERCASE_Q, UPPERCASE_Q -&gt; {
+<b class="nc">&nbsp;                exit = true;</b>
+<b class="nc">&nbsp;                stopThreadToPrintTime();</b>
+<b class="nc">&nbsp;                ConsoleUtils.clearScreen();</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public synchronized void render() {
+<b class="nc">&nbsp;        if (boardDrawer == null) boardDrawer = new BoardDrawer(this);</b>
+&nbsp;
+<b class="nc">&nbsp;        ConsoleUtils.clearScreen();</b>
+<b class="nc">&nbsp;        int x = 4, y = 4;</b>
+<b class="nc">&nbsp;        Field field = game.getField();</b>
+<b class="nc">&nbsp;        int boardCharWidth = (field.getWidth() + 1) * 5 + 7;</b>
+&nbsp;
+<b class="nc">&nbsp;        boardDrawer.drawBoard(field.getPlayed(), x, y);</b>
+<b class="nc">&nbsp;        boardDrawer.drawBoard(field.getShuffled(), x + boardCharWidth, y);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (showSolution) boardDrawer.drawBoard(field.getSolved(), x + boardCharWidth * 2, y);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void addPlayersScore() {
+<b class="nc">&nbsp;        enterPlayerName();</b>
+&nbsp;
+<b class="nc">&nbsp;        ScoreService scoreService = new ScoreServiceJDBC();</b>
+<b class="nc">&nbsp;        Score score = new Score(gameName, playerName, playerScore.get(), new Timestamp(new Date().getTime()));</b>
+&nbsp;
+<b class="nc">&nbsp;        scoreService.addScore(score);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\nYour score was written to database\n&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void printAverageRating() {
+<b class="nc">&nbsp;        RatingService ratingService = new RatingServiceJDBC();</b>
+<b class="nc">&nbsp;        int averageRating = ratingService.getAverageRating(gameName);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (averageRating != 0) {</b>
+<b class="nc">&nbsp;            System.out.print(&quot;\nAverage &quot; + averageRating);</b>
+<b class="nc">&nbsp;            for (int i = 0; i &lt; averageRating; i++) System.out.print(&quot; ★&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;\n&quot;);</b>
+&nbsp;        } else
+<b class="nc">&nbsp;            System.out.println(&quot;\nGame is not rated\n&quot;);</b>
+<b class="nc">&nbsp;        mainMenu();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private void printBestPlayers() {
+<b class="nc">&nbsp;        ScoreService scoreService = new ScoreServiceJDBC();</b>
+<b class="nc">&nbsp;        List&lt;Score&gt; scoreList = scoreService.getTopScores(gameName);</b>
+<b class="nc">&nbsp;        if (scoreList.isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;\nThere is no played games\n&quot;);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            System.out.println();</b>
+<b class="nc">&nbsp;            for (int i = 0; i &lt; scoreList.size(); i++) {</b>
+<b class="nc">&nbsp;                Score s = scoreList.get(i);</b>
+<b class="nc">&nbsp;                String formatted = String.format(&quot;%d. %s %d&quot;, i + 1, s.getPlayer(), s.getPoints());</b>
+<b class="nc">&nbsp;                System.out.println(formatted);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            System.out.println();</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        mainMenu();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void printComments() {
+<b class="nc">&nbsp;        CommentService commentService = new CommentServiceJDBC();</b>
+<b class="nc">&nbsp;        List&lt;Comment&gt; commentList = commentService.getComments(gameName);</b>
+<b class="nc">&nbsp;        if (commentList.isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;\nThere is no comments\n&quot;);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            System.out.println();</b>
+<b class="nc">&nbsp;            for (Comment s : commentList) {</b>
+<b class="nc">&nbsp;                String formatted = String.format(&quot;%s : %s &gt;&gt;&gt; %s&quot;,</b>
+<b class="nc">&nbsp;                        s.getCommentedOn().toString(), s.getPlayer(), s.getComment());</b>
+<b class="nc">&nbsp;                System.out.println(formatted);</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            System.out.println();</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        mainMenu();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private void addPlayersComment() {
+<b class="nc">&nbsp;        enterPlayerName();</b>
+<b class="nc">&nbsp;        System.out.println(&quot;Enter your comment: &quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        CommentService commentService = new CommentServiceJDBC();</b>
+<b class="nc">&nbsp;        String commentString = InputUtils.getStringInput();</b>
+<b class="nc">&nbsp;        Comment comment = new Comment(gameName, playerName, commentString, new Timestamp(new Date().getTime()));</b>
+&nbsp;
+<b class="nc">&nbsp;        commentService.addComment(comment);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\nYour comment was added\n&quot;);</b>
+<b class="nc">&nbsp;        mainMenu();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void addPlayersRating() {
+<b class="nc">&nbsp;        enterPlayerName();</b>
+<b class="nc">&nbsp;        System.out.println(&quot;Enter your rating (1 - 5)&quot;);</b>
+<b class="nc">&nbsp;        RatingService ratingService = new RatingServiceJDBC();</b>
+<b class="nc">&nbsp;        int ratingValue = InputUtils.getIntInput(1, 5);</b>
+<b class="nc">&nbsp;        Rating rating = new Rating(gameName, playerName, ratingValue, new Timestamp(new Date().getTime()));</b>
+<b class="nc">&nbsp;        ratingService.setRating(rating);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;\nYour rating was added\n&quot;);</b>
+<b class="nc">&nbsp;        mainMenu();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void saveResultsToDB() {
+<b class="nc">&nbsp;        System.out.println(&quot;Save your results to database? 1 - yes, 2 - no:&quot;);</b>
+<b class="nc">&nbsp;        int save = InputUtils.getIntInput(1, 2);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (save == 1) {</b>
+<b class="nc">&nbsp;            addPlayersScore();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private Complexity inputComplexity() {
+&nbsp;        Complexity complexity;
+<b class="nc">&nbsp;        System.out.println(&quot;Choose complexity (1 - EASY, 2 - MEDIUM, 3 - HARD): &quot;);</b>
+<b class="nc">&nbsp;        int input = InputUtils.getIntInput(1, 3);</b>
+<b class="nc">&nbsp;        complexity = Complexity.values()[input - 1];</b>
+&nbsp;
+<b class="nc">&nbsp;        return complexity;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void enterPlayerName() {
+<b class="nc">&nbsp;        if (playerName == null) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Enter your name: &quot;);</b>
+<b class="nc">&nbsp;            playerName = InputUtils.getStringInput();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private int[] inputWidthAndHeight() {
+&nbsp;        int width, height;
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Enter width of the field (3 - 6): &quot;);</b>
+<b class="nc">&nbsp;        width = InputUtils.getIntInput(3, 6);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;Enter height of the field (3 - 6): &quot;);</b>
+<b class="nc">&nbsp;        height = InputUtils.getIntInput(3, 6);</b>
+&nbsp;
+<b class="nc">&nbsp;        return new int[]{height, width};</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void reset() {
+<b class="nc">&nbsp;        playerScore.set(0);</b>
+<b class="nc">&nbsp;        exit = false;</b>
+<b class="nc">&nbsp;        cursor = null;</b>
+<b class="nc">&nbsp;        game = null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void printVictoryMessage() {
+<b class="nc">&nbsp;        ConsoleUtils.deleteMessage();</b>
+<b class="nc">&nbsp;        ConsoleUtils.printMessage(&quot;Congratulations!!!   Press any key to quit&quot;);</b>
+<b class="nc">&nbsp;        InputUtils.getInputChar();</b>
+<b class="nc">&nbsp;        ConsoleUtils.clearScreen();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void stopThreadToPrintTime() {
+<b class="nc">&nbsp;        if (threadToPrintTime != null) threadToPrintTime.interrupt();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void startThreadToPrintTime() {
+<b class="nc">&nbsp;        stopThreadToPrintTime();</b>
+<b class="nc">&nbsp;        Runnable runnable = () -&gt; {</b>
+&nbsp;            try {
+&nbsp;                while (true) {
+<b class="nc">&nbsp;                    synchronized (this) {</b>
+<b class="nc">&nbsp;                        ConsoleUtils.printMessage(&quot;Your time/score: &quot; + playerScore.get(), 4, 1);</b>
+<b class="nc">&nbsp;                    }</b>
+&nbsp;
+<b class="nc">&nbsp;                    playerScore.set((int) (System.currentTimeMillis() / 1000 - game.getStart().getTime() / 1000));</b>
+<b class="nc">&nbsp;                    Thread.sleep(100);</b>
+&nbsp;                }
+<b class="nc">&nbsp;            } catch (InterruptedException ignored) {}</b>
+&nbsp;        };
+&nbsp;
+<b class="nc">&nbsp;        threadToPrintTime = new Thread(runnable);</b>
+<b class="nc">&nbsp;        threadToPrintTime.start();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isHighlightOn() {
+<b class="nc">&nbsp;        return highlightOn;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Cursor getCursor() {
+<b class="nc">&nbsp;        return cursor;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-03-09 17:22</div>
+</div>
+</body>
+</html>

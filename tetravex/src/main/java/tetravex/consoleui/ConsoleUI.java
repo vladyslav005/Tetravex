@@ -28,7 +28,7 @@ public class ConsoleUI {
     private String playerName;
     private boolean showSolution = false;
     private boolean exit = false;
-    private boolean highlightOn = false;
+    private boolean hintsOn = false;
 
     private void play() {
         reset();
@@ -105,7 +105,7 @@ public class ConsoleUI {
             case LOWERCASE_D, UPPERCASE_D -> cursor.moveRight();
             case LOWERCASE_A, UPPERCASE_A -> cursor.moveLeft();
             case LOWERCASE_E, UPPERCASE_E -> cursor.pickOrDropTile();
-            case LOWERCASE_H, UPPERCASE_H -> highlightOn = !highlightOn;
+            case LOWERCASE_H, UPPERCASE_H -> hintsOn = !hintsOn;
             case LOWERCASE_X, UPPERCASE_X -> {
                 stopThreadToPrintTime();
                 playerScore.set(0);
@@ -291,8 +291,8 @@ public class ConsoleUI {
         threadToPrintTime.start();
     }
 
-    public boolean isHighlightOn() {
-        return highlightOn;
+    public boolean isHintsOn() {
+        return hintsOn;
     }
 
     public Cursor getCursor() {

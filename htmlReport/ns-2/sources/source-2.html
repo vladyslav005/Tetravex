@@ -1,0 +1,254 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > BoardDrawer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">tetravex.consoleui</a>
+</div>
+
+<h1>Coverage Summary for Class: BoardDrawer (tetravex.consoleui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BoardDrawer</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/83)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package tetravex.consoleui;
+&nbsp;
+&nbsp;import tetravex.core.Color;
+&nbsp;import tetravex.core.tile.Tile;
+&nbsp;import tetravex.core.tile.TileState;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class BoardDrawer {
+&nbsp;
+&nbsp;    private final Cursor cursor;
+&nbsp;    private final ConsoleUI consoleUI;
+&nbsp;
+<b class="nc">&nbsp;    public BoardDrawer(ConsoleUI consoleUI) {</b>
+<b class="nc">&nbsp;        this.cursor = consoleUI.getCursor();</b>
+<b class="nc">&nbsp;        this.consoleUI = consoleUI;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public void drawBoard(List&lt;List&lt;Tile&gt;&gt; board, int x, int y) {
+<b class="nc">&nbsp;        int height = board.size(), width = board.get(0).size();</b>
+<b class="nc">&nbsp;        int start_x = x + 1, start_y = y + 2;</b>
+&nbsp;
+<b class="nc">&nbsp;        ConsoleUtils.setCursorPos(start_y, start_x);</b>
+<b class="nc">&nbsp;        drawGrid(width, height, start_x, start_y);</b>
+&nbsp;
+<b class="nc">&nbsp;        for (int i = 0; i &lt; height; i++) {</b>
+<b class="nc">&nbsp;            ConsoleUtils.setCursorPos(start_y + i * 4 + 1, start_x);</b>
+<b class="nc">&nbsp;            drawLayer(board, 1, i);</b>
+&nbsp;
+<b class="nc">&nbsp;            ConsoleUtils.setCursorPos(start_y + i * 4 + 2, start_x);</b>
+<b class="nc">&nbsp;            drawLayer(board, 2, i);</b>
+&nbsp;
+<b class="nc">&nbsp;            ConsoleUtils.setCursorPos(start_y + i * 4 + 3, start_x);</b>
+<b class="nc">&nbsp;            drawLayer(board, 3, i);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        ConsoleUtils.setCursorPos(0, 0);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void drawGrid(int width, int height, int x, int y) {
+<b class="nc">&nbsp;        for (int i = 0; i &lt; height + 1; i++) {</b>
+<b class="nc">&nbsp;            ConsoleUtils.setCursorPos(y + i * 4, x - 1);</b>
+&nbsp;
+<b class="nc">&nbsp;            for (int j = 0; j &lt; width; j++) {</b>
+<b class="nc">&nbsp;                ConsoleUtils.setColor(Color.GRID_COLOR);</b>
+&nbsp;
+<b class="nc">&nbsp;                if (j != width - 1) System.out.print(&quot;+-----&quot;);</b>
+<b class="nc">&nbsp;                else System.out.print(&quot;+-----+&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;                ConsoleUtils.resetColor();</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (height == i) break;</b>
+<b class="nc">&nbsp;            for (int k = 1; k &lt; 4; k++) { // k - height of one tile (3)</b>
+<b class="nc">&nbsp;                ConsoleUtils.setCursorPos(y + i * 4 + k, x - 1);</b>
+<b class="nc">&nbsp;                for (int j = 0; j &lt; width; j++) {</b>
+<b class="nc">&nbsp;                    ConsoleUtils.setColor(Color.GRID_COLOR);</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;|&quot;);</b>
+<b class="nc">&nbsp;                    ConsoleUtils.resetColor();</b>
+&nbsp;
+<b class="nc">&nbsp;                    if (j == width - 1) {</b>
+<b class="nc">&nbsp;                        ConsoleUtils.setColor(Color.GRID_COLOR);</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;     |&quot;);</b>
+<b class="nc">&nbsp;                        ConsoleUtils.resetColor();</b>
+&nbsp;                    } else
+<b class="nc">&nbsp;                        System.out.print(&quot;     &quot;);</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        ConsoleUtils.resetColor();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void drawLayer(List&lt;List&lt;Tile&gt;&gt; board, int layer, int row) {
+<b class="nc">&nbsp;        int width = board.get(0).size();</b>
+&nbsp;
+<b class="nc">&nbsp;        for (int k = 0; k &lt; width; k++) {</b>
+<b class="nc">&nbsp;            if (layer == 1) System.out.print(tileFirstLayer(board, row, k));</b>
+<b class="nc">&nbsp;            else if (layer == 2) System.out.print(tileSecondLayer(board, row, k));</b>
+<b class="nc">&nbsp;            else if (layer == 3) System.out.print(tileThirdLayer(board, row, k));</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.print(&quot;\u001b[1C&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public String emptyTileLayer(List&lt;List&lt;Tile&gt;&gt; board, int y, int x) {
+<b class="nc">&nbsp;        return getSpace(board, y, x) +</b>
+<b class="nc">&nbsp;                getSpace(board, y, x) +</b>
+<b class="nc">&nbsp;                getSpace(board, y, x) +</b>
+<b class="nc">&nbsp;                getSpace(board, y, x) +</b>
+<b class="nc">&nbsp;                getSpace(board, y, x);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String tileFirstLayer(List&lt;List&lt;Tile&gt;&gt; board, int y, int x) {
+<b class="nc">&nbsp;        Tile tile = board.get(y).get(x);</b>
+<b class="nc">&nbsp;        if (tile == null) return emptyTileLayer(board, y, x);</b>
+&nbsp;
+<b class="nc">&nbsp;        return</b>
+<b class="nc">&nbsp;                getSpace(board, y, x) +</b>
+<b class="nc">&nbsp;                        tile.getN().getColoredBackground() +</b>
+<b class="nc">&nbsp;                        tile.getN().getColoredBackground() +</b>
+<b class="nc">&nbsp;                        tile.getN().getColoredBackground() +</b>
+<b class="nc">&nbsp;                        getSpace(board, y, x);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String tileSecondLayer(List&lt;List&lt;Tile&gt;&gt; board, int y, int x) {
+<b class="nc">&nbsp;        Tile tile = board.get(y).get(x);</b>
+<b class="nc">&nbsp;        if (tile == null) return emptyTileLayer(board, y, x);</b>
+<b class="nc">&nbsp;        return</b>
+<b class="nc">&nbsp;                tile.getW().getColoredBackground() +</b>
+<b class="nc">&nbsp;                        getSpace(board, y, x) +</b>
+<b class="nc">&nbsp;                        getSpace(board, y, x) +</b>
+<b class="nc">&nbsp;                        getSpace(board, y, x) +</b>
+<b class="nc">&nbsp;                        tile.getE().getColoredBackground();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String tileThirdLayer(List&lt;List&lt;Tile&gt;&gt; board, int y, int x) {
+<b class="nc">&nbsp;        Tile tile = board.get(y).get(x);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (tile == null) return emptyTileLayer(board, y, x);</b>
+<b class="nc">&nbsp;        return</b>
+<b class="nc">&nbsp;                getSpace(board, y, x) +</b>
+<b class="nc">&nbsp;                        tile.getS().getColoredBackground() +</b>
+<b class="nc">&nbsp;                        tile.getS().getColoredBackground() +</b>
+<b class="nc">&nbsp;                        tile.getS().getColoredBackground() +</b>
+<b class="nc">&nbsp;                        getSpace(board, y, x);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getSpace(List&lt;List&lt;Tile&gt;&gt; board, int y, int x) {
+<b class="nc">&nbsp;        Tile tile = board.get(y).get(x);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (tile == null) {</b>
+<b class="nc">&nbsp;            if (board == cursor.getSelectedTile().getBoard() &amp;&amp; y == cursor.getSelectedTile().getY()</b>
+<b class="nc">&nbsp;                    &amp;&amp; x == cursor.getSelectedTile().getX())</b>
+<b class="nc">&nbsp;                return Color.WHITE.getBackgroundColorCode() + &quot; &quot; + &quot;\u001B[0m&quot;;</b>
+<b class="nc">&nbsp;            else return &quot; &quot;;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        if (cursor.getPickedTile().getTile() == tile)</b>
+<b class="nc">&nbsp;            return Color.BLACK.getBackgroundColorCode() + &quot; &quot; + &quot;\u001B[0m&quot;;</b>
+<b class="nc">&nbsp;        else if (tile == cursor.getSelectedTile().getTile())</b>
+<b class="nc">&nbsp;            return Color.WHITE.getBackgroundColorCode() + &quot; &quot; + &quot;\u001B[0m&quot;;</b>
+&nbsp;
+&nbsp;        return
+<b class="nc">&nbsp;                consoleUI.isHighlightOn() &amp;&amp; tile.getState() == TileState.CORRECT ?</b>
+<b class="nc">&nbsp;                        Color.HIGHLOGHT_COLOR.getBackgroundColorCode() + &quot; &quot; + &quot;\u001B[0m&quot; :</b>
+<b class="nc">&nbsp;                        Color.TILE_BACKGROUND.getBackgroundColorCode() + &quot; &quot; + &quot;\u001B[0m&quot;;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-03-09 17:22</div>
+</div>
+</body>
+</html>

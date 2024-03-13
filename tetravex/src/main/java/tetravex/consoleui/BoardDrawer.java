@@ -143,7 +143,7 @@ public class BoardDrawer {
             return Color.WHITE.getBackgroundColorCode() + " " + "\u001B[0m";
 
         return
-                consoleUI.isHighlightOn() && tile.getState() == TileState.CORRECT ?
+                consoleUI.isHintsOn() && tile.getState() == TileState.CORRECT ?
                         Color.HIGHLOGHT_COLOR.getBackgroundColorCode() + " " + "\u001B[0m" :
                         Color.TILE_BACKGROUND.getBackgroundColorCode() + " " + "\u001B[0m";
     }

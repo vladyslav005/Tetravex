@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS Score;
+DROP TABLE IF EXISTS Rating;
+DROP TABLE IF EXISTS Comment;
+
 CREATE TABLE Score (
     player VARCHAR(64),
     game VARCHAR(64),
