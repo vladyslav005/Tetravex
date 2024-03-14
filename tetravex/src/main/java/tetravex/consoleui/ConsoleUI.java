@@ -29,6 +29,7 @@ public class ConsoleUI {
     private boolean showSolution = false;
     private boolean exit = false;
     private boolean hintsOn = false;
+    private boolean firstCall = true;
 
     private void play() {
         reset();
@@ -48,16 +49,17 @@ public class ConsoleUI {
     }
 
     public void mainMenu() {
-        System.out.println("Choose option: ");
-        System.out.println("\t 1. New game");
-        System.out.println("\t 2. Add comment");
-        System.out.println("\t 3. Rate game");
-        System.out.println("\t 4. Show TOP players");
-        System.out.println("\t 5. Show comments");
-        System.out.println("\t 6. Show average rating");
-        System.out.println("\t 7. Exit");
+        if (firstCall) {
+            ConsoleUtils.clearScreen();
+            firstCall = false;
+            printMenuItems();
+        }
 
         int option = InputUtils.getIntInput(1, 7);
+
+        ConsoleUtils.clearScreen();
+
+        printMenuItems();
 
         switch (option) {
             case 1 -> play();
@@ -66,9 +68,20 @@ public class ConsoleUI {
             case 4 -> printBestPlayers();
             case 5 -> printComments();
             case 6 -> printAverageRating();
-            case 7 -> {
+            case 7 -> {ConsoleUtils.clearScreen();
             }
         }
+    }
+
+    private void printMenuItems() {
+        System.out.println("Choose option: ");
+        System.out.println("\t 1. New game");
+        System.out.println("\t 2. Add comment");
+        System.out.println("\t 3. Rate game");
+        System.out.println("\t 4. Show TOP players");
+        System.out.println("\t 5. Show comments");
+        System.out.println("\t 6. Show average rating");
+        System.out.println("\t 7. Exit");
     }
 
     public void mainLoop() {
@@ -259,6 +272,7 @@ public class ConsoleUI {
         exit = false;
         cursor = null;
         game = null;
+        firstCall = true;
     }
 
     void printVictoryMessage() {
