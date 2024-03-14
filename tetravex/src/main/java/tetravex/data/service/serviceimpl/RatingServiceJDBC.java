@@ -33,7 +33,7 @@ public class RatingServiceJDBC implements RatingService {
                 if (ratingWrittenInDb == rating.getRating()) return;
 
                 updateStatement.setInt(1, rating.getRating());
-                updateStatement.setDate(2,  new Date(rating.getRatedOn().getTime()));
+                updateStatement.setTimestamp(2, new Timestamp(rating.getRatedOn().getTime()));
                 updateStatement.setString(3, rating.getGame());
                 updateStatement.setString(4, rating.getPlayer());
                 updateStatement.executeUpdate();
@@ -41,7 +41,7 @@ public class RatingServiceJDBC implements RatingService {
                 insertStatement.setString(1, rating.getGame());
                 insertStatement.setString(2, rating.getPlayer());
                 insertStatement.setInt(3, rating.getRating());
-                insertStatement.setDate(4, new Date(rating.getRatedOn().getTime()));
+                insertStatement.setTimestamp(4, new Timestamp(rating.getRatedOn().getTime()));
                 insertStatement.executeUpdate();
             }
         } catch (SQLException e) {

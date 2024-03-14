@@ -30,7 +30,7 @@ public class ScoreServiceJDBC implements ScoreService {
             statement.setString(1, score.getGame());
             statement.setString(2, score.getPlayer());
             statement.setInt(3, score.getPoints());
-            statement.setDate(4, new Date(score.getPlayedOn().getTime()));
+            statement.setTimestamp(4, new Timestamp(score.getPlayedOn().getTime()));
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new ScoreException("Problem inserting score", e);
@@ -44,11 +44,7 @@ public class ScoreServiceJDBC implements ScoreService {
             try (ResultSet rs = statement.executeQuery()) {
                 List<Score> scores = new ArrayList<>();
                 while (rs.next()) {
-                    scores.add(new Score(
-                            rs.getString(1),
-                            rs.getString(2),
-                            rs.getInt(3),
-                            rs.getDate(4)));
+                    scores.add(new Score(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getTimestamp(4)));
                 }
                 return scores;
             }

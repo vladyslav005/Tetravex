@@ -3,10 +3,12 @@ package tetravex.data.service.serviceimpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import tetravex.data.DatabaseConnection;
+import tetravex.data.PropertyReader;
 import tetravex.data.entity.Comment;
 
 import java.sql.Connection;
-import java.util.Calendar;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -79,21 +81,12 @@ class CommentServiceJDBCTest {
         assertTrue(commentList.isEmpty());
     }
 
+
     private void assertCommentEquality(Comment comment1, Comment comment2) {
         assertEquals(comment1.getGame(), comment2.getGame());
         assertEquals(comment1.getPlayer(), comment2.getPlayer());
-
-        assertEquals(cutOffTime(comment1.getCommentedOn()), cutOffTime(comment2.getCommentedOn()));
+        assertEquals(comment1.getCommentedOn(), comment2.getCommentedOn());
         assertEquals(comment1.getComment(), comment2.getComment());
     }
 
-    private Calendar cutOffTime(Date date) {
-        Calendar calendar1 = Calendar.getInstance();
-        calendar1.setTime(date);
-        calendar1.set(Calendar.HOUR_OF_DAY, 0);
-        calendar1.set(Calendar.MINUTE, 0);
-        calendar1.set(Calendar.SECOND, 0);
-        calendar1.set(Calendar.MILLISECOND, 0);
-        return  calendar1;
-    }
 }
