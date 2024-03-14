@@ -30,7 +30,7 @@ public class CommentServiceJDBC implements CommentService {
             statement.setString(1, comment.getGame());
             statement.setString(2, comment.getPlayer());
             statement.setString(3, comment.getComment());
-            statement.setTimestamp(4, new Timestamp(comment.getCommentedOn().getTime()));
+            statement.setDate(4, new Date(comment.getCommentedOn().getTime()));
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new CommentException("Problem adding comment", e);
@@ -49,7 +49,7 @@ public class CommentServiceJDBC implements CommentService {
                         resultSet.getString(2),
                         resultSet.getString(1),
                         resultSet.getString(3),
-                        resultSet.getTimestamp(4)
+                        resultSet.getDate(4)
                 );
 
                 commentList.add(comment);

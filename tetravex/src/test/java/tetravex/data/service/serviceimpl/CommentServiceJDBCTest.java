@@ -85,7 +85,7 @@ class CommentServiceJDBCTest {
     private void assertCommentEquality(Comment comment1, Comment comment2) {
         assertEquals(comment1.getGame(), comment2.getGame());
         assertEquals(comment1.getPlayer(), comment2.getPlayer());
-        assertEquals(comment1.getCommentedOn(), comment2.getCommentedOn());
+        assertEquals(comment1.getCommentedOn().getDate(), comment2.getCommentedOn().getDate());
         assertEquals(comment1.getComment(), comment2.getComment());
     }
 

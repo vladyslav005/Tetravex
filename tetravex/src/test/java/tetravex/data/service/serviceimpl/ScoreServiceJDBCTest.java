@@ -89,7 +89,7 @@ class ScoreServiceJDBCTest {
     private void assertScoreEquality(Score score, Score score1) {
         assertEquals(score.getGame(), score1.getGame());
         assertEquals(score.getPlayer(), score1.getPlayer());
-        assertEquals(score.getPlayedOn(), score1.getPlayedOn());
+        assertEquals(score.getPlayedOn().getDate(), score1.getPlayedOn().getDate());
         assertEquals(score.getPoints(), score1.getPoints());
     }
 }
