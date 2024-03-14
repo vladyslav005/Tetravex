@@ -9,6 +9,7 @@ import tetravex.data.entity.Score;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -89,7 +90,17 @@ class ScoreServiceJDBCTest {
     private void assertScoreEquality(Score score, Score score1) {
         assertEquals(score.getGame(), score1.getGame());
         assertEquals(score.getPlayer(), score1.getPlayer());
-        assertEquals(score.getPlayedOn().getDate(), score1.getPlayedOn().getDate());
+        assertEquals(cutOffTime(score.getPlayedOn()), cutOffTime(score1.getPlayedOn()));
         assertEquals(score.getPoints(), score1.getPoints());
+    }
+
+    private Calendar cutOffTime(Date date) {
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(date);
+        calendar1.set(Calendar.HOUR_OF_DAY, 0);
+        calendar1.set(Calendar.MINUTE, 0);
+        calendar1.set(Calendar.SECOND, 0);
+        calendar1.set(Calendar.MILLISECOND, 0);
+        return calendar1;
     }
 }
