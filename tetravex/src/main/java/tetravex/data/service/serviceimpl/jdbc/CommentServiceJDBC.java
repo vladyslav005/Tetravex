@@ -1,32 +1,33 @@
-package tetravex.data.service.serviceimpl;
+package tetravex.data.service.serviceimpl.jdbc;
 
-import tetravex.data.DatabaseConnection;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import tetravex.data.entity.Comment;
 import tetravex.data.service.CommentService;
 import tetravex.data.exceptions.CommentException;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Repository
 public class CommentServiceJDBC implements CommentService {
     public static final String SELECT = "SELECT * FROM comment WHERE game = ? LIMIT 10";
     public static final String DELETE = "DELETE FROM comment";
     public static final String INSERT = "INSERT INTO comment (game, player, comment, commentedOn) VALUES (?, ?, ?, ?)";
 
-    Connection connection = DatabaseConnection.getConnection();
+    private DataSource dataSource;
 
-
-    public CommentServiceJDBC(Connection connection) {
-        this.connection = connection;
-    }
-
-    public CommentServiceJDBC() {
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     @Override
     public void addComment(Comment comment) throws CommentException {
-        try (PreparedStatement statement = connection.prepareStatement(INSERT)) {
+        try (PreparedStatement statement = dataSource.getConnection().prepareStatement(INSERT)) {
             statement.setString(1, comment.getGame());
             statement.setString(2, comment.getPlayer());
             statement.setString(3, comment.getComment());
@@ -39,7 +40,7 @@ public class CommentServiceJDBC implements CommentService {
 
     @Override
     public List<Comment> getComments(String game) throws CommentException {
-        try (PreparedStatement statement = connection.prepareStatement(SELECT)) {
+        try (PreparedStatement statement = dataSource.getConnection().prepareStatement(SELECT)) {
             statement.setString(1, game);
             ResultSet resultSet = statement.executeQuery();
             List<Comment> commentList = new ArrayList<>();
@@ -63,7 +64,7 @@ public class CommentServiceJDBC implements CommentService {
 
     @Override
     public void reset() throws CommentException {
-        try (Statement statement = connection.createStatement()) {
+        try (Statement statement = dataSource.getConnection().createStatement()) {
             statement.executeUpdate(DELETE);
         } catch (SQLException e) {
             throw new CommentException("Problem deleting comment", e);

@@ -3,12 +3,10 @@ package tetravex.data.service.serviceimpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import tetravex.data.DatabaseConnection;
-import tetravex.data.PropertyReader;
 import tetravex.data.entity.Score;
+import tetravex.data.service.serviceimpl.jdbc.ScoreServiceJDBC;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +58,6 @@ class ScoreServiceJDBCTest {
         scoreServiceJDBC.addScore(score1);
         scoreServiceJDBC.addScore(score2);
         scoreServiceJDBC.addScore(score3);
-
         List<Score> scoreList = scoreServiceJDBC.getTopScores(game);
 
         assertTrue(scoreList.get(0).getPoints() < scoreList.get(1).getPoints());
@@ -71,7 +68,6 @@ class ScoreServiceJDBCTest {
 
     @Test
     void reset() {
-
         Date date = new Date();
         Score score1 = new Score(game, player,8, date);
         Score score2 = new Score(game, player,9, date);

@@ -1,4 +1,4 @@
-package tetravex.data.service.serviceimpl;
+package tetravex.data.service.serviceimpl.jdbc;
 
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Rating;

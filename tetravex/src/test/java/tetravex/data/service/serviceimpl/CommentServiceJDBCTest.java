@@ -3,12 +3,10 @@ package tetravex.data.service.serviceimpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import tetravex.data.DatabaseConnection;
-import tetravex.data.PropertyReader;
 import tetravex.data.entity.Comment;
+import tetravex.data.service.serviceimpl.jdbc.CommentServiceJDBC;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 

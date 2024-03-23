@@ -1,0 +1,20 @@
+
+g	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ú£éã1
+g	java:S112L"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8‚ú£éã1
+\
+java:S1118":Add a private constructor to hide the implicit public one.(Áôìñıÿÿÿÿ8´ú£éã1
+G	java:S106"+Replace this use of System.out by a logger.(ƒñÜ¥8¾ú£éã1
+G	java:S106"+Replace this use of System.out by a logger.(ƒ¸Ã8Âú£éã1
+L	java:S106"+Replace this use of System.out by a logger.(»Ñ÷‘üÿÿÿÿ8Åú£éã1
+L	java:S106"+Replace this use of System.out by a logger.(¹–Ñİÿÿÿÿÿ8Èú£éã1
+G	java:S106"+Replace this use of System.out by a logger.(ÚÂâ8Ëú£éã1
+G	java:S106!"+Replace this use of System.out by a logger.(Îœò—8Ïú£éã1
+G	java:S106""+Replace this use of System.out by a logger.(ÚÂâ8Òú£éã1
+G	java:S106("+Replace this use of System.out by a logger.(ÌË§„8Øú£éã1
+G	java:S106/"+Replace this use of System.out by a logger.(ÌË§„8àú£éã1
+G	java:S1066"+Replace this use of System.out by a logger.(×•œ²8æú£éã1
+G	java:S106;"+Replace this use of System.out by a logger.(×•œ²8ëú£éã1
+€
+java:S2142B"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(üÍ”ûÿÿÿÿ8ğú£éã1
+€
+java:S2142K"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(üÍ”ûÿÿÿÿ8öú£éã1

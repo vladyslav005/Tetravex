@@ -16,7 +16,7 @@ public class DatabaseConnection {
                 connection = DriverManager.getConnection(
                         propertyReader.getDbURL(), propertyReader.getDBUsername(), propertyReader.getDBPassword());
             } catch (SQLException e) {
-                throw new RuntimeException("Failed to connect to database", e);
+//                throw new RuntimeException("Failed to connect to database", e);
             }
         }
         return connection;

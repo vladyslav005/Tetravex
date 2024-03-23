@@ -1,0 +1,20 @@
+
+h
+java:S1192ˆ"JDefine a constant instead of duplicating this literal "\u001B[0m" 5 times.(ë™äÜ8÷Ùµ¸æ1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İíÙ8ùÙµ¸æ1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İíÙ8ùÙµ¸æ1
+@
+java:S1659"#Declare "width" on a separate line.(Ÿíœò8ëİµ¸æ1
+B
+java:S1659"%Declare "start_y" on a separate line.(İíÙ8ìİµ¸æ1
+o
+java:S3776)"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¤â•³8ñİµ¸æ1
+L	java:S1060"+Replace this use of System.out by a logger.(ß²î²şÿÿÿÿ8óİµ¸æ1
+L	java:S1061"+Replace this use of System.out by a logger.(Âãà‰üÿÿÿÿ8óİµ¸æ1
+L	java:S106;"+Replace this use of System.out by a logger.(ÚŒù²ùÿÿÿÿ8öİµ¸æ1
+L	java:S106@"+Replace this use of System.out by a logger.(ÚŒù²ùÿÿÿÿ8÷İµ¸æ1
+G	java:S106C"+Replace this use of System.out by a logger.(×•œ²8øİµ¸æ1
+L	java:S106O"+Replace this use of System.out by a logger.(ÆÔÓ„úÿÿÿÿ8úİµ¸æ1
+L	java:S106P"+Replace this use of System.out by a logger.(«Ÿ´„øÿÿÿÿ8ûİµ¸æ1
+G	java:S106Q"+Replace this use of System.out by a logger.(Âçóà8ûİµ¸æ1
+F	java:S106S"+Replace this use of System.out by a logger.(„†Ã-8üİµ¸æ1

@@ -1,9 +1,25 @@
 package tetravex.data.entity;
 
 
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Comment {
+
+@Data
+@NoArgsConstructor
+
+@Entity
+@Table(name = "comment")
+public class Comment implements Serializable {
+
+    @Id
+    @GeneratedValue
+    private long id;
+
     private String game;
     private String player;
     private String comment;
@@ -16,45 +32,5 @@ public class Comment {
         this.commentedOn = commentedOn;
     }
 
-    public String getGame() {
-        return game;
-    }
 
-    public void setGame(String game) {
-        this.game = game;
-    }
-
-    public String getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(String player) {
-        this.player = player;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Date getCommentedOn() {
-        return commentedOn;
-    }
-
-    public void setCommentedOn(Date commentedOn) {
-        this.commentedOn = commentedOn;
-    }
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "game='" + game + '\'' +
-                ", player='" + player + '\'' +
-                ", comment='" + comment + '\'' +
-                ", commentedOn=" + commentedOn +
-                '}';
-    }
 }

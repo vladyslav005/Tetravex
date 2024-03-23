@@ -1,5 +1,6 @@
 package tetravex.consoleui;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import tetravex.core.Complexity;
 import tetravex.core.Field;
 import tetravex.core.Game;
@@ -9,9 +10,6 @@ import tetravex.data.entity.Score;
 import tetravex.data.service.CommentService;
 import tetravex.data.service.RatingService;
 import tetravex.data.service.ScoreService;
-import tetravex.data.service.serviceimpl.CommentServiceJDBC;
-import tetravex.data.service.serviceimpl.RatingServiceJDBC;
-import tetravex.data.service.serviceimpl.ScoreServiceJDBC;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -19,6 +17,16 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConsoleUI {
+
+    @Autowired
+    private RatingService ratingService;
+    @Autowired
+    private ScoreService scoreService;
+
+    @Autowired
+    private CommentService commentService;
+
+
     private final String gameName = "tetravex";
     private final AtomicInteger playerScore = new AtomicInteger(0);
     private Thread threadToPrintTime = null;
@@ -149,7 +157,6 @@ public class ConsoleUI {
     private void addPlayersScore() {
         enterPlayerName();
 
-        ScoreService scoreService = new ScoreServiceJDBC();
         Score score = new Score(gameName, playerName, playerScore.get(), new Timestamp(new Date().getTime()));
 
         scoreService.addScore(score);
@@ -157,7 +164,6 @@ public class ConsoleUI {
     }
 
     private void printAverageRating() {
-        RatingService ratingService = new RatingServiceJDBC();
         int averageRating = ratingService.getAverageRating(gameName);
 
         if (averageRating != 0) {
@@ -171,7 +177,6 @@ public class ConsoleUI {
 
 
     private void printBestPlayers() {
-        ScoreService scoreService = new ScoreServiceJDBC();
         List<Score> scoreList = scoreService.getTopScores(gameName);
         if (scoreList.isEmpty()) {
             System.out.println("\nThere is no played games\n");
@@ -189,7 +194,6 @@ public class ConsoleUI {
     }
 
     private void printComments() {
-        CommentService commentService = new CommentServiceJDBC();
         List<Comment> commentList = commentService.getComments(gameName);
         if (commentList.isEmpty()) {
             System.out.println("\nThere is no comments\n");
@@ -211,7 +215,6 @@ public class ConsoleUI {
         enterPlayerName();
         System.out.println("Enter your comment: ");
 
-        CommentService commentService = new CommentServiceJDBC();
         String commentString = InputUtils.getStringInput();
         Comment comment = new Comment(gameName, playerName, commentString, new Timestamp(new Date().getTime()));
 
@@ -223,7 +226,6 @@ public class ConsoleUI {
     private void addPlayersRating() {
         enterPlayerName();
         System.out.println("Enter your rating (1 - 5)");
-        RatingService ratingService = new RatingServiceJDBC();
         int ratingValue = InputUtils.getIntInput(1, 5);
         Rating rating = new Rating(gameName, playerName, ratingValue, new Timestamp(new Date().getTime()));
         ratingService.setRating(rating);
@@ -260,9 +262,9 @@ public class ConsoleUI {
         int width, height;
 
         System.out.println("Enter width of the field (3 - 6): ");
-        width = InputUtils.getIntInput(3, 6);
+        width = InputUtils.getIntInput(2, 6);
         System.out.println("Enter height of the field (3 - 6): ");
-        height = InputUtils.getIntInput(3, 6);
+        height = InputUtils.getIntInput(2, 6);
 
         return new int[]{height, width};
     }
