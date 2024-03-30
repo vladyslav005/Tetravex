@@ -8,8 +8,9 @@ import tetravex.data.entity.Rating;
 import tetravex.data.exceptions.RatingException;
 import tetravex.data.service.RatingService;
 
+import java.util.Map;
 
-@Repository
+
 @Transactional
 public class RatingServiceJPA implements RatingService {
 
@@ -36,17 +37,25 @@ public class RatingServiceJPA implements RatingService {
 
     @Override
     public int getAverageRating(String game) throws RatingException {
-        return entityManager.createQuery(
-            "select avg(r.rating) from Rating r", Integer.class).getSingleResult();
+        Double rate = entityManager.createQuery(
+            "select avg(r.rating) from Rating r WHERE game = '${game}'".replace("${game}", game),
+                Double.class).getSingleResult();
+
+        return (int) Math.round(rate);
     }
 
     @Override
     public int getRating(String game, String player) throws RatingException {
-        return 0;
+        return entityManager.createQuery(
+                "select r.rating from Rating r WHERE game = '${game}' AND player = '${player}'"
+                        .replace("${game}", game)
+                        .replace("${player}", player),
+                Integer.class).getSingleResult();
+
     }
 
     @Override
     public void reset() throws RatingException {
-
+        entityManager.createNativeQuery("DELETE * FROM Rating");
     }
 }

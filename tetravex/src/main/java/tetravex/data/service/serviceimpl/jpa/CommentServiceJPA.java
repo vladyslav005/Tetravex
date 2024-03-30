@@ -11,7 +11,6 @@ import tetravex.data.service.CommentService;
 import java.util.List;
 
 
-@Repository
 @Transactional
 public class CommentServiceJPA implements CommentService {
 
