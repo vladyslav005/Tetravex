@@ -2,28 +2,39 @@ package tetravex.data.service.serviceimpl;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Comment;
 import tetravex.data.service.serviceimpl.jdbc.CommentServiceJDBC;
+import tetravex.server.GameStudioServer;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class CommentServiceJDBCTest {
 
-    private static CommentServiceJDBC commentServiceJDBC = null;
+    private static CommentServiceJDBC commentServiceJDBC;
     private final String game = "game";
     private final String player = "player";
     private final String commentText = " Lorem Ipsum is de standaard proeftekst";
 
+
     @BeforeAll
     static void prepareConnection() {
         Connection connection = DatabaseConnection.getConnection();
-        commentServiceJDBC = new CommentServiceJDBC(connection);
+        commentServiceJDBC = new CommentServiceJDBC();
     }
+
 
     @Test
     void addComment() {

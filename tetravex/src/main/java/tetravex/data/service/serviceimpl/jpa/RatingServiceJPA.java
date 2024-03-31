@@ -20,7 +20,6 @@ public class RatingServiceJPA implements RatingService {
     @Override
     public void setRating(Rating rating) throws RatingException {
         Rating ratingFromDb = null;
-
         try {
             ratingFromDb = entityManager.createQuery(
                     "SELECT r FROM Rating r WHERE r.player = '?'".replace("?", rating.getPlayer()),
@@ -30,7 +29,7 @@ public class RatingServiceJPA implements RatingService {
         if (ratingFromDb != null) {
             ratingFromDb.setRating(rating.getRating());
             ratingFromDb.setRatedOn(rating.getRatedOn());
-            entityManager.merge(ratingFromDb);
+//            entityManager.merge(ratingFromDb);
         } else
             entityManager.persist(rating);
     }
