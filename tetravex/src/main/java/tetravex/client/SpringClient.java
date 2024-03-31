@@ -14,9 +14,7 @@ import tetravex.consoleui.ConsoleUI;
 import tetravex.data.service.CommentService;
 import tetravex.data.service.RatingService;
 import tetravex.data.service.ScoreService;
-import tetravex.data.service.serviceimpl.jpa.CommentServiceJPA;
-import tetravex.data.service.serviceimpl.jpa.RatingServiceJPA;
-import tetravex.data.service.serviceimpl.jpa.ScoreServiceJPA;
+
 
 
 @SpringBootApplication
@@ -44,6 +42,9 @@ public class SpringClient {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+
+
 
     @Bean
     @Primary

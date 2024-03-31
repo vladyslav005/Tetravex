@@ -1,0 +1,49 @@
+# gamestudio
+
+###
+# @name http://localhost:8080/api/score
+POST http://localhost:8080/api/score
+Content-Type: application/json
+
+{
+  "player": "vowone",
+  "game": "tetravex",
+  "playedOn": "2024-03-30T15:46:18.9",
+  "points": "100"
+}
+
+###
+# @name http://localhost:8080/api/comment
+POST http://localhost:8080/api/comment
+Content-Type: application/json
+
+{
+  "player": "vowone",
+  "game": "tetravex",
+  "commentedOn": "2024-03-30T15:46:18.9",
+  "comment": "I like it"
+}
+
+###
+# @name http://localhost:8080/api/rating
+POST http://localhost:8080/api/rating
+Content-Type: application/json
+
+{
+  "player": "vowone",
+  "game": "tetravex",
+  "ratedOn": "2024-03-30T15:46:18.9",
+  "rating": "1"
+}
+
+###
+# @name http://localhost:8080/api/score/tetravex
+GET http://localhost:8080/api/score/tetravex
+
+###
+# @name http://localhost:8080/api/comment/tetravex
+GET http://localhost:8080/api/comment/tetravex
+
+###
+# @name http://localhost:8080/api/rating/tetravex
+GET http://localhost:8080/api/rating/tetravex

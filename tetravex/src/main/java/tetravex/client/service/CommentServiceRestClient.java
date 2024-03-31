@@ -3,7 +3,6 @@ package tetravex.client.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 import tetravex.data.entity.Comment;
-import tetravex.data.entity.Score;
 import tetravex.data.exceptions.CommentException;
 import tetravex.data.service.CommentService;
 

@@ -1,10 +1,22 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'tetravex'
 version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 repositories {
     mavenCentral()
@@ -13,25 +25,66 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.2'
-}
 
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compileOnly 'org.projectlombok:lombok'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '3.2.3'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
 
 test {
     useJUnitPlatform()
 }
 
 application {
-    mainClass = 'tetravex.Main'
+    mainClass = 'tetravex.server.GameStudioServer'
 }
 
 jar {
     manifest {
-        attributes 'Main-Class': 'tetravex.Main'
+        attributes 'Main-Class': 'tetravex.server.GameStudioServer'
     }
 
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
+
+task server {
+    group 'custom'
+    doFirst {
+        application {
+            mainClass = 'tetravex.server.GameStudioServer'
+        }
+
+        bootJar {
+            archiveFileName = 'server.jar'
+        }
+    }
+
+    finalizedBy(bootJar)
+}
+
+
+task client {
+    group 'custom'
+    doFirst {
+        application {
+            mainClass = 'tetravex.client.SpringClient'
+        }
+    }
+    bootJar {
+        archiveFileName = 'client.jar'
+    }
+    finalizedBy(bootJar)
 }
