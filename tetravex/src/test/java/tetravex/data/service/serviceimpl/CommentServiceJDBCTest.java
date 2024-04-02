@@ -4,12 +4,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import tetravex.client.SpringClient;
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Comment;
+import tetravex.data.service.CommentService;
 import tetravex.data.service.serviceimpl.jdbc.CommentServiceJDBC;
 import tetravex.server.GameStudioServer;
 

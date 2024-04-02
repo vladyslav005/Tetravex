@@ -24,8 +24,9 @@ public class CommentServiceJPA implements CommentService {
 
     @Override
     public List<Comment> getComments(String game) throws CommentException {
-        return
-                entityManager.createQuery("SELECT a FROM Comment a", Comment.class).getResultList();
+        return entityManager.createQuery("SELECT a FROM Comment a WHERE a.game = '?'"
+                                .replace("?", game),
+                        Comment.class).getResultList();
     }
 
     @Override

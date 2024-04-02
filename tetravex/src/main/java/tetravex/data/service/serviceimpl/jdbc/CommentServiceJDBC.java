@@ -7,7 +7,6 @@ import tetravex.data.entity.Comment;
 import tetravex.data.service.CommentService;
 import tetravex.data.exceptions.CommentException;
 
-import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,7 @@ public class CommentServiceJDBC implements CommentService {
     public static final String INSERT = "INSERT INTO comment (game, player, comment, commentedOn) VALUES (?, ?, ?, ?)";
 
     private Connection connection = DatabaseConnection.getConnection();
+
 
 
     @Override
