@@ -1,25 +1,21 @@
 package tetravex.data.service.serviceimpl.jdbc;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Comment;
-import tetravex.data.service.CommentService;
 import tetravex.data.exceptions.CommentException;
+import tetravex.data.service.CommentService;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-@Repository
 public class CommentServiceJDBC implements CommentService {
     public static final String SELECT = "SELECT * FROM comment WHERE game = ? LIMIT 10";
     public static final String DELETE = "DELETE FROM comment";
-    public static final String INSERT = "INSERT INTO comment (game, player, comment, commentedOn) VALUES (?, ?, ?, ?)";
+    public static final String INSERT = "INSERT INTO comment (game, player, comment, commented_on) VALUES (?, ?, ?, ?)";
 
-    private Connection connection = DatabaseConnection.getConnection();
-
+    private final Connection connection = DatabaseConnection.getConnection();
 
 
     @Override
@@ -44,10 +40,10 @@ public class CommentServiceJDBC implements CommentService {
 
             while (resultSet.next()) {
                 Comment comment = new Comment(
+                        resultSet.getString(4),
+                        resultSet.getString(5),
                         resultSet.getString(2),
-                        resultSet.getString(1),
-                        resultSet.getString(3),
-                        resultSet.getTimestamp(4)
+                        resultSet.getTimestamp(3)
                 );
 
                 commentList.add(comment);

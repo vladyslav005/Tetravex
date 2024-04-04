@@ -1,7 +1,9 @@
 package tetravex.client.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import tetravex.data.entity.Score;
 import tetravex.data.service.ScoreService;
@@ -10,13 +12,15 @@ import java.util.Arrays;
 import java.util.List;
 
 
+@Component
+@Profile("dev")
 public class ScoreServiceRestClient implements ScoreService {
 
-    private final String url = "http://localhost:8080/api/score";
+    @Value("${api.score}")
+    private String url;
 
     @Autowired
     private RestTemplate restTemplate;
-//    private RestTemplate restTemplate = new RestTemplate();
 
     @Override
     public void addScore(Score score) {

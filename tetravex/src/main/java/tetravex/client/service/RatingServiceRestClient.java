@@ -1,14 +1,21 @@
 package tetravex.client.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import tetravex.data.entity.Rating;
 import tetravex.data.exceptions.RatingException;
 import tetravex.data.service.RatingService;
 
+
+@Component
+@Profile("dev")
 public class RatingServiceRestClient implements RatingService {
 
-    private final String url = "http://localhost:8080/api/rating";
+    @Value("${api.rating}")
+    private String url;
 
     @Autowired
     private RestTemplate restTemplate;

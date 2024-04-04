@@ -3,12 +3,9 @@ package tetravex.data.service.serviceimpl.jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Repository;
 import tetravex.data.entity.Rating;
 import tetravex.data.exceptions.RatingException;
 import tetravex.data.service.RatingService;
-
-import java.util.Map;
 
 
 @Transactional
@@ -24,7 +21,8 @@ public class RatingServiceJPA implements RatingService {
             ratingFromDb = entityManager.createQuery(
                     "SELECT r FROM Rating r WHERE r.player = '?'".replace("?", rating.getPlayer()),
                     Rating.class).getSingleResult();
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         if (ratingFromDb != null) {
             ratingFromDb.setRating(rating.getRating());
@@ -37,10 +35,10 @@ public class RatingServiceJPA implements RatingService {
     @Override
     public int getAverageRating(String game) throws RatingException {
         Double rate = entityManager.createQuery(
-            "select avg(r.rating) from Rating r WHERE game = '${game}'".replace("${game}", game),
+                "select avg(r.rating) from Rating r WHERE game = '${game}'".replace("${game}", game),
                 Double.class).getSingleResult();
 
-        return (int) Math.round(rate);
+        return rate == null ? 0 : (int) Math.round(rate);
     }
 
     @Override
@@ -55,6 +53,6 @@ public class RatingServiceJPA implements RatingService {
 
     @Override
     public void reset() throws RatingException {
-        entityManager.createNativeQuery("DELETE * FROM Rating");
+        entityManager.createNativeQuery("DELETE FROM Rating").executeUpdate();
     }
 }

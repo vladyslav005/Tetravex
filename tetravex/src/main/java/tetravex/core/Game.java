@@ -8,8 +8,8 @@ import java.util.Date;
 public class Game {
 
     private final Field field;
-    private GameState state = GameState.PLAYING;
     private final Timestamp start;
+    private GameState state = GameState.PLAYING;
 
     public Game(Field field) {
         this.start = new Timestamp(new Date().getTime());

@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.*;
-import tetravex.client.service.RatingServiceRestClient;
 import tetravex.data.service.CommentService;
 import tetravex.data.service.RatingService;
 import tetravex.data.service.ScoreService;
@@ -17,9 +16,11 @@ import tetravex.data.service.serviceimpl.jpa.ScoreServiceJPA;
 @EntityScan("tetravex.data.entity")
 @ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
         pattern = "tetravex.client.*"))
+@Profile("dev")
 public class GameStudioServer {
 
     public static void main(String[] args) {
+
         SpringApplication.run(GameStudioServer.class, args);
     }
 
@@ -29,12 +30,12 @@ public class GameStudioServer {
     }
 
     @Bean
-    protected CommentService commentService () {
+    protected CommentService commentService() {
         return new CommentServiceJPA();
     }
 
     @Bean
-    protected RatingService ratingService () {
+    protected RatingService ratingService() {
         return new RatingServiceJPA();
     }
 

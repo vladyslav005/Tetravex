@@ -18,17 +18,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConsoleUI {
 
+    private final String gameName = "tetravex";
+    private final AtomicInteger playerScore = new AtomicInteger(0);
     @Autowired
     private RatingService ratingService;
     @Autowired
     private ScoreService scoreService;
-
     @Autowired
     private CommentService commentService;
-
-
-    private final String gameName = "tetravex";
-    private final AtomicInteger playerScore = new AtomicInteger(0);
     private Thread threadToPrintTime = null;
     private Cursor cursor;
     private Game game;
@@ -76,7 +73,8 @@ public class ConsoleUI {
             case 4 -> printBestPlayers();
             case 5 -> printComments();
             case 6 -> printAverageRating();
-            case 7 -> {ConsoleUtils.clearScreen();
+            case 7 -> {
+                ConsoleUtils.clearScreen();
             }
         }
     }
@@ -300,7 +298,8 @@ public class ConsoleUI {
                     playerScore.set((int) (System.currentTimeMillis() / 1000 - game.getStart().getTime() / 1000));
                     Thread.sleep(100);
                 }
-            } catch (InterruptedException ignored) {}
+            } catch (InterruptedException ignored) {
+            }
         };
 
         threadToPrintTime = new Thread(runnable);

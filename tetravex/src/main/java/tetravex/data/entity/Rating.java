@@ -14,12 +14,11 @@ import java.util.Date;
 @Table(name = "rating")
 public class Rating {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String game;
 
-    @Id
     @Column(unique = true)
     private String player;
 

@@ -2,16 +2,16 @@ package tetravex.data.service.serviceimpl.jdbc;
 
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Rating;
-import tetravex.data.service.RatingService;
 import tetravex.data.exceptions.RatingException;
+import tetravex.data.service.RatingService;
 
 import java.sql.*;
 
 public class RatingServiceJDBC implements RatingService {
     public static final String SELECT = "SELECT * FROM rating WHERE game = ? AND player = ?";
     public static final String DELETE = "DELETE FROM rating";
-    public static final String INSERT = "INSERT INTO rating (game, player, rating, ratedOn) VALUES (?, ?, ?, ?)";
-    public static final String UPDATE = "UPDATE rating SET rating = ?, ratedOn = ? WHERE game = ? AND player = ?";
+    public static final String INSERT = "INSERT INTO rating (game, player, rating, rated_on) VALUES (?, ?, ?, ?)";
+    public static final String UPDATE = "UPDATE rating SET rating = ?, rated_on = ? WHERE game = ? AND player = ?";
     public static final String AVERAGE = "SELECT avg(rating) FROM rating WHERE game = ?;";
 
     Connection connection = DatabaseConnection.getConnection();
@@ -74,7 +74,7 @@ public class RatingServiceJDBC implements RatingService {
 
             int rate = 0;
             if (resultSet.next())
-                rate = resultSet.getInt(3);
+                rate = resultSet.getInt(5);
 
             return rate;
 

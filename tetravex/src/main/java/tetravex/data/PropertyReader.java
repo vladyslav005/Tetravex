@@ -18,14 +18,13 @@ public class PropertyReader {
     public String getDbURL() {
         Properties prop = getPropSource();
 
-        return new StringBuilder("jdbc:postgresql://")
-                .append(prop.getProperty("postgres.db.host"))
-                .append(":")
-                .append(prop.getProperty("postgres.db.port"))
-                .append("/")
-                .append(prop.getProperty("postgres.db.database"))
-                .append("?currentSchema=public")
-                .toString();
+        return "jdbc:postgresql://" +
+                prop.getProperty("postgres.db.host") +
+                ":" +
+                prop.getProperty("postgres.db.port") +
+                "/" +
+                prop.getProperty("postgres.db.database") +
+                "?currentSchema=public";
     }
 
     public String getDBUsername() {

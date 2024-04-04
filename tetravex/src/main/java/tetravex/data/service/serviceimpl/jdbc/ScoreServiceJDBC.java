@@ -3,17 +3,17 @@ package tetravex.data.service.serviceimpl.jdbc;
 
 import tetravex.data.DatabaseConnection;
 import tetravex.data.entity.Score;
-import tetravex.data.service.ScoreService;
 import tetravex.data.exceptions.ScoreException;
+import tetravex.data.service.ScoreService;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreServiceJDBC implements ScoreService {
-    public static final String SELECT = "SELECT game, player, points, playedOn FROM score WHERE game = ? ORDER BY points ASC LIMIT 10";
+    public static final String SELECT = "SELECT game, player, points, played_on FROM score WHERE game = ? ORDER BY points ASC LIMIT 10";
     public static final String DELETE = "DELETE FROM score";
-    public static final String INSERT = "INSERT INTO score (game, player, points, playedOn) VALUES (?, ?, ?, ?)";
+    public static final String INSERT = "INSERT INTO score (game, player, points, played_on) VALUES (?, ?, ?, ?)";
 
     Connection connection = DatabaseConnection.getConnection();
 

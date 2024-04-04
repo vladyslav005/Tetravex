@@ -3,8 +3,6 @@ package tetravex.data.service.serviceimpl.jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Repository;
-import tetravex.data.entity.Comment;
 import tetravex.data.entity.Score;
 import tetravex.data.exceptions.ScoreException;
 import tetravex.data.service.ScoreService;
@@ -34,6 +32,6 @@ public class ScoreServiceJPA implements ScoreService {
 
     @Override
     public void reset() throws ScoreException {
-        entityManager.createQuery("DELETE Score", Comment.class);
+        entityManager.createNativeQuery("DELETE FROM Score").executeUpdate();
     }
 }

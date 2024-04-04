@@ -3,7 +3,6 @@ package tetravex.data.service.serviceimpl.jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Repository;
 import tetravex.data.entity.Comment;
 import tetravex.data.exceptions.CommentException;
 import tetravex.data.service.CommentService;
@@ -25,13 +24,13 @@ public class CommentServiceJPA implements CommentService {
     @Override
     public List<Comment> getComments(String game) throws CommentException {
         return entityManager.createQuery("SELECT a FROM Comment a WHERE a.game = '?'"
-                                .replace("?", game),
-                        Comment.class).getResultList();
+                        .replace("?", game),
+                Comment.class).getResultList();
     }
+
 
     @Override
     public void reset() throws CommentException {
-        entityManager.createQuery("DELETE Comment", Comment.class);
-
+        entityManager.createNativeQuery("DELETE FROM comment").executeUpdate();
     }
 }
