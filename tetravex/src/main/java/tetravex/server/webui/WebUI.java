@@ -3,7 +3,6 @@ package tetravex.server.webui;
 
 import org.springframework.stereotype.Component;
 import tetravex.core.Complexity;
-import tetravex.core.Field;
 import tetravex.core.Game;
 import tetravex.core.Utils;
 import tetravex.core.tile.Tile;
@@ -26,7 +25,7 @@ public class WebUI {
     }
 
     public List<List<TileWebModel>> getThymeleafAttributeSolved() {
-        return createDataStructureForTh(game.getField().getShuffled());
+        return createDataStructureForTh(game.getField().getSolved());
     }
 
     private List<List<TileWebModel>> createDataStructureForTh(List<List<Tile>> board) {
@@ -36,7 +35,7 @@ public class WebUI {
         for (int i = 0; i < board.size(); i++) {
             for (int j = 0; j < board.get(0).size() ; j++) {
                 Tile tile = board.get(i).get(j);
-                output.get(i).set(j, new TileWebModel(tile));
+                output.get(i).set(j, new TileWebModel(tile, i, j));
             }
         }
 

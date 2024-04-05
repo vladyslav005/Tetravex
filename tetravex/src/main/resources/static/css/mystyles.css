@@ -3,6 +3,19 @@
     --tile-size: 30px;
 }
 
+body {
+    min-width: 375px;
+
+}
+
+
+@media screen and (max-width: 520px) {
+    .boards-container {
+        flex-direction: column;
+    }
+
+}
+
 
 .board-row {
     --bs-gutter-x: calc(var(--tile-size) * 2) !important;
@@ -58,7 +71,7 @@
 }
 
 .bright_green {
-    border-color: greenyellow !important;
+    border-color: darkolivegreen !important;
 }
 
 .orange {

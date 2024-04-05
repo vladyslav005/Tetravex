@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <title>Blog Home - Start Bootstrap Template</title>
@@ -10,6 +11,11 @@
     <link href="/assets/favicon.ico" rel="icon" type="image/x-icon"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" type="text/css"/>
+
+
+    <!-- Include JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -47,11 +53,11 @@
             <div class="card mb-4">
 
                 <h1 th:text="${h1}"></h1>
-                <div class="card-body row">
+                <div class="card-body row boards-container">
 
                     <div class="container col-auto board">
                         <div class="row board-row" th:each="row: ${solved}">
-                            <div class="col-1 tile empty" th:each="tile: ${row}">
+                            <div class="col-1 tile empty" th:each="tile: ${row}" th:data-x="${tile.x}" th:data-y="${tile.y}">
                                 <div class="empty left"></div>
                                 <div class="empty right"></div>
                                 <div class="empty top"></div>
@@ -63,7 +69,7 @@
 
                     <div class="container col-auto board">
                         <div class="row board-row" th:each="row: ${solved}">
-                            <div class="col-1 tile" th:each="tile: ${row}">
+                            <div class="col-1 tile" th:each="tile: ${row}" th:data-x="${tile.x}" th:data-y="${tile.y}">
                                 <div th:class="${tile.top}"></div>
                                 <div th:class="${tile.bottom}"></div>
                                 <div th:class="${tile.left}"></div>
@@ -71,8 +77,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
                 </div>
 
@@ -136,6 +140,50 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+    var selected_tile = null;
+
+    function tileClickHandler(event) {
+
+        let parent = $(event.target).parent();
+
+        if (selected_tile != null) {
+            swap_tiles(selected_tile, parent)
+            selected_tile = null;
+            return;
+        }
+
+        selected_tile = parent;
+        console.log(selected_tile);
+    }
+
+    function swap_tiles(tile_1, tile_2) {
+        tile_1 = $(tile_1); tile_2 = $(tile_2);
+
+        let tmp = $('<span>').hide();
+        tile_1.before(tmp);
+        tile_2.before(tile_1);
+        tmp.replaceWith(tile_2);
+
+
+        let elm_1_x = tile_1.attr("data-x");
+        let elm_1_y = tile_1.attr("data-y");
+
+        tile_1.attr("data-x", tile_2.attr("data-x"));
+        tile_1.attr("data-y", tile_2.attr("data-y"));
+        tile_2.attr("data-x", elm_1_x);
+        tile_2.attr("data-y", elm_1_y);
+    }
+
+
+    $(".tile").click(tileClickHandler);
+
+</script>
+
+
 <!-- Footer-->
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
