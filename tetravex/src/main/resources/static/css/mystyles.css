@@ -1,0 +1,131 @@
+
+:root {
+    --tile-size: 30px;
+}
+
+
+.board-row {
+    --bs-gutter-x: calc(var(--tile-size) * 2) !important;
+}
+
+.board {
+
+    padding: 40px;
+    margin: 10px;
+}
+
+.tile {
+    position: relative;
+    height: calc(var(--tile-size) * 2);
+    width: calc(var(--tile-size) * 2);
+    margin: calc(var(--tile-size) / 3);
+
+}
+
+.empty>div {
+    border-color:  transparent;
+
+
+}
+
+.empty {
+    background-color: lightgray;
+}
+
+
+.red {
+    border-color: lightcoral !important;
+}
+
+.green {
+    border-color: lightgreen !important;
+}
+
+.yellow {
+    border-color: lightgoldenrodyellow !important;
+}
+
+.black {
+    border-color: darkslateblue !important;
+}
+
+.cyan {
+    border-color: lightskyblue !important;
+}
+
+.magenta {
+    border-color: lightpink !important;
+}
+
+.bright_green {
+    border-color: greenyellow !important;
+}
+
+.orange {
+    border-color: orange !important;
+}
+
+.purple {
+    border-color: purple !important;
+}
+
+
+
+.bright_magenta {
+    border-color: mediumpurple !important;
+}
+
+
+
+.left {
+    width: 0px;
+    height: 0px;
+
+    border-top: var(--tile-size) solid transparent !important;
+    border-left: var(--tile-size) solid ;
+    border-bottom: var(--tile-size) solid transparent !important;
+
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.top {
+    width: 0px;
+    height: 0px;
+
+    border-left: var(--tile-size) solid transparent !important;
+    border-right: var(--tile-size) solid transparent !important;
+    border-top: var(--tile-size) solid;
+
+    position: absolute;
+    right: 0px;
+    left: 0px;
+}
+
+.right {
+    width: 0px;
+    height: 0px;
+
+    border-top: var(--tile-size) solid transparent !important;
+    border-right: var(--tile-size) solid;
+    border-bottom: var(--tile-size) solid transparent !important;
+
+    position: absolute;
+    top: 0px;
+    left:  calc(var(--tile-size));
+
+}
+
+.bottom {
+    width: 0px;
+    height: 0px;
+
+    border-left: var(--tile-size) solid transparent !important;
+    border-right: var(--tile-size) solid transparent !important;
+    border-bottom: var(--tile-size) solid;
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}

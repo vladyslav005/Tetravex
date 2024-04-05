@@ -28,7 +28,6 @@ public class TestSpringServer {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(TestSpringServer.class).web(WebApplicationType.NONE).run(args);
-
     }
 
     @Bean

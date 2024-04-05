@@ -47,9 +47,12 @@ public class Tile {
         return borderColors.get(3);
     }
 
+
+
     public TileState getState() {
         return state;
     }
+
 
     public void setState(TileState state) {
         this.state = state;
@@ -67,4 +70,9 @@ public class Tile {
                 tile.getE() == getE();
     }
 
+
+    @Override
+    public String toString() {
+        return borderColors.toString();
+    }
 }
