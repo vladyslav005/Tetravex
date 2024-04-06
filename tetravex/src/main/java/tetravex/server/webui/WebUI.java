@@ -2,6 +2,8 @@ package tetravex.server.webui;
 
 
 import lombok.Getter;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import tetravex.core.Complexity;
 import tetravex.core.Game;
@@ -13,6 +15,7 @@ import tetravex.server.dto.ClientRequestDto;
 import java.util.List;
 
 @Component
+@Scope(value = "session",  proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class WebUI {
 
     @Getter

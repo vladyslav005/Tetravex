@@ -3,7 +3,9 @@ package tetravex.server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.*;
+import org.springframework.scheduling.annotation.EnableAsync;
 import tetravex.data.service.CommentService;
 import tetravex.data.service.RatingService;
 import tetravex.data.service.ScoreService;
@@ -13,6 +15,8 @@ import tetravex.data.service.serviceimpl.jpa.ScoreServiceJPA;
 
 @SpringBootApplication
 @Configuration
+@EnableAsync
+@EnableCaching
 @EntityScan("tetravex.data.entity")
 @ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
         pattern = "tetravex.client.*"))

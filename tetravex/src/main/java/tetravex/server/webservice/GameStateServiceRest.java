@@ -27,6 +27,8 @@ public class GameStateServiceRest {
 
         webUI.swapTiles(clientRequestDto.get(0), clientRequestDto.get(1));
 
+
+        System.out.println(webUI.getGame().getField().getPlayed());
         return new ServerResponseDto(webUI.getGameState());
     }
 }
