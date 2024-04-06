@@ -13,7 +13,87 @@ body {
     .boards-container {
         flex-direction: column;
     }
+}
 
+#shuffled .tile::before, #solved .tile::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+    border: 3px solid coral;
+    border-radius: 1px;
+
+}
+
+
+#shuffled .tile::before {
+    border-color: coral;
+}
+
+#solved .tile::before {
+    border-color: yellowgreen;
+}
+
+
+.board {
+
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+.subscription {
+    text-align: center;
+
+    background-color: grey;
+
+    border-radius:3px;
+
+    color: white;
+
+}
+
+.animated-message {
+    background-color: lightgreen;
+    color: white;
+    padding: 10px;
+    margin-top: 50px;
+    font-weight: bold !important;
+    border-radius: 5px;
+
+    animation-duration: 1s;
+    animation-name: slidein;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+}
+
+.good-message {
+    background-color: lightgreen;
+    color: white;
+    padding: 10px;
+    margin-top: 50px;
+    font-weight: bold !important;
+    border-radius: 5px;
+}
+
+.just-message {
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    margin-top: 50px;
+    font-weight: bold !important;
+    border-radius: 5px;
 }
 
 
@@ -31,7 +111,11 @@ body {
     position: relative;
     height: calc(var(--tile-size) * 2);
     width: calc(var(--tile-size) * 2);
-    margin: calc(var(--tile-size) / 3);
+
+    margin: calc(calc(var(--tile-size) / 3));
+
+
+
 
 }
 
@@ -44,7 +128,6 @@ body {
 .empty {
     background-color: lightgray;
 }
-
 
 .red {
     border-color: lightcoral !important;

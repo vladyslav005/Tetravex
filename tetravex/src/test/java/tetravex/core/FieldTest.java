@@ -39,6 +39,28 @@ class FieldTest {
     }
 
     @Test
+    void swapTileTest() {
+        int xSource = Utils.getRandInt(9);
+        int ySource = Utils.getRandInt(9);
+
+        int xDest = Utils.getRandInt(9);
+        int yDest = Utils.getRandInt(9);
+
+        Field field = game.getField();
+        List<List<Tile>> sourceBoard = game.getField().getShuffled();
+        List<List<Tile>> destBoard = game.getField().getPlayed();
+
+        Tile tileToMove = sourceBoard.get(ySource).get(xSource);
+
+        field.swapTiles(sourceBoard, destBoard, xSource, ySource, xDest, yDest);
+
+
+        assertEquals(tileToMove, destBoard.get(yDest).get(xDest));
+
+    }
+
+
+    @Test
     void generationTest() {
         List<List<Tile>> generatedBoard = game.getField().getSolved();
 
@@ -60,6 +82,4 @@ class FieldTest {
             }
         }
     }
-
-
 }

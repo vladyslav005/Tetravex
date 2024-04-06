@@ -1,16 +1,21 @@
 package tetravex.server.webui;
 
 
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 import tetravex.core.Complexity;
 import tetravex.core.Game;
+import tetravex.core.GameState;
 import tetravex.core.Utils;
 import tetravex.core.tile.Tile;
+import tetravex.server.dto.ClientRequestDto;
 
 import java.util.List;
 
 @Component
 public class WebUI {
+
+    @Getter
     private Game game;
 
 
@@ -18,7 +23,28 @@ public class WebUI {
         game = new Game(complexity, height, width);
     }
 
+    public void swapTiles(ClientRequestDto sourceTile, ClientRequestDto destTile) {
+        List<List<Tile>> sourceBoard;
+        List<List<Tile>> destBoard;
 
+        if (sourceTile.getBoard().equals("shuffled")) {
+            sourceBoard = game.getField().getShuffled();
+        } else sourceBoard = game.getField().getPlayed();
+
+        if (destTile.getBoard().equals("shuffled")) {
+            destBoard = game.getField().getShuffled();
+        } else destBoard = game.getField().getPlayed();
+
+        game.getField().swapTiles(
+                sourceBoard, destBoard,
+                sourceTile.getX(), sourceTile.getY(),
+                destTile.getX(), destTile.getY());
+        game.updateState();
+    }
+
+    public GameState getGameState() {
+        return game.getState();
+    }
 
     public List<List<TileWebModel>> getThymeleafAttributeShuffled() {
         return createDataStructureForTh(game.getField().getShuffled());

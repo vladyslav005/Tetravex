@@ -61,6 +61,24 @@ public class Field {
         else updateTileState(x, y);
     }
 
+    public void swapTiles(List<List<Tile>> board1, List<List<Tile>> board2, int x1, int y1, int x2, int y2) {
+        Tile tile1 = board1.get(y1).get(x1);
+        Tile tile2 = board2.get(y2).get(x2);
+
+        board1.get(y1).set(x1, tile2);
+        board2.get(y2).set(x2, tile1);
+
+        if (tile2 != null)
+            if (board1 == solved) updateTileState(x1, y1);
+            else tile2.setState(TileState.UNTOUCHED);
+
+        if (tile1 != null)
+            if (board2 == solved) updateTileState(x2, y2);
+            else tile1.setState(TileState.UNTOUCHED);
+    }
+
+
+
     private void updateTileState(int x, int y) {
         if (solved.get(y).get(x).equals(played.get(y).get(x))) {
             played.get(y).get(x).setState(TileState.CORRECT);
