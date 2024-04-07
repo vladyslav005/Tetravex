@@ -15,7 +15,7 @@ import tetravex.server.dto.ClientRequestDto;
 import java.util.List;
 
 @Component
-@Scope(value = "session",  proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class WebUI {
 
     @Getter
@@ -59,10 +59,10 @@ public class WebUI {
 
     private List<List<TileWebModel>> createDataStructureForTh(List<List<Tile>> board) {
 
-        List<List<TileWebModel>> output = Utils.initTwoDimensionalArray(board.size(), board.get(0).size());
+        List<List<TileWebModel>> output = Utils.initTwoDimensionalArray(board.get(0).size(), board.size());
 
         for (int i = 0; i < board.size(); i++) {
-            for (int j = 0; j < board.get(0).size() ; j++) {
+            for (int j = 0; j < board.get(0).size(); j++) {
                 Tile tile = board.get(i).get(j);
                 output.get(i).set(j, new TileWebModel(tile, i, j));
             }
@@ -70,5 +70,4 @@ public class WebUI {
 
         return output;
     }
-
 }

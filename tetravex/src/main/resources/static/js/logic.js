@@ -2,13 +2,18 @@ var selected_tile = null;
 
 $(".tile").click(tileClickHandler);
 
-
 function tileClickHandler(event) {
-    let current = $(event.target).parent();
+    let current = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
+
+    current.addClass("selected");
 
     if (selected_tile != null) {
+        console.log(selected_tile, current);
+        current.removeClass("selected");
+        selected_tile.removeClass("selected");
+
         sendRequest(createObjectForRequest(selected_tile, current));
-        swap_tiles(selected_tile, current)
+        swapTiles(selected_tile, current)
 
         selected_tile = null;
         return;
@@ -23,20 +28,20 @@ function createObjectForRequest(selected, current) {
 
     return [
         {
-            board : current_board.attr("id"),
-            y : current.attr("data-y"),
-            x : current.attr("data-x")
+            board: current_board.attr("id"),
+            y: current.attr("data-y"),
+            x: current.attr("data-x")
         },
         {
-            board : selected_board.attr("id"),
-            y : selected.attr("data-y"),
-            x : selected.attr("data-x")
+            board: selected_board.attr("id"),
+            y: selected.attr("data-y"),
+            x: selected.attr("data-x")
         }
     ];
 }
 
-function swap_tiles(tile_1, tile_2) {
-    tile_1 = $(tile_1); tile_2 = $(tile_2);
+function swapTiles(tile_1, tile_2) {
+    // tile_1 = $(tile_1); tile_2 = $(tile_2);
 
     let tmp = $('<span>').hide();
     tile_1.before(tmp);
@@ -53,9 +58,8 @@ function swap_tiles(tile_1, tile_2) {
 }
 
 
-
-function sendRequest (dataObj) {
-    console.log("Sending request : ", dataObj)
+function sendRequest(dataObj) {
+    // console.log("Sending request : ", dataObj)
 
     $.ajax({
         type: "post",
@@ -64,7 +68,7 @@ function sendRequest (dataObj) {
         data: JSON.stringify(dataObj),
         success: function (result) {
             for (const resultKey in result) {
-                console.log("Got response : ", result[resultKey])
+                // console.log("Got response : ", result[resultKey])
                 if (result[resultKey] === "SOLVED") {
                     $("#message").replaceWith("<p class=\"lead mb-0 animated-message good-message\" id=\"message\">Congratulations, you won!</p>");
                 } else $("#message").replaceWith("<p class=\"lead mb-0 just-message\" id=\"message\">Good luck ;)</p>");
@@ -75,4 +79,3 @@ function sendRequest (dataObj) {
         }
     });
 }
-

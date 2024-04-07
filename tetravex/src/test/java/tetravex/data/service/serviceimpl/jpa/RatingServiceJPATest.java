@@ -7,7 +7,6 @@ import tetravex.data.service.serviceimpl.RatingServiceTest;
 
 public class RatingServiceJPATest extends RatingServiceTest {
 
-
     @Override
     @Autowired
     @Qualifier("ratingJPA")

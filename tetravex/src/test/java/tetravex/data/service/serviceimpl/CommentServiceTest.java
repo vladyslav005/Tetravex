@@ -13,6 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 @SpringBootTest(classes = {TestSpringServer.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class CommentServiceTest {
@@ -20,7 +21,7 @@ public abstract class CommentServiceTest {
     private final String game = "game";
     private final String player = "player";
     private final String commentText = " Lorem Ipsum is de standaard proeftekst";
-    //    @Autowired
+
     protected CommentService commentService;
 
     protected abstract void setTestedClass(CommentService commentService);

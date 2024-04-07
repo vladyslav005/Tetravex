@@ -11,8 +11,9 @@ class TileWebModel {
     public String bottom;
     public int x;
     public int y;
+
     public TileWebModel(Tile tile, int y, int x) {
-        this. top = tile.getN().name().toLowerCase() + " " + "top";
+        this.top = tile.getN().name().toLowerCase() + " " + "top";
         this.bottom = tile.getS().name().toLowerCase() + " " + "bottom";
         this.right = tile.getE().name().toLowerCase() + " " + "right";
         this.left = tile.getW().name().toLowerCase() + " " + "left";

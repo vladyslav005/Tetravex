@@ -21,8 +21,9 @@
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#!">Start Bootstrap</a>
-        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+        <a class="navbar-brand" id="reload" href="/tetravex/play">Home</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
                 data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -40,7 +41,8 @@
     <div class="container">
         <div class="text-center my-5">
             <h1 class="fw-bolder">TETRAVEX</h1>
-            <p class="lead mb-0 just-message" id="message">Good luck!</p>                  <!-- --------------------------- -->
+            <p class="lead mb-0 just-message" id="message">Good luck!</p>
+            <!-- --------------------------- -->
 
         </div>
     </div>
@@ -54,9 +56,10 @@
             <div class="card mb-4">
 
                 <div class="card-body row boards-container">
-                    <div class="container col-auto board" id = "played">
+                    <div class="container col-auto board" id="played">
                         <div class="row board-row" th:each="row: ${solved}">
-                            <div class="col-1 tile empty" th:each="tile: ${row}" th:data-x="${tile.x}" th:data-y="${tile.y}">
+                            <div class="col-1 tile empty" th:data-x="${tile.x}" th:data-y="${tile.y}"
+                                 th:each="tile: ${row}">
                                 <div class="empty left"></div>
                                 <div class="empty right"></div>
                                 <div class="empty top"></div>
@@ -69,9 +72,9 @@
                     </div>
 
 
-                    <div class="container col-auto board"  id = "shuffled">
+                    <div class="container col-auto board" id="shuffled">
                         <div class="row board-row" th:each="row: ${shuffled}">
-                            <div class="col-1 tile" th:each="tile: ${row}" th:data-x="${tile.x}" th:data-y="${tile.y}">
+                            <div class="col-1 tile" th:data-x="${tile.x}" th:data-y="${tile.y}" th:each="tile: ${row}">
                                 <div th:class="${tile.top}"></div>
                                 <div th:class="${tile.bottom}"></div>
                                 <div th:class="${tile.left}"></div>
@@ -84,9 +87,9 @@
 
                     </div>
 
-                    <div class="container col-auto board"  id="solved">
+                    <div class="container col-auto board" id="solved">
                         <div class="row board-row" th:each="row: ${solved}">
-                            <div class="col-1 tile" th:each="tile: ${row}" th:data-x="${tile.x}" th:data-y="${tile.y}">
+                            <div class="col-1 tile" th:data-x="${tile.x}" th:data-y="${tile.y}" th:each="tile: ${row}">
                                 <div th:class="${tile.top}"></div>
                                 <div th:class="${tile.bottom}"></div>
                                 <div th:class="${tile.left}"></div>
@@ -101,14 +104,6 @@
                 </div>
 
 
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title">Rules of the game</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid
-                        atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero
-                        voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a class="btn btn-primary" id="show-solution" href="#">Show solution</a>
-                </div>
             </div>
         </div>
 
@@ -117,15 +112,45 @@
         <div class="col-lg-4">
             <!-- Search widget-->
             <div class="card mb-4">
-                <div class="card-header">Search</div>
+                <div class="card-header">Custom parameters</div>
                 <div class="card-body">
-                    <div class="input-group">
-                        <input aria-describedby="button-search" aria-label="Enter search term..." class="form-control"
-                               placeholder="Enter search term..." type="text"/>
-                        <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                    <div class="input-group" id="params-form">
+
+                        <input aria-describedby="Height" aria-label="Height" class="form-control size-of-field"
+                               id="height"
+                               placeholder="Height" type="text"/>
+
+                        <input aria-describedby="Width" aria-label="Width" class="form-control size-of-field" id="width"
+                               placeholder="Width" type="text"/>
+
+                        <a class="btn btn-primary" href="#" id="button-play" type="button">Play</a>
+
                     </div>
+
+                    <p class="bad-message" id="form-message">Width and height should be between 3 and 6</p>
+
                 </div>
             </div>
+
+            <div class="card mb-4">
+
+                <a class="col btn btn-outline-primary" id="show-solution">Show solution</a>
+
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header text-center"><h5>Rules</h5></div>
+                <div class="card-body">
+                    <p>
+                        TetraVex is an edge-matching puzzle. The player is presented with a grid (by default, 3x3) and
+                        nine square tiles, each with a number on each edge.
+                        The objective of the game is to place the tiles in the grid in the proper position as fast as
+                        possible.
+                        Two tiles can only be placed next to each other if the numbers on adjacent faces match.
+                    </p>
+                </div>
+            </div>
+
             <!-- Categories widget-->
             <div class="card mb-4">
                 <div class="card-header">Categories</div>
@@ -149,23 +174,18 @@
                 </div>
             </div>
             <!-- Side widget-->
-            <div class="card mb-4">
-                <div class="card-header">Side Widget</div>
-                <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use,
-                    and feature the Bootstrap 5 card component!
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
-
 
 
 <!-- Footer-->
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white"> Vladyslav Futrak 2024</p></div>
     <div class="container">
-        <p class="m-0 text-center text-white"> <a href="mailto:vladysalv.futrak@student.tuke.sk">vladysalv.futrak@student.tuke.sk</a> </p>
+        <p class="m-0 text-center text-white"><a href="mailto:vladysalv.futrak@student.tuke.sk">vladysalv.futrak@student.tuke.sk</a>
+        </p>
     </div>
 </footer>
 <!-- Bootstrap core JS-->
@@ -173,5 +193,6 @@
 <!-- Core theme JS-->
 <script src="/js/logic.js"></script>
 <script src="/js/ui.js"></script>
+<script src="/js/parametrized_game_form.js"></script>
 </body>
 </html>

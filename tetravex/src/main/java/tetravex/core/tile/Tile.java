@@ -48,7 +48,6 @@ public class Tile {
     }
 
 
-
     public TileState getState() {
         return state;
     }

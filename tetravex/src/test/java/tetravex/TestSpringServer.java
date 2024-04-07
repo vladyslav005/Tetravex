@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import tetravex.data.service.CommentService;
 import tetravex.data.service.RatingService;
@@ -19,7 +18,6 @@ import tetravex.data.service.serviceimpl.jpa.RatingServiceJPA;
 import tetravex.data.service.serviceimpl.jpa.ScoreServiceJPA;
 
 @SpringBootApplication
-@Configuration
 @EntityScan("tetravex.data.entity")
 @Profile("test")
 //@ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,

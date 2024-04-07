@@ -1,45 +1,131 @@
 
 :root {
-    --tile-size: 30px;
+    --tile-size: 35px;
 }
 
 body {
-    min-width: 375px;
+    min-width: 300px;
 
 }
 
+/* TODO : DISABLE SELECTED EFFECT FOR MOBILES*/
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 770px) {
     .boards-container {
         flex-direction: column;
     }
 }
 
-#shuffled .tile::before, #solved .tile::before {
+@media screen and (max-width: 500px) {
+    :root {
+        --tile-size: 25px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    :root {
+        --tile-size: 20px;
+    }
+}
+
+@keyframes border {
+    0% {
+        border-width: 1px
+    }
+    100% {
+        border-width: 3px
+    }
+}
+
+@keyframes selected-tile-anim {
+    0% {
+        scale: 1
+    }
+    100% {
+        scale: 1.07
+    }
+}
+
+@keyframes appear {
+    from {
+        scale: 0;
+    }
+
+    to {
+        scale: 1;
+    }
+}
+
+.tile {
+    animation-name: appear;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+}
+
+
+.tile:hover::before {
     content: '';
     position: absolute;
     top: -4px;
-    right: -4px;
+    right: -2px;
     bottom: -4px;
     left: -4px;
-    border: 3px solid coral;
+    border: 0px solid limegreen;
     border-radius: 1px;
 
+    animation-name: border;
+    animation-duration: 0.1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.empty:hover::before {
+    right: -4px;
+}
+
+.selected::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: -2px;
+    bottom: -4px;
+    left: -4px;
+    border: 3px solid lightcoral !important;
+    border-radius: 1px;
+
+    animation-name: selected-tile-anim;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-direction: alternate-reverse;
+    animation-iteration-count: infinite;
+}
+
+.selected:hover::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: 0px;
+    bottom: -4px;
+    left: -4px;
+    border: 3px solid lightcoral !important;
+    border-radius: 1px;
+
+    animation-name: selected-tile-anim;
+    animation-duration: 0.5s;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 
-#shuffled .tile::before {
-    border-color: coral;
+#solved .tile:hover::before {
+    border-color: transparent;
 }
 
-#solved .tile::before {
-    border-color: yellowgreen;
-}
-
-
-.board {
-
-}
 
 @keyframes slidein {
     from {
@@ -58,7 +144,7 @@ body {
 
     background-color: grey;
 
-    border-radius:3px;
+    border-radius: 3px;
 
     color: white;
 
@@ -97,32 +183,39 @@ body {
 }
 
 
+.bad-message {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    margin-top: 50px;
+    font-weight: bold !important;
+    border-radius: 5px;
+}
+
+
 .board-row {
-    --bs-gutter-x: calc(var(--tile-size) * 2) !important;
+    --bs-gutter-x: calc(var(--tile-size) * 2.05) !important;
+    --bs-gutter-y: calc(var(--tile-size) * 2) !important;
+
 }
 
 .board {
 
     padding: 40px;
-    margin: 10px;
 }
 
 .tile {
     position: relative;
     height: calc(var(--tile-size) * 2);
     width: calc(var(--tile-size) * 2);
-
+    border-width: 0;
     margin: calc(calc(var(--tile-size) / 3));
-
-
 
 
 }
 
-.empty>div {
-    border-color:  transparent;
-
-
+.empty > div {
+    border-color: transparent;
 }
 
 .empty {
@@ -166,11 +259,9 @@ body {
 }
 
 
-
 .bright_magenta {
     border-color: mediumpurple !important;
 }
-
 
 
 .left {
@@ -178,7 +269,7 @@ body {
     height: 0px;
 
     border-top: var(--tile-size) solid transparent !important;
-    border-left: var(--tile-size) solid ;
+    border-left: var(--tile-size) solid;
     border-bottom: var(--tile-size) solid transparent !important;
 
     position: absolute;
@@ -209,7 +300,7 @@ body {
 
     position: absolute;
     top: 0px;
-    left:  calc(var(--tile-size));
+    left: calc(var(--tile-size));
 
 }
 
