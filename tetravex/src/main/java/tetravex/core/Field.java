@@ -69,11 +69,11 @@ public class Field {
         board2.get(y2).set(x2, tile1);
 
         if (tile2 != null)
-            if (board1 == solved) updateTileState(x1, y1);
+            if (board1 == played) updateTileState(x1, y1);
             else tile2.setState(TileState.UNTOUCHED);
 
         if (tile1 != null)
-            if (board2 == solved) updateTileState(x2, y2);
+            if (board2 == played) updateTileState(x2, y2);
             else tile1.setState(TileState.UNTOUCHED);
     }
 

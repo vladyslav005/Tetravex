@@ -25,7 +25,7 @@ public class Game {
         for (int i = 0; i < field.getHeight(); i++) {
             for (int j = 0; j < field.getHeight(); j++) {
                 if (field.getPlayed().get(i).get(j) == null ||
-                        field.getPlayed().get(i).get(j).getState() == TileState.WRONG) {
+                        field.getPlayed().get(i).get(j).getState() != TileState.CORRECT) {
                     state = GameState.PLAYING;
                     return;
                 }

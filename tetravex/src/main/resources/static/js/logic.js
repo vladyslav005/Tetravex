@@ -75,7 +75,7 @@ function sendRequest(dataObj) {
         data: JSON.stringify(dataObj),
         success: function (result) {
             for (const resultKey in result) {
-                // console.log("Got response : ", result[resultKey])
+                console.log("Got response : ", result[resultKey])
                 if (result[resultKey] === "SOLVED") {
                     $("#message").replaceWith("<p class=\"lead mb-0 animated-message good-message\" id=\"message\">Congratulations, you won!</p>");
                 } else $("#message").replaceWith("<p class=\"lead mb-0 just-message\" id=\"message\">Good luck ;)</p>");
