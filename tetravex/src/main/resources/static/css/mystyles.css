@@ -20,11 +20,47 @@ body {
     :root {
         --tile-size: 25px;
     }
+
+    .tile:hover::before {
+        right: -11px !important;
+
+    }
+
+    .empty:hover::before {
+        right: -11px !important;
+    }
+
+    .selected::before {
+        right: -11px !important;
+
+    }
+
+    .selected:hover::before {
+        right: -11px !important;
+    }
 }
 
 @media screen and (max-width: 400px) {
     :root {
         --tile-size: 20px;
+    }
+
+    .tile:hover::before {
+        right: -10px !important;
+
+    }
+
+    .empty:hover::before {
+        right: -10px !important;
+    }
+
+    .selected::before {
+        right: -10px !important;
+
+    }
+
+    .selected:hover::before {
+        right: -10px !important;
     }
 }
 
@@ -63,6 +99,7 @@ body {
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 
+
 }
 
 
@@ -70,7 +107,7 @@ body {
     content: '';
     position: absolute;
     top: -4px;
-    right: -2px;
+    right: -14px;
     bottom: -4px;
     left: -4px;
     border: 0px solid limegreen;
@@ -84,14 +121,14 @@ body {
 }
 
 .empty:hover::before {
-    right: -4px;
+    right: -14px;
 }
 
 .selected::before {
     content: '';
     position: absolute;
     top: -4px;
-    right: -2px;
+    right: -14px;
     bottom: -4px;
     left: -4px;
     border: 3px solid lightcoral !important;
@@ -108,7 +145,7 @@ body {
     content: '';
     position: absolute;
     top: -4px;
-    right: 0px;
+    right: -14px;
     bottom: -4px;
     left: -4px;
     border: 3px solid lightcoral !important;
@@ -194,7 +231,7 @@ body {
 
 
 .board-row {
-    --bs-gutter-x: calc(var(--tile-size) * 2.05) !important;
+    --bs-gutter-x: calc(var(--tile-size) * 1.7) !important;
     --bs-gutter-y: calc(var(--tile-size) * 2) !important;
 
 }

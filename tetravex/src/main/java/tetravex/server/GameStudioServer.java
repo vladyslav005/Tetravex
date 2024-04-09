@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import tetravex.data.service.CommentService;
 import tetravex.data.service.RatingService;
 import tetravex.data.service.ScoreService;

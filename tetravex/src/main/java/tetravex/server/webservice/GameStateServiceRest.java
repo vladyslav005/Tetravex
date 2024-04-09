@@ -21,14 +21,7 @@ public class GameStateServiceRest {
 
     @PostMapping("/handler")
     public ServerResponseDto handle(@RequestBody List<ClientRequestDto> clientRequestDto) {
-
-        System.out.print("Got request : ");
-        System.out.println(clientRequestDto);
-
         webUI.swapTiles(clientRequestDto.get(0), clientRequestDto.get(1));
-
-
-        System.out.println(webUI.getGame().getField().getPlayed());
         return new ServerResponseDto(webUI.getGameState());
     }
 }

@@ -8,7 +8,7 @@ function tileClickHandler(event) {
     current.addClass("selected");
 
     if (selected_tile != null) {
-        console.log(selected_tile, current);
+        // console.log(selected_tile, current);
         current.removeClass("selected");
         selected_tile.removeClass("selected");
 
@@ -41,9 +41,16 @@ function createObjectForRequest(selected, current) {
 }
 
 function swapTiles(tile_1, tile_2) {
-    // tile_1 = $(tile_1); tile_2 = $(tile_2);
+    tile_1.css("animation-direction", "reverse");
+    tile_2.css("animation-direction", "reverse");
+
+    setTimeout(function () {
+        tile_1.css("animation-direction", "normal");
+        tile_2.css("animation-direction", "normal");
+    }, 50);
 
     let tmp = $('<span>').hide();
+
     tile_1.before(tmp);
     tile_2.before(tile_1);
     tmp.replaceWith(tile_2);
@@ -76,6 +83,7 @@ function sendRequest(dataObj) {
         },
         error: function (ex) {
             console.log("error", ex);
+            // setTimeout(() =>sendRequest(dataObj), 100);
         }
     });
 }
