@@ -1,11 +1,9 @@
 
-l
-java:S2259"JA "NullPointerException" could be thrown; "getForObject" is nullable here.(šÕ¬îøÿÿÿÿ8æò‰é1
-l
-java:S2259"JA "NullPointerException" could be thrown; "getForObject" is nullable here.(õÖîÏıÿÿÿÿ8æò‰é1
-C
-java:S1170"!Make this final field static too.(¢½µ½şÿÿÿÿ8èò‰é1
-£
-java:S1186 "€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¥Æùÿÿÿÿ8èò‰é1
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8éò‰é1
+’
+java:S2259"JA "NullPointerException" could be thrown; "getForObject" is nullable here.(šÕ¬îøÿÿÿÿ8æò‰é1J$660699b5-9362-4123-8074-581db7fd0885
+’
+java:S2259#"JA "NullPointerException" could be thrown; "getForObject" is nullable here.(õÖîÏıÿÿÿÿ8æò‰é1J$cc086727-83d9-4730-8244-97fc48f0e3c9
+É
+java:S1186'"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¥Æùÿÿÿÿ8èò‰é1J$ec8e4d0b-8074-40c3-93dd-0ae92732b483
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8éò‰é1J$277b09eb-a143-4034-8867-a7ae7f586bdd

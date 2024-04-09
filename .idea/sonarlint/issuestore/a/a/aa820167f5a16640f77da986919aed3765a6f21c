@@ -1,45 +1,52 @@
 
-=
-java:S1170"!Make this final field static too.(û¸Ð<8ÉÊ²Ñá1
-F
-java:S1659'"$Declare "height" on a separate line.(·ðÛ¹ÿÿÿÿÿ8ÍÊ²Ñá1
-G	java:S1063"+Replace this use of System.out by a logger.(Ó—ý‡8ÏÊ²Ñá1
-L	java:S1064"+Replace this use of System.out by a logger.(¿‚‹Ëùÿÿÿÿ8ÏÊ²Ñá1
-G	java:S1065"+Replace this use of System.out by a logger.(­èÒ–8ÏÊ²Ñá1
-G	java:S1066"+Replace this use of System.out by a logger.(³ÒÀÜ8ÐÊ²Ñá1
-L	java:S1067"+Replace this use of System.out by a logger.(Ø‡ƒòøÿÿÿÿ8ÐÊ²Ñá1
-G	java:S1068"+Replace this use of System.out by a logger.(€ËŒ8ÐÊ²Ñá1
-G	java:S1069"+Replace this use of System.out by a logger.(…€Ñë8ÐÊ²Ñá1
-L	java:S106:"+Replace this use of System.out by a logger.(Æüæ€ûÿÿÿÿ8ÐÊ²Ñá1
-C	java:S131>""Add a default case to this switch.(­Ö¹§úÿÿÿÿ8ÐÊ²Ñá1
-E	java:S108E")Either remove or fill this block of code.(èóÄÞ8ÑÊ²Ñá1
-z	java:S131f"YComplete cases by adding the missing enum constants or add a default case to this switch.(¯½äÝÿÿÿÿÿ8ÓÊ²Ñá1
-<
-java:S1659~"Declare "y" on a separate line.(ˆƒ—®8ÔÊ²Ñá1
-H	java:S106"+Replace this use of System.out by a logger.(¹Ñè8×Ê²Ñá1
-M	java:S106—"+Replace this use of System.out by a logger.(ë¿ƒËúÿÿÿÿ8×Ê²Ñá1
-M	java:S106˜"+Replace this use of System.out by a logger.(¤ÂÒÕýÿÿÿÿ8ØÊ²Ñá1
-M	java:S106™"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8ØÊ²Ñá1
-M	java:S106›"+Replace this use of System.out by a logger.(„óâÏþÿÿÿÿ8ØÊ²Ñá1
-M	java:S106¤"+Replace this use of System.out by a logger.(ŠÓŸ“üÿÿÿÿ8ÙÊ²Ñá1
-M	java:S106¦"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ÙÊ²Ñá1
-M	java:S106ª"+Replace this use of System.out by a logger.(ì¢È®ùÿÿÿÿ8ÙÊ²Ñá1
-M	java:S106¬"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ÚÊ²Ñá1
-H	java:S106¶"+Replace this use of System.out by a logger.(™Ö ®8ÚÊ²Ñá1
-M	java:S106¸"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ÚÊ²Ñá1
-M	java:S106¼"+Replace this use of System.out by a logger.(ì¢È®ùÿÿÿÿ8ÛÊ²Ñá1
-M	java:S106¾"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ÛÊ²Ñá1
-M	java:S106Ç"+Replace this use of System.out by a logger.(ÔýžÞùÿÿÿÿ8ÜÊ²Ñá1
-M	java:S106Î"+Replace this use of System.out by a logger.(¿¬åúÿÿÿÿ8ÜÊ²Ñá1
-M	java:S106Ô"+Replace this use of System.out by a logger.(µàÍ¦ýÿÿÿÿ8ÝÊ²Ñá1
-H	java:S106Ù"+Replace this use of System.out by a logger.(—„åÃ8ÝÊ²Ñá1
-M	java:S106Þ"+Replace this use of System.out by a logger.(¼þò¾ùÿÿÿÿ8ÝÊ²Ñá1
-M	java:S106è"+Replace this use of System.out by a logger.(Þ—ƒˆûÿÿÿÿ8ÞÊ²Ñá1
-M	java:S106ñ"+Replace this use of System.out by a logger.(òÙŸÑÿÿÿÿÿ8ÞÊ²Ñá1
-B
-java:S1659÷"$Declare "height" on a separate line.(’¼ÊÒ8ßÊ²Ñá1
-H	java:S106ù"+Replace this use of System.out by a logger.(µûãó8ßÊ²Ñá1
-M	java:S106û"+Replace this use of System.out by a logger.(óÔ”æÿÿÿÿÿ8ßÊ²Ñá1
-|
-java:S2142Ÿ"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(´í­Œ8áÊ²Ñá1
-F	java:S108Ÿ")Either remove or fill this block of code.(´í­Œ8áÊ²Ñá1
+c
+java:S1170"!Make this final field static too.(û¸Ð<8ÍÓ…½æ1J$2b79366f-96a5-4e25-9cf8-fd34b38f7d61
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8¼¡‡½æ1J$762df4d1-854d-45d7-bac6-b8368f220701
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8öÖ†½æ1J$20aa6fe3-b534-4818-bda4-482369437657
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8ø¿‡½æ1J$74d26bf8-2fb0-464c-980c-73a731233fb1
+l
+java:S1659-"$Declare "height" on a separate line.(·ðÛ¹ÿÿÿÿÿ8ÖÓ…½æ1J$c920fb17-57da-4c2e-a12a-44f19648801c
+i	java:S131E""Add a default case to this switch.(­Ö¹§úÿÿÿÿ8ÛÓ…½æ1J$0ed79097-8675-41d3-9025-2466b18cec75
+9
+java:S6205L"Remove this redundant block.(èóÄÞ8ºéªÒë1
+m	java:S106S"+Replace this use of System.out by a logger.(Ó—ý‡8ÞÓ…½æ1J$a4e6c6ff-c0e7-4e75-b20a-70767be10858
+r	java:S106T"+Replace this use of System.out by a logger.(¿‚‹Ëùÿÿÿÿ8ÞÓ…½æ1J$8bd11da8-cfde-4375-9529-58be768fe43c
+m	java:S106U"+Replace this use of System.out by a logger.(­èÒ–8ÞÓ…½æ1J$c77ab97c-48e6-48f9-be9e-c565f2039ddd
+m	java:S106V"+Replace this use of System.out by a logger.(³ÒÀÜ8ÞÓ…½æ1J$d93f93f3-3462-4020-a650-0796fc04a886
+r	java:S106W"+Replace this use of System.out by a logger.(Ø‡ƒòøÿÿÿÿ8ßÓ…½æ1J$a1f78184-0a0b-4578-a284-ac4accb129f0
+m	java:S106X"+Replace this use of System.out by a logger.(€ËŒ8ßÓ…½æ1J$91b8122c-df75-4388-af20-ad0cc0a6160f
+m	java:S106Y"+Replace this use of System.out by a logger.(…€Ñë8ßÓ…½æ1J$dd372b1c-9d35-4242-914a-805f7cb0e4b2
+r	java:S106Z"+Replace this use of System.out by a logger.(Æüæ€ûÿÿÿÿ8àÓ…½æ1J$e11971ec-21d3-457d-92bf-e90198fc21e5
+ 	java:S131y"YComplete cases by adding the missing enum constants or add a default case to this switch.(¯½äÝÿÿÿÿÿ8äÓ…½æ1J$3beddbd5-5bdf-4cad-b1e6-4cc8479c5cf8
+c
+java:S1659‘"Declare "y" on a separate line.(ˆƒ—®8çÓ…½æ1J$70c009cd-d28f-4727-adf8-b7692fd72e97
+n	java:S106¡"+Replace this use of System.out by a logger.(¹Ñè8ïÓ…½æ1J$006a6742-2046-4e9e-b643-9b05c2609972
+s	java:S106¨"+Replace this use of System.out by a logger.(ë¿ƒËúÿÿÿÿ8ñÓ…½æ1J$73a3beb6-2e94-40ec-b9e4-e1df6be7ff24
+s	java:S106©"+Replace this use of System.out by a logger.(¤ÂÒÕýÿÿÿÿ8òÓ…½æ1J$c856b66f-2789-4f3a-b88b-a93ecef31885
+s	java:S106ª"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8óÓ…½æ1J$32529e7f-6ec3-4b84-adfe-3a1266a5ee39
+s	java:S106¬"+Replace this use of System.out by a logger.(„óâÏþÿÿÿÿ8óÓ…½æ1J$e760155a-1fad-445f-b20a-934aca5e0faf
+s	java:S106´"+Replace this use of System.out by a logger.(ŠÓŸ“üÿÿÿÿ8õÓ…½æ1J$6e684ae7-3db9-4443-a832-96e1d57ff178
+s	java:S106¶"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8öÓ…½æ1J$aefdec45-be03-443f-8ee6-41492ecbfafd
+s	java:S106º"+Replace this use of System.out by a logger.(ì¢È®ùÿÿÿÿ8øÓ…½æ1J$3a4c6646-c506-42b7-b5c6-970347e3a41a
+s	java:S106¼"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ùÓ…½æ1J$282707b6-6a08-46cf-b5e3-a3405d9e390c
+n	java:S106Å"+Replace this use of System.out by a logger.(™Ö ®8ûÓ…½æ1J$d4214414-85d7-447b-8e61-cca685b9b1fd
+s	java:S106Ç"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ûÓ…½æ1J$bdf3552b-7906-4d72-86ba-f23124f1d764
+s	java:S106Ë"+Replace this use of System.out by a logger.(ì¢È®ùÿÿÿÿ8üÓ…½æ1J$4e884859-b2e9-4221-a01c-30d3805fe72a
+s	java:S106Í"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8üÓ…½æ1J$e9a1aac8-bff8-47a6-857f-1a78185c7df5
+s	java:S106Ö"+Replace this use of System.out by a logger.(ÔýžÞùÿÿÿÿ8þÓ…½æ1J$397cc7df-fba9-4fab-8773-27b9019be7fc
+s	java:S106Ü"+Replace this use of System.out by a logger.(¿¬åúÿÿÿÿ8ÿÓ…½æ1J$9c9ed7e3-883b-4cbf-b481-50bd7194e519
+s	java:S106â"+Replace this use of System.out by a logger.(µàÍ¦ýÿÿÿÿ8€Ô…½æ1J$83201455-14f8-462c-b5a1-d3eaeaaf020d
+n	java:S106æ"+Replace this use of System.out by a logger.(—„åÃ8‚Ô…½æ1J$6436f1db-4d22-40e8-92dd-218e424d6af3
+s	java:S106ë"+Replace this use of System.out by a logger.(¼þò¾ùÿÿÿÿ8ƒÔ…½æ1J$c7c16f62-2692-4cdf-9e26-c79b5451378d
+s	java:S106õ"+Replace this use of System.out by a logger.(Þ—ƒˆûÿÿÿÿ8…Ô…½æ1J$043f3db7-bdbb-432d-a90c-26899f29cb22
+s	java:S106þ"+Replace this use of System.out by a logger.(òÙŸÑÿÿÿÿÿ8†Ô…½æ1J$98379e9b-0053-42ed-8049-30fd31942d67
+h
+java:S1659„"$Declare "height" on a separate line.(’¼ÊÒ8ˆÔ…½æ1J$ce2e96ad-1c3f-474d-81f2-7ac3551103a5
+n	java:S106†"+Replace this use of System.out by a logger.(µûãó8ˆÔ…½æ1J$54223659-d25c-4431-8511-8ab030091ce4
+s	java:S106ˆ"+Replace this use of System.out by a logger.(óÔ”æÿÿÿÿÿ8‰Ô…½æ1J$4339e139-3635-4304-a716-f17c39635a2e
+
+java:S2142­"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(®ûºöÿÿÿÿÿ8ÄêªÒë1
+K	java:S108­")Either remove or fill this block of code.(®ûºöÿÿÿÿÿ8ÔêªÒë1

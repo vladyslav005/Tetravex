@@ -1,8 +1,3 @@
 
-i
-java:S1170"!Make this final field static too.(«˜°Öþÿÿÿÿ8þˆÿ‚é1J$6c1f7f66-aa57-4e30-8a40-c759a4c8ebc0
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8¨´”ˆé1J$4cd78b40-b862-467e-aab2-63e36855dd35
-~	java:S125"<This block of commented-out lines of code should be removed.(ÒÂ€ÿ8Å¯“ˆé1J$f41fc16c-83c8-4597-9059-6a47a1140457
-Ž
-java:S1128"FRemove this unused import 'org.springframework.stereotype.Repository'.(¦ýÍýüÿÿÿÿ8†è”ˆé1J$7dec2b6f-a8cb-4070-ad61-ab4f9bf6a60c
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8¨´”ˆé1J$f5f77140-2e26-4580-be2a-59a8f735eb5e

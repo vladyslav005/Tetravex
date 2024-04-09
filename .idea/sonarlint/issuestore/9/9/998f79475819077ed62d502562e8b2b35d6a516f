@@ -1,0 +1,5 @@
+
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‹÷õĞë1J$babb7b1e-0cac-4bdb-876f-50f492da5c32
+˜
+java:S6832"PDon't auto-wire this non-Singleton bean into a Singleton bean (autowired field).(ÄöŞ²şÿÿÿÿ8÷õĞë1J$e2636931-7e59-4f43-8b30-8b11d3ffecd9

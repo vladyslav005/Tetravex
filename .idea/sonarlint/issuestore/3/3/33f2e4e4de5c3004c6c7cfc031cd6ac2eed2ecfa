@@ -1,14 +1,18 @@
 
-r	java:S117]"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍŠÄáıÿÿÿÿ8å¸Æƒæ1
-r	java:S117]"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍŠÄáıÿÿÿÿ8æ¸Æƒæ1
-r	java:S117]"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍŠÄáıÿÿÿÿ8æ¸Æƒæ1
-r	java:S117]"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍŠÄáıÿÿÿÿ8æ¸Æƒæ1
-A
-java:S1659"Declare "y" on a separate line.(Óæ£Íùÿÿÿÿ8¥ÁÆƒæ1
-A
-java:S1659M"Declare "y" on a separate line.(ÑÙ¡Ëøÿÿÿÿ8ÆÁÆƒæ1
-`
-java:S1659]">Declare "S" and all following declarations on a separate line.(ÍŠÄáıÿÿÿÿ8ĞÁÆƒæ1
-D
-java:S1659j"'Declare "neighborY" on a separate line.(Ş‘²8ÖÁÆƒæ1
->	java:S131l""Add a default case to this switch.(Ä©˜8ØÁÆƒæ1
+˜	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍŠÄáıÿÿÿÿ8ß’¡šë1J$a877e875-58a2-473c-8375-7cb6d6ff6e09
+˜	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍŠÄáıÿÿÿÿ8à’¡šë1J$115ead83-35ff-463c-a618-ac3df38d78ec
+˜	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍŠÄáıÿÿÿÿ8à’¡šë1J$b3ca97c1-c6b4-46a6-a5f9-a1ed46d17e5b
+˜	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍŠÄáıÿÿÿÿ8à’¡šë1J$671a7d8d-2b41-4c38-b88d-9b4eb3406107
+g
+java:S1659"Declare "y" on a separate line.(Óæ£Íùÿÿÿÿ8‰”¡šë1J$ecb87c06-3371-4c1b-a3e9-460104a00e44
+y
+java:S5261I"1Add explicit curly braces to avoid dangling else.(†ãü­øÿÿÿÿ8‚±£šë1J$f85e7197-805a-417f-8b04-2f13c98735a4
+t
+java:S5261M"1Add explicit curly braces to avoid dangling else.(¸–Ò÷8øè£šë1J$9cf03017-a0e1-4cd3-810c-a155282d8dc7
+g
+java:S1659_"Declare "y" on a separate line.(ÑÙ¡Ëøÿÿÿÿ8”¡šë1J$0c0b4425-f818-48cd-aaac-a6dd25e9412b
+†
+java:S1659o">Declare "S" and all following declarations on a separate line.(ÍŠÄáıÿÿÿÿ8“”¡šë1J$53d860d8-d8cf-499f-83c9-bea9f21f0051
+j
+java:S1659|"'Declare "neighborY" on a separate line.(Ş‘²8””¡šë1J$d69283e5-40d1-4cb1-9083-fb01584a0cfd
+d	java:S131~""Add a default case to this switch.(Ä©˜8–”¡šë1J$bde6eff4-7441-4715-8e4c-d6ddd05a2eef
