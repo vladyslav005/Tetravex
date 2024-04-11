@@ -101,8 +101,15 @@ header {
     background-size: cover;
 }
 
+
+.rate-field {
+
+}
+.star>h1{
+    font-size: 3.5rem;
+}
+
 .star:hover {
-    color: #ffae00;
     cursor: pointer;
 }
 
