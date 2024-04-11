@@ -2,9 +2,46 @@ var selected_tile = null;
 
 $(".tile").click(tileClickHandler);
 
-function tileClickHandler(event) {
+
+$(".tile").on("dragover", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     let current = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
 
+    current.addClass("selected");
+});
+
+$(".tile").on("dragleave", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let current = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
+    current.removeClass("selected");
+});
+
+$(".tile").on("dragstart", function(event) {
+    console.log("dragstart");
+    if (selected_tile == null)
+        selected_tile = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
+});
+
+
+$(".tile").on("drop", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let current = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
+    current.removeClass("selected");
+    selected_tile.removeClass("selected");
+
+    swapTiles(selected_tile, current);
+    sendRequest(createObjectForRequest(selected_tile, current));
+    selected_tile = null;
+
+});
+
+
+function tileClickHandler(event) {
+    let current = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
     current.addClass("selected");
 
     if (selected_tile != null) {
@@ -64,6 +101,7 @@ function swapTiles(tile_1, tile_2) {
     tile_2.attr("data-y", elm_1_y);
 }
 
+var previousState = "PLAYING";
 
 function sendRequest(dataObj) {
     // console.log("Sending request : ", dataObj)
@@ -75,10 +113,11 @@ function sendRequest(dataObj) {
         data: JSON.stringify(dataObj),
         success: function (result) {
             for (const resultKey in result) {
-                console.log("Got response : ", result[resultKey])
-                if (result[resultKey] === "SOLVED") {
+                if (result[resultKey] === "SOLVED" && result[resultKey] !== previousState) {
                     $("#message").replaceWith("<p class=\"lead mb-0 animated-message good-message\" id=\"message\">Congratulations, you won!</p>");
-                } else $("#message").replaceWith("<p class=\"lead mb-0 just-message\" id=\"message\">Good luck ;)</p>");
+                } else if (result[resultKey] !== previousState)
+                    $("#message").replaceWith("<p class=\"lead mb-0 just-message\" id=\"message\">Good luck ;)</p>");
+                previousState = result[resultKey];
             }
         },
         error: function (ex) {

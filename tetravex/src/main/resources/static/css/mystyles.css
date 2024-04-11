@@ -176,6 +176,13 @@ body {
     }
 }
 
+#message {
+    animation-duration: 1s;
+    animation-name: slidein;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+}
+
 .subscription {
     text-align: center;
 

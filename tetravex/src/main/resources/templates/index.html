@@ -6,7 +6,7 @@
 
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>Tetravex</title>
     <!-- Favicon-->
     <link href="/assets/favicon.ico" rel="icon" type="image/x-icon"/>
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -56,6 +56,7 @@
             <div class="card mb-4">
 
                 <div class="card-body row boards-container">
+
                     <div class="container col-auto board" id="played">
                         <div class="row board-row" th:each="row: ${solved}">
                             <div class="col-1 tile empty" th:data-x="${tile.x}" th:data-y="${tile.y}"
@@ -66,25 +67,20 @@
                                 <div class="empty bottom"></div>
                             </div>
                         </div>
-
                         <p class="mb-0 subscription">Played</p>
-
                     </div>
 
 
-                    <div class="container col-auto board" id="shuffled">
+                    <div class="container col-auto board" id="shuffled" >
                         <div class="row board-row" th:each="row: ${shuffled}">
-                            <div class="col-1 tile" th:data-x="${tile.x}" th:data-y="${tile.y}" th:each="tile: ${row}">
+                            <div class="col-1 tile" draggable="true" th:data-x="${tile.x}" th:data-y="${tile.y}" th:each="tile: ${row}">
                                 <div th:class="${tile.top}"></div>
                                 <div th:class="${tile.bottom}"></div>
                                 <div th:class="${tile.left}"></div>
                                 <div th:class="${tile.right}"></div>
                             </div>
                         </div>
-
                         <p class="mb-0 subscription">Shuffled</p>
-
-
                     </div>
 
                     <div class="container col-auto board" id="solved">
