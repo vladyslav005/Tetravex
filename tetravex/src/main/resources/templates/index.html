@@ -37,18 +37,20 @@
     </div>
 </nav>
 <!-- Page header with logo and tagline-->
-<header class="py-5 bg-light border-bottom mb-4">
-    <div class="container">
-        <div class="text-center my-5">
-            <h1 class="fw-bolder">TETRAVEX</h1>
-            <p class="lead mb-0 just-message" id="message">Good luck!</p>
-            <!-- --------------------------- -->
+<header class="py-5 border-bottom mb-4">
 
+    <div class="background"></div>
+
+    <div class="container header-">
+
+        <div class="text-center my-5">
+            <h1 class="fw-bolder main-header">TETRAVEX</h1>
+            <p class="lead mb-0 just-message" id="message">Good luck!</p>
         </div>
     </div>
 </header>
 <!-- Page content-->
-<div class="container">
+<div class="container main-block">
     <div class="row">
         <!-- Blog entries-->
         <div class="col-lg-8">
@@ -99,7 +101,46 @@
 
                 </div>
 
+            </div>
 
+            <div class="card mb-4" id="show-comments-block">
+                <div class="card-header" id="show-comment-header">Show comments</div>
+
+                <div class="card row-cols-1 comment-block" id="template-comment">
+                    <div class="card-header comment-name">Name</div>
+                    <div class="card-body">
+                        <p class="comment-text">
+
+                            TetraVex is an edge-matching puzzle. The player is presented with a grid (by default, 3x3) and
+                            nine square tiles, each with a number on each edge.
+                            The objective of the game is to place the tiles in the grid in the proper position as fast as
+                            possible.
+
+                        </p>
+                        <small class="form-text text-muted comment-timestamp">FRFHRBFRBFRRFFR</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header" id="add-comment-header">Add comment</div>
+                <div class="card-body" id="add-comment-form">
+                    <div class="form-group row">
+                        <label class="col">Your name: </label>
+                        <input type="email" class="form-control col comment-input" id="input-player" aria-describedby="emailHelp" placeholder="Enter name">
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col">Comment:</label>
+                        <input type="email" class="form-control col comment-input" id="input-comment" aria-describedby="emailHelp" placeholder="Enter comment">
+
+
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary" id="add-cmnt-submit">Submit</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -120,13 +161,11 @@
                                placeholder="Width" type="text"/>
 
                         <a class="btn btn-primary" href="#" id="button-play" type="button">Play</a>
-
                     </div>
-
                     <p class="bad-message" id="form-message">Width and height should be between 3 and 6</p>
-
                 </div>
             </div>
+
 
             <div class="card mb-4">
 
@@ -135,7 +174,7 @@
             </div>
 
             <div class="card mb-4">
-                <div class="card-header text-center"><h5>Rules</h5></div>
+                <div class="card-header text-center"><h5>Game rules</h5></div>
                 <div class="card-body">
                     <p>
                         TetraVex is an edge-matching puzzle. The player is presented with a grid (by default, 3x3) and
@@ -146,6 +185,22 @@
                     </p>
                 </div>
             </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    Rate rating
+                </div>
+
+                <div class="card-body row">
+                    <span class="col star" id="1"> <h1>★</h1> </span>
+                    <span class="col star" id="2"> <h1>★</h1> </span>
+                    <span class="col star" id="3"> <h1>★</h1> </span>
+                    <span class="col star" id="4"> <h1>★</h1> </span>
+                    <span class="col star" id="5"> <h1>★</h1> </span>
+
+                </div>
+            </div>
+
 
             <!-- Categories widget-->
 <!--            <div class="card mb-4">-->
@@ -187,8 +242,10 @@
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="/js/logic.js"></script>
+<script src="/js/show_comments.js"></script>
+<script src="/js/game_logic.js"></script>
 <script src="/js/ui.js"></script>
 <script src="/js/parametrized_game_form.js"></script>
+<script src="/js/add_comment.js"></script>
 </body>
 </html>

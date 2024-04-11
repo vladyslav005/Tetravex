@@ -14,6 +14,9 @@ $(document).ready(function () {
             formMessage.hide();
             isFormValid = true;
 
+        } else if ($("#width").val().length == 0 && $("#height").val() == 0) {
+            formMessage.hide();
+            isFormValid = false;
         } else {
             formMessage.show();
             isFormValid = false;

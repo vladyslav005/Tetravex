@@ -92,14 +92,70 @@ body {
     }
 }
 
+
+
+/*TODO : BACKGROUND */
+header {
+    /*background-image: url("../images/");*/
+    background-position: center;
+    background-size: cover;
+}
+
+.star:hover {
+    color: #ffae00;
+    cursor: pointer;
+}
+
+.comment-block {
+    margin: 20px;
+}
+
+#show-comment-header:hover {
+    background-color: #dcdbdb;
+
+}
+
+#add-cmnt-submit {
+
+    width: 60%;
+
+    margin: auto;
+}
+
+#add-comment-header:hover {
+    background-color: #dcdbdb;
+
+}
+
+
+.comment-input {
+    margin: 20px;
+}
+
+.main-block {
+    margin-top: 50px;
+}
+
+.main-header   {
+
+    /*color: white;*/
+}
+
+
+#form-message {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+
+
+
 .tile {
     animation-name: appear;
     animation-duration: 0.3s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-
-
 }
 
 
@@ -194,6 +250,13 @@ body {
 
 }
 
+
+::selection {
+
+    background-color: transparent;
+
+}
+
 .animated-message {
     background-color: lightgreen;
     color: white;
@@ -240,7 +303,6 @@ body {
 .board-row {
     --bs-gutter-x: calc(var(--tile-size) * 1.7) !important;
     --bs-gutter-y: calc(var(--tile-size) * 2) !important;
-
 }
 
 .board {
@@ -302,7 +364,6 @@ body {
     border-color: purple !important;
 }
 
-
 .bright_magenta {
     border-color: mediumpurple !important;
 }
@@ -351,11 +412,9 @@ body {
 .bottom {
     width: 0px;
     height: 0px;
-
     border-left: var(--tile-size) solid transparent !important;
     border-right: var(--tile-size) solid transparent !important;
     border-bottom: var(--tile-size) solid;
-
     position: absolute;
     bottom: 0px;
     left: 0px;

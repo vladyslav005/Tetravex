@@ -2,7 +2,6 @@ var selected_tile = null;
 
 $(".tile").click(tileClickHandler);
 
-
 $(".tile").on("dragover", function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -20,7 +19,6 @@ $(".tile").on("dragleave", function(event) {
 });
 
 $(".tile").on("dragstart", function(event) {
-    console.log("dragstart");
     if (selected_tile == null)
         selected_tile = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
 });
