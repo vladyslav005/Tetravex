@@ -93,7 +93,6 @@ body {
 }
 
 
-
 /*TODO : BACKGROUND */
 header {
 
@@ -116,8 +115,7 @@ body {
 /*}*/
 
 
-
-.score-row>td>p {
+.score-row > td > p {
     margin: 0px !important;
 }
 
@@ -144,7 +142,8 @@ table.scores tr:nth-child(odd) {
 .rate-field {
     flex-direction: row !important;
 }
-.star>h1{
+
+.star > h1 {
     font-size: 3rem;
 }
 
@@ -180,7 +179,7 @@ table.scores tr:nth-child(odd) {
     margin-top: 50px;
 }
 
-.main-header   {
+.main-header {
 
     /*color: white;*/
 }
@@ -190,8 +189,6 @@ table.scores tr:nth-child(odd) {
     margin-top: 25px;
     margin-bottom: 15px;
 }
-
-
 
 
 .tile {

@@ -5,7 +5,7 @@ $("#add-comment-header").click(() => $("#add-comment-form").toggle());
 var playerName;
 var comment;
 
-function addCommentBtnClickHandler () {
+function addCommentBtnClickHandler() {
 
     playerName = $("#input-player").val();
     comment = $("#input-comment").val();
@@ -14,7 +14,7 @@ function addCommentBtnClickHandler () {
         data = {
             player: playerName,
             game: "tetravex",
-            commentedOn : new Date(),
+            commentedOn: new Date(),
             comment: comment
         }
 
@@ -36,7 +36,7 @@ function addCommentBtnClickHandler () {
                 }
             },
 
-            error : function (ex) {
+            error: function (ex) {
 
             }
 

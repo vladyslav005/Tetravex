@@ -48,7 +48,8 @@ function showComment(data) {
 
     dateTime = comentedOn.toDateString() + " "
         + comentedOn.getHours() + ":"
-        + (comentedOn.getMinutes() === 0 ? "00" : comentedOn.getMinutes())
+        + (comentedOn.getMinutes() === 0 ? "00" :
+            (comentedOn.getMinutes() < 10 ? "0" + comentedOn.getMinutes() : comentedOn.getMinutes()));
 
     newComment.find(".comment-name").text(data.player);
     newComment.find(".comment-text").text(data.comment);

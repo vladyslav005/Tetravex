@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import tetravex.core.Complexity;
+import tetravex.server.dto.ClientRequestDto;
+import tetravex.server.dto.ServerResponseDto;
 import tetravex.server.webui.WebUI;
+
+import java.util.List;
 
 
 @Controller
@@ -33,8 +35,10 @@ public class MainController {
 
 
     @GetMapping("/play/parameters")
-    public String newParametrizedGame(@RequestParam int width, @RequestParam int height, Model model) {
-        webUI.newGame(Complexity.HARD, width, height);
+    public String newParametrizedGame(@RequestParam int width, @RequestParam int height,
+                                      @RequestParam String complexity, Model model) {
+
+        webUI.newGame(Complexity.valueOf(complexity.toUpperCase()), width, height);
 
         model.addAttribute("solved", webUI.getThymeleafAttributeSolved());
         model.addAttribute("shuffled", webUI.getThymeleafAttributeShuffled());
@@ -42,5 +46,11 @@ public class MainController {
         return "main";
     }
 
+    @ResponseBody
+    @PostMapping("/handler")
+    public ServerResponseDto handle(@RequestBody List<ClientRequestDto> clientRequestDto) {
+        webUI.swapTiles(clientRequestDto.get(0), clientRequestDto.get(1));
+        return new ServerResponseDto(webUI.getGameState());
+    }
 
 }

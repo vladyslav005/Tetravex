@@ -3,7 +3,7 @@ $(".star").mouseenter(onMouseEnter);
 function onMouseEnter(event) {
     let current = $(event.target).hasClass("star") ? $(event.target) : $(event.target).parent();
     i = parseInt($(current).attr("id"));
-    for (let j = i; j > 0 ; j--) {
+    for (let j = i; j > 0; j--) {
         $("#" + j).css("color", "#ffae00");
     }
 }
@@ -18,7 +18,7 @@ $(".star").click(function (event) {
         data = {
             player: player,
             game: "tetravex",
-            ratedOn : new Date(),
+            ratedOn: new Date(),
             rating: i
         }
 
@@ -32,7 +32,7 @@ $(".star").click(function (event) {
                 alert("Rating was added");
             },
 
-            error : function (ex) {
+            error: function (ex) {
             }
         });
     }
@@ -50,7 +50,7 @@ function getAvgRate() {
             $("#avg-rate").text(" " + result);
         },
 
-        error : function (ex) {
+        error: function (ex) {
         }
     });
 }

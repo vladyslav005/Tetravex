@@ -8,7 +8,7 @@ function saveScore() {
             game: "tetravex",
             playedOn: new Date(),
             points: score
-        } ;
+        };
         if (name.length != 0) {
             $.ajax({
                 type: "post",

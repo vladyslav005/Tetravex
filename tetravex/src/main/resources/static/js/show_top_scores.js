@@ -1,4 +1,3 @@
-
 scoreTemplate = $("#score-template");
 table = scoreTemplate.parent();
 
@@ -41,7 +40,8 @@ function showPlayerScore(data, i) {
     playedOn = new Date(data.playedOn);
     dateTime = playedOn.toDateString() + " "
         + playedOn.getHours() + ":"
-        + (playedOn.getMinutes() === 0 ? "00" : playedOn.getMinutes())
+        + (playedOn.getMinutes() === 0 ? "00" :
+            (playedOn.getMinutes() < 10 ? "0" + playedOn.getMinutes() : playedOn.getMinutes()));
 
     newScore.find(".score-date>p").text(dateTime);
 }

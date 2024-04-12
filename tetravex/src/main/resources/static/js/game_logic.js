@@ -25,13 +25,13 @@ function timerHandler() {
     let seconds = currentTime % 60;
     let minutes = (currentTime - seconds) / 60;
     timer.text((minutes < 10 ? "0" + minutes : minutes)
-        + ":"+ (seconds < 10 ? "0" + seconds : seconds));
+        + ":" + (seconds < 10 ? "0" + seconds : seconds));
 }
 
 
 $(".tile").click(tileClickHandler);
 
-$(".tile").on("dragover", function(event) {
+$(".tile").on("dragover", function (event) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -40,20 +40,20 @@ $(".tile").on("dragover", function(event) {
     current.addClass("selected");
 });
 
-$(".tile").on("dragleave", function(event) {
+$(".tile").on("dragleave", function (event) {
     event.preventDefault();
     event.stopPropagation();
     let current = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
     current.removeClass("selected");
 });
 
-$(".tile").on("dragstart", function(event) {
+$(".tile").on("dragstart", function (event) {
     if (selected_tile == null)
         selected_tile = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
 });
 
 
-$(".tile").on("drop", function(event) {
+$(".tile").on("drop", function (event) {
     event.preventDefault();
     event.stopPropagation();
     let current = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
@@ -65,9 +65,6 @@ $(".tile").on("drop", function(event) {
     selected_tile = null;
 
 });
-
-
-
 
 
 function tileClickHandler(event) {
