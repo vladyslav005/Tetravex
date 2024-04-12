@@ -23,7 +23,7 @@ public class CommentServiceJPA implements CommentService {
 
     @Override
     public List<Comment> getComments(String game) throws CommentException {
-        return entityManager.createQuery("SELECT a FROM Comment a WHERE a.game = '?'"
+        return entityManager.createQuery("SELECT a FROM Comment a WHERE a.game = '?' ORDER BY a.commentedOn DESC"
                         .replace("?", game),
                 Comment.class).getResultList();
     }

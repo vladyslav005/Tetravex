@@ -1,0 +1,19 @@
+<div th:fragment="custom-params">
+    <div class="card mb-4">
+        <div class="card-header">Custom parameters</div>
+        <div class="card-body">
+            <div class="input-group" id="params-form">
+
+                <input aria-describedby="Height" aria-label="Height" class="form-control size-of-field"
+                       id="height"
+                       placeholder="Height" type="text"/>
+
+                <input aria-describedby="Width" aria-label="Width" class="form-control size-of-field" id="width"
+                       placeholder="Width" type="text"/>
+
+                <a class="btn btn-primary" href="#" id="button-play" type="button">Play</a>
+            </div>
+            <p class="bad-message" id="form-message">Width and height should be between 3 and 6</p>
+        </div>
+    </div>
+</div>

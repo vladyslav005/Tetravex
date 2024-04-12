@@ -118,6 +118,7 @@ function sendRequest(dataObj) {
                 previousState = result[resultKey];
             }
         },
+
         error: function (ex) {
             console.log("error", ex);
             // setTimeout(() =>sendRequest(dataObj), 100);

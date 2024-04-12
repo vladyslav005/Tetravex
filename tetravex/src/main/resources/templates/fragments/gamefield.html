@@ -1,0 +1,53 @@
+
+
+<span th:fragment="gamefield (solved, shuffled)">
+    <div class="card mb-4">
+        <div class="card-body row boards-container">
+
+        <div class="container col-auto board" id="played">
+            <div class="row board-row" th:each="row: ${solved}">
+                <div class="col-1 tile empty" th:data-x="${tile.x}" th:data-y="${tile.y}"
+                     th:each="tile: ${row}">
+                    <div class="empty left"></div>
+                    <div class="empty right"></div>
+                    <div class="empty top"></div>
+                    <div class="empty bottom"></div>
+                </div>
+            </div>
+            <p class="mb-0 subscription">Played</p>
+        </div>
+
+
+        <div class="container col-auto board" id="shuffled" >
+            <div class="row board-row" th:each="row: ${shuffled}">
+                <div class="col-1 tile" draggable="true" th:data-x="${tile.x}" th:data-y="${tile.y}" th:each="tile: ${row}">
+                    <div th:class="${tile.top}"></div>
+                    <div th:class="${tile.bottom}"></div>
+                    <div th:class="${tile.left}"></div>
+                    <div th:class="${tile.right}"></div>
+                </div>
+            </div>
+            <p class="mb-0 subscription">Shuffled</p>
+        </div>
+
+        <div class="container col-auto board" id="solved">
+            <div class="row board-row" th:each="row: ${solved}">
+                <div class="col-1 tile" th:data-x="${tile.x}" th:data-y="${tile.y}" th:each="tile: ${row}">
+                    <div th:class="${tile.top}"></div>
+                    <div th:class="${tile.bottom}"></div>
+                    <div th:class="${tile.left}"></div>
+                    <div th:class="${tile.right}"></div>
+                </div>
+            </div>
+
+            <p class="mb-0 subscription">Solved</p>
+
+        </div>
+
+    </div>
+
+    </div>
+
+
+
+</span>

@@ -1,0 +1,33 @@
+<span th:fragment="header">
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" id="reload" href="/tetravex/play">Home</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+            <li class="nav-item"><a aria-current="page" class="nav-link active" href="#">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Page header with logo and tagline-->
+    <header class="py-5 border-bottom mb-4">
+
+      <div class="background"></div>
+
+      <div class="container header-">
+
+        <div class="text-center my-5">
+          <h1 class="fw-bolder main-header">TETRAVEX</h1>
+          <p class="lead mb-0 just-message" id="message">Good luck!</p>
+        </div>
+      </div>
+    </header>
+</span>

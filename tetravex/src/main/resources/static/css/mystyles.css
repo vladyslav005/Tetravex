@@ -101,6 +101,29 @@ header {
     background-size: cover;
 }
 
+.score-row>td>p {
+    margin: 0px !important;
+}
+
+table.scores {
+    width: 100%;
+    border: black 2px;
+}
+
+table.scores th {
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: dimgray;
+
+}
+
+table.scores tr:nth-child(even) {
+    background-color: lightgray
+}
+
+table.scores tr:nth-child(odd) {
+    background-color: white;
+}
 
 .rate-field {
 
@@ -123,9 +146,7 @@ header {
 }
 
 #add-cmnt-submit {
-
     width: 60%;
-
     margin: auto;
 }
 

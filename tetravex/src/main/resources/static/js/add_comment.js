@@ -5,7 +5,7 @@ $("#add-comment-header").click(() => $("#add-comment-form").toggle());
 var playerName;
 var comment;
 
-
+// TODO : clear fields
 
 function addCommentBtnClickHandler () {
 
