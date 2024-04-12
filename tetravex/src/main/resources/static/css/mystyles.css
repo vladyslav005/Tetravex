@@ -126,10 +126,10 @@ table.scores tr:nth-child(odd) {
 }
 
 .rate-field {
-
+    flex-direction: row !important;
 }
 .star>h1{
-    font-size: 3.5rem;
+    font-size: 3rem;
 }
 
 .star:hover {

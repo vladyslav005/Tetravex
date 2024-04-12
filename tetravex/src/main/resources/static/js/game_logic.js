@@ -1,4 +1,33 @@
 var selected_tile = null;
+var isFirstMove = true;
+
+var startTimestamp;
+var timer = $("#timer");
+var setIntervalId;
+var score = 0;
+var isSolutionShowed = false;
+
+
+function stopTimer() {
+    clearInterval(setIntervalId);
+
+}
+
+function resetTimer() {
+    startTimestamp = new Date().getTime();
+    setIntervalId = setInterval(timerHandler, 1000);
+}
+
+
+function timerHandler() {
+    let currentTime = Math.round((new Date().getTime() - startTimestamp) / 1000);
+    score = currentTime;
+    let seconds = currentTime % 60;
+    let minutes = (currentTime - seconds) / 60;
+    timer.text((minutes < 10 ? "0" + minutes : minutes)
+        + ":"+ (seconds < 10 ? "0" + seconds : seconds));
+}
+
 
 $(".tile").click(tileClickHandler);
 
@@ -38,6 +67,9 @@ $(".tile").on("drop", function(event) {
 });
 
 
+
+
+
 function tileClickHandler(event) {
     let current = $(event.target).hasClass("tile") ? $(event.target) : $(event.target).parent();
     current.addClass("selected");
@@ -47,8 +79,8 @@ function tileClickHandler(event) {
         current.removeClass("selected");
         selected_tile.removeClass("selected");
 
-        sendRequest(createObjectForRequest(selected_tile, current));
         swapTiles(selected_tile, current)
+        sendRequest(createObjectForRequest(selected_tile, current));
 
         selected_tile = null;
         return;
@@ -76,6 +108,11 @@ function createObjectForRequest(selected, current) {
 }
 
 function swapTiles(tile_1, tile_2) {
+    if (isFirstMove) {
+        resetTimer();
+        isFirstMove = false;
+    }
+
     tile_1.css("animation-direction", "reverse");
     tile_2.css("animation-direction", "reverse");
 
@@ -113,6 +150,8 @@ function sendRequest(dataObj) {
             for (const resultKey in result) {
                 if (result[resultKey] === "SOLVED" && result[resultKey] !== previousState) {
                     $("#message").replaceWith("<p class=\"lead mb-0 animated-message good-message\" id=\"message\">Congratulations, you won!</p>");
+                    stopTimer();
+                    if (!isSolutionShowed) saveScore();
                 } else if (result[resultKey] !== previousState)
                     $("#message").replaceWith("<p class=\"lead mb-0 just-message\" id=\"message\">Good luck ;)</p>");
                 previousState = result[resultKey];

@@ -1,15 +1,8 @@
-
-
 $(".star").mouseenter(onMouseEnter);
 
-
-
 function onMouseEnter(event) {
-
     let current = $(event.target).hasClass("star") ? $(event.target) : $(event.target).parent();
-
     i = parseInt($(current).attr("id"));
-
     for (let j = i; j > 0 ; j--) {
         $("#" + j).css("color", "#ffae00");
     }
@@ -36,18 +29,16 @@ $(".star").click(function (event) {
             data: JSON.stringify(data),
             success: function (result) {
                 getAvgRate();
+                alert("Rating was added");
             },
 
             error : function (ex) {
-
             }
         });
     }
 });
 
-
 $(".star").mouseleave(() => $(".star").css("color", "black"));
-
 
 function getAvgRate() {
     $.ajax({
@@ -55,7 +46,9 @@ function getAvgRate() {
         url: "/api/rating/tetravex",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
-            $("#avg-rate").text(" " + result);
+            let stars = "";
+
+            $("#avg-rate").text(" ");
         },
 
         error : function (ex) {
@@ -64,5 +57,3 @@ function getAvgRate() {
 }
 
 getAvgRate();
-
-

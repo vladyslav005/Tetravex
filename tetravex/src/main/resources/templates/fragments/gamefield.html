@@ -1,8 +1,12 @@
 
 
-<span th:fragment="gamefield (solved, shuffled)">
-    <div class="card mb-4">
-        <div class="card-body row boards-container">
+<div th:fragment="gamefield (solved, shuffled)">
+<div class="card mb-4">
+    <div class="card-body row boards-container">
+
+        <div class="row text-center">
+            <h3 id="timer">00:00</h3>
+        </div>
 
         <div class="container col-auto board" id="played">
             <div class="row board-row" th:each="row: ${solved}">
@@ -46,8 +50,8 @@
 
     </div>
 
-    </div>
+</div>
 
 
 
-</span>
+</div>

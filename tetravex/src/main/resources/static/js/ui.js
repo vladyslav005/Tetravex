@@ -4,4 +4,7 @@ $("#show-solution").click(show_solution);
 
 function show_solution() {
     $("#solved").toggle();
+    isSolutionShowed = true;
+    stopTimer();
+    score = 0;
 }
