@@ -28,7 +28,7 @@ public class MainController {
         model.addAttribute("solved", webUI.getThymeleafAttributeSolved());
         model.addAttribute("shuffled", webUI.getThymeleafAttributeShuffled());
 
-        return "index";
+        return "main";
     }
 
 
@@ -39,7 +39,7 @@ public class MainController {
         model.addAttribute("solved", webUI.getThymeleafAttributeSolved());
         model.addAttribute("shuffled", webUI.getThymeleafAttributeShuffled());
 
-        return "index";
+        return "main";
     }
 
 

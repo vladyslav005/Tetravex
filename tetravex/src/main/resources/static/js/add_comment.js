@@ -5,11 +5,7 @@ $("#add-comment-header").click(() => $("#add-comment-form").toggle());
 var playerName;
 var comment;
 
-// TODO : clear fields
-
 function addCommentBtnClickHandler () {
-
-    console.log(new Date());
 
     playerName = $("#input-player").val();
     comment = $("#input-comment").val();
@@ -22,6 +18,8 @@ function addCommentBtnClickHandler () {
             comment: comment
         }
 
+        $("#input-player").val(' ')
+        $("#input-comment").val(' ');
 
         $.ajax({
             type: "post",
@@ -30,6 +28,8 @@ function addCommentBtnClickHandler () {
             data: JSON.stringify(data),
 
             success: function (result) {
+                alert("Comment was added")
+
                 if (window.isCommentsShowed) {
                     hideAllComments();
                     showAllComments();

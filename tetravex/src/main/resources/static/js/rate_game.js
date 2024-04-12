@@ -46,9 +46,8 @@ function getAvgRate() {
         url: "/api/rating/tetravex",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
-            let stars = "";
 
-            $("#avg-rate").text(" ");
+            $("#avg-rate").text(" " + result);
         },
 
         error : function (ex) {

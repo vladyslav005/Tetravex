@@ -108,7 +108,7 @@ function createObjectForRequest(selected, current) {
 }
 
 function swapTiles(tile_1, tile_2) {
-    if (isFirstMove) {
+    if (isFirstMove && !isSolutionShowed) {
         resetTimer();
         isFirstMove = false;
     }

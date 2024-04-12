@@ -7,8 +7,9 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <title>Tetravex</title>
+
     <!-- Favicon-->
-    <link href="/assets/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="/assets/star.png" rel="icon" type="image/x-icon"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" type="text/css"/>
 
@@ -25,9 +26,9 @@
 <!-- Page content-->
 <div class="container main-block">
     <div class="row">
-        <!-- Blog entries-->
+
+        <!-- Main entries-->
         <div class="col-lg-8">
-            <!-- Featured blog post-->
 
             <span th:replace="~{fragments/gamefield :: gamefield (${solved}, ${shuffled})}"></span>
 
@@ -35,19 +36,10 @@
 
             <span th:replace="~{fragments/add-comment-form :: add-comment}"></span>
 
+            <span th:replace="~{fragments/game-rules :: game-rules}"></span>
 
-            <div class="card mb-4">
-                <div class="card-header text-center"><h5>Game rules</h5></div>
-                <div class="card-body">
-                    <p>
-                        TetraVex is an edge-matching puzzle. The player is presented with a grid (by default, 3x3) and
-                        nine square tiles, each with a number on each edge.
-                        The objective of the game is to place the tiles in the grid in the proper position as fast as
-                        possible.
-                        Two tiles can only be placed next to each other if the numbers on adjacent faces match.
-                    </p>
-                </div>
-            </div>
+
+
         </div>
 
 
