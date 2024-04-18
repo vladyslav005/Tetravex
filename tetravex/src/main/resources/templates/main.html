@@ -13,7 +13,6 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" type="text/css"/>
 
-
     <!-- Include JQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -23,28 +22,21 @@
 
 
 <span th:replace="~{fragments/header :: header}"></span>
+
 <!-- Page content-->
 <div class="container main-block">
     <div class="row">
 
         <!-- Main entries-->
         <div class="col-lg-8">
-
             <span th:replace="~{fragments/gamefield :: gamefield (${solved}, ${shuffled})}"></span>
-
             <span th:replace="~{fragments/comments :: comments}"></span>
-
             <span th:replace="~{fragments/add-comment-form :: add-comment}"></span>
-
             <span th:replace="~{fragments/game-rules :: game-rules}"></span>
-
-
         </div>
-
 
         <!-- Side widgets-->
         <div class="col-lg-4">
-
 
             <span th:replace="~{fragments/custom-params :: custom-params}"></span>
 
@@ -59,7 +51,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Footer-->
 <footer class="py-5 bg-dark">
@@ -81,7 +72,6 @@
     <script src="/js/rate_game.js"></script>
     <script src="/js/show_top_scores.js"></script>
     <script src="/js/save_score.js"></script>
-
 </footer>
 </body>
 </html>
