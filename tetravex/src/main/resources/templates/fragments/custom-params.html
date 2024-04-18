@@ -11,14 +11,13 @@
                 <input aria-describedby="Width" aria-label="Width" class="form-control size-of-field" id="width"
                        placeholder="Width" type="text"/>
 
-                <button class="btn btn-primary" id="button-play" style="border-radius: 5px" type="button">Play</button>
-
 
                 <div class="dropdown">
-                    <button aria-expanded="false" class="btn btn-secondary dropdown-toggle mx-1" data-bs-toggle="dropdown"
-                            id="complexity-btn" type="button">
+                    <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                            id="complexity-btn" type="button" style="border-bottom-left-radius: 0px; border-top-left-radius: 0px;">
                         Complexity
                     </button>
+
                     <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
                         <li><span class="dropdown-item complexity">Easy</span></li>
                         <li><span class="dropdown-item complexity">Medium</span></li>
@@ -26,10 +25,12 @@
                     </ul>
                 </div>
 
+                <button class="btn btn-primary mx-2" id="button-play"  type="button" style="border-radius: 5px">Play</button>
+
             </div>
 
-
             <p class="bad-message" id="form-message">Width and height should be between 3 and 6</p>
+
         </div>
     </div>
 </div>

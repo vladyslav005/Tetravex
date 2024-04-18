@@ -149,8 +149,11 @@ function sendRequest(dataObj) {
                     $("#message").replaceWith("<p class=\"lead mb-0 animated-message good-message\" id=\"message\">Congratulations, you won!</p>");
                     stopTimer();
                     if (!isSolutionShowed) saveScore();
-                } else if (result[resultKey] !== previousState)
+                    setTimeout(set_message_anim, 1000);
+                } else if (result[resultKey] !== previousState) {
                     $("#message").replaceWith("<p class=\"lead mb-0 just-message\" id=\"message\">Good luck ;)</p>");
+                    setTimeout(set_message_anim, 1000);
+                }
                 previousState = result[resultKey];
             }
         },

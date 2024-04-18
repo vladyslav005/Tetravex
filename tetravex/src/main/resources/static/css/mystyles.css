@@ -93,27 +93,30 @@ body {
 }
 
 
-/*TODO : BACKGROUND */
-header {
 
+@keyframes wiggle {
+    0%, 7% {
+        transform: rotateZ(0);
+    }
+    15% {
+        transform: rotateZ(-4deg);
+    }
+    20% {
+        transform: rotateZ(2deg);
+    }
+    25% {
+        transform: rotateZ(-2deg);
+    }
+    30% {
+        transform: rotateZ(1deg);
+    }
+    35% {
+        transform: rotateZ(-1deg);
+    }
+    40%, 100% {
+        transform: rotateZ(0);
+    }
 }
-
-body {
-
-}
-
-/*#background {*/
-/*    z-index: -1;*/
-/*    position: absolute;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    top: 0px;*/
-/*    filter: blur(10px);*/
-/*    background-image: url("../images/back.jpeg");*/
-/*    background-position: center;*/
-/*    !*background-size: ;*!*/
-/*}*/
-
 
 .score-row > td > p {
     margin: 0px !important;
