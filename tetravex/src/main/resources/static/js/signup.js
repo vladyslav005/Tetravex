@@ -37,10 +37,7 @@ function check_if_logged_in() {
         USERNAME = Cookies.get(COOKIE_NAME);
 
         update_logged_usr_label();
-
-
     }
-
 }
 
 function update_logged_usr_label() {
@@ -84,7 +81,7 @@ function log_in_request(name, password) {
         data: JSON.stringify(data),
 
         success: function (result) {
-            RENEW_TOKEN = setTimeout(log_in_request, TOKEN_LIFETIME, name, password);
+            RENEW_TOKEN = setTimeout(renew_token, TOKEN_LIFETIME, name, password);
             JWT_TOKEN = result;
             USERNAME = name;
             SIGNED_IN = true;
@@ -95,6 +92,10 @@ function log_in_request(name, password) {
             update_logged_usr_label()
 
             if (confirm("Do you want to stay logged in?")) stay_logged_in(name, password);
+            else {
+                Cookies.set(COOKIE_NAME, USERNAME, {expires: 0.003472 })
+                Cookies.set(COOKIE_TOKEN, JWT_TOKEN, {expires: 0.003472 });
+            }
         },
 
         error: function (ex) {
@@ -103,6 +104,41 @@ function log_in_request(name, password) {
             clearTimeout(RENEW_TOKEN);
         }
     });
+}
+
+
+function renew_token(name, password) {
+
+    let data = {username: name, password: password, longToken: false};
+
+    $.ajax({
+        type: "post",
+        url: "/auth/signin",
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+
+        success: function (result) {
+            RENEW_TOKEN = setTimeout(renew_token, TOKEN_LIFETIME, name, password);
+            JWT_TOKEN = result;
+            USERNAME = name;
+            SIGNED_IN = true;
+            modal.hide();
+            modal_name.val('');
+            modal_password.val('');
+            $("#back").hide();
+            update_logged_usr_label()
+
+            Cookies.set(COOKIE_NAME, USERNAME, {expires: 0.003472 })
+            Cookies.set(COOKIE_TOKEN, JWT_TOKEN, {expires: 0.003472 });
+        },
+
+        error: function (ex) {
+            console.log("error", ex);
+            clearTimeout(RENEW_TOKEN);
+        }
+    });
+
+
 }
 
 function stay_logged_in(name, password) {
