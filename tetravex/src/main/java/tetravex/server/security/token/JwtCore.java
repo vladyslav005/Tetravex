@@ -18,13 +18,17 @@ public class JwtCore {
     @Value("${token.lifetime}")
     private int lifeTime;
 
+    @Value("${token.long-lifetime}")
+    private int longLifeTime;
 
-    public String generateToken(Authentication auth) {
+
+    public String generateToken(Authentication auth, boolean longToken) {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        int expirationTime  = longToken ? longLifeTime : lifeTime;
 
         return Jwts.builder().setSubject(
                         userDetails.getUsername()).setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() +  lifeTime))
+                .setExpiration(new Date((new Date()).getTime() + expirationTime))
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
 

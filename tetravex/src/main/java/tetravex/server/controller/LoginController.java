@@ -60,7 +60,7 @@ public class LoginController {
         }
 
 
-        String token = jwtCore.generateToken(auth);
+        String token = jwtCore.generateToken(auth, signInRequest.isLongToken());
         HttpSession session = req.getSession(true);
 //        session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
 

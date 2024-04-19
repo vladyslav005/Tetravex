@@ -8,4 +8,5 @@ import lombok.ToString;
 public class SignInRequest {
     private String username;
     private String password;
+    private boolean longToken;
 }

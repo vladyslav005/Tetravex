@@ -325,7 +325,7 @@ table.scores tr:nth-child(odd) {
 
 ::selection {
 
-    background-color: transparent;
+    background-color: rgba(100, 100, 10, 10%);
 
 }
 
@@ -371,6 +371,14 @@ table.scores tr:nth-child(odd) {
     border-radius: 5px;
 }
 
+#logged-in-user {
+    background-color: orange;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    font-weight: bold !important;
+    border-radius: 5px;
+}
 
 .board-row {
     --bs-gutter-x: calc(var(--tile-size) * 1.7) !important;
