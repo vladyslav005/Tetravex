@@ -13,22 +13,13 @@ action = null;
 JWT_TOKEN = null;
 
 
-modal_name = $("#modal-name");
-modal_password = $("#modal-password");
-modal_submit = $("#modal-submit");
-
-
-var modal = $("#modal");
-modalIsOpened = false
-modal.hide();
-$("#back").hide();
-
 
 modal_submit.click(modal_submit_click_handler)
 logged_in_user_txt = $("#logged-in-user");
 
 
 check_if_logged_in();
+update_logged_usr_label();
 
 function check_if_logged_in() {
     if (Cookies.get(COOKIE_TOKEN) != null) {
@@ -42,11 +33,17 @@ function check_if_logged_in() {
 
 function update_logged_usr_label() {
     if (SIGNED_IN) {
-        logged_in_user_txt.css("background-color", "lightgreen")
+        logged_in_user_txt.css("background-color", "#4DB94DFF")
         logged_in_user_txt.text("Logged in as: " + USERNAME);
+        $("#LogOut").show();
+        $("#SignUp").hide();
+        $("#LogIn").hide();
     } else {
-        logged_in_user_txt.css("background-color", "orange")
+        logged_in_user_txt.css("background-color", "#ff9900")
         logged_in_user_txt.text("Logged in as: " + "guest");
+        $("#LogOut").hide();
+        $("#SignUp").show();
+        $("#LogIn").show();
 
     }
 }
@@ -68,7 +65,6 @@ function modal_submit_click_handler() {
         signup_request(name, password)
     }
 }
-
 
 function log_in_request(name, password) {
     console.log("logging in")
@@ -96,6 +92,8 @@ function log_in_request(name, password) {
                 Cookies.set(COOKIE_NAME, USERNAME, {expires: 0.003472 })
                 Cookies.set(COOKIE_TOKEN, JWT_TOKEN, {expires: 0.003472 });
             }
+
+
         },
 
         error: function (ex) {
@@ -191,37 +189,10 @@ function signup_request(name, password) {
 
         error: function (ex) {
             console.log("error", ex);
-            alert("This name is already used");
+            alert("This name is already used or too short");
         }
     });
 }
-
-
-$("#modal-cancel").click(function (event) {
-    modal.hide();
-    modal_name.val('');
-    modal_password.val('');
-    $("#back").hide();
-});
-
-$("#back").click(function (event) {
-    modal.hide();
-    modal_name.val('');
-    modal_password.val('');
-    $("#back").hide();
-});
-
-$("#LogIn").click(() => {
-    modal.show();
-    action = "signin";
-    $("#back").show();
-});
-
-$("#SignUp").click(() => {
-    modal.show();
-    action = "signup";
-    $("#back").show();
-});
 
 $("#LogOut").click(() => {
     if (SIGNED_IN) {
@@ -229,10 +200,11 @@ $("#LogOut").click(() => {
         USERNAME = null;
         PASSWORD = null;
         SIGNED_IN = false;
-        alert("Logged out");
         clearTimeout(RENEW_TOKEN);
         Cookies.remove(COOKIE_TOKEN);
         Cookies.remove(COOKIE_NAME);
         update_logged_usr_label();
+
     }
 })
+

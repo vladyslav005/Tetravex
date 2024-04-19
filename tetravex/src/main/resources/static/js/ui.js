@@ -18,4 +18,43 @@ function set_message_anim() {
 
 setTimeout(set_message_anim, 1000);
 
+modal_name = $("#modal-name");
+modal_password = $("#modal-password");
+modal_submit = $("#modal-submit");
+
+
+var modal = $("#modal");
+modalIsOpened = false;
+modal.hide();
+$("#back").hide();
+
+
+$("#modal-cancel").click(function (event) {
+    modal.hide();
+    modal_name.val('');
+    modal_password.val('');
+    $("#back").hide();
+});
+
+$("#back").click(function (event) {
+    modal.hide();
+    modal_name.val('');
+    modal_password.val('');
+    $("#back").hide();
+});
+
+$("#LogIn").click(() => {
+    modal.show();
+    action = "signin";
+    $("#back").show();
+});
+
+$("#SignUp").click(() => {
+    modal.show();
+    action = "signup";
+    $("#back").show();
+});
+
+
+
 //TODO : METRIC FOR SCORE

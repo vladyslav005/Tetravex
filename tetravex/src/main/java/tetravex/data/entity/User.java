@@ -3,6 +3,8 @@ package tetravex.data.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+//TODO : validations
+
 @Data
 @Entity
 @Table(name = "user_account")
