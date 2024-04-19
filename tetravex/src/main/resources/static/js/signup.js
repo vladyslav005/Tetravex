@@ -1,5 +1,8 @@
 jwt_token = null;
 
+// TODO : stay logged in
+// TODO :
+
 
 modal_name = $("#modal-name");
 modal_password = $("#modal-password");
@@ -9,6 +12,7 @@ SIGNED_IN = false;
 var modal = $("#modal");
 modalIsOpened = false
 modal.hide();
+$("#back").hide();
 
 USERNAME = null;
 
@@ -98,12 +102,23 @@ $("#modal-cancel").click(function (event) {
     modal.hide();
     modal_name.val('');
     modal_password.val('');
+    $("#back").hide();
+
 })
 
 
-$("#LogIn").click(() => {modal.show(); action="signin";});
 
-$("#SignUp").click(() => {modal.show(); action="signup";});
+$("#LogIn").click(() => {
+    modal.show();
+    action="signin";
+    $("#back").show();
+});
+
+$("#SignUp").click(() => {
+    modal.show(); action="signup";
+    $("#back").show();
+
+});
 
 $("#LogOut").click(() => {
     if (SIGNED_IN) {
@@ -112,3 +127,7 @@ $("#LogOut").click(() => {
     alert("Logged out");
     }
 })
+
+
+
+
