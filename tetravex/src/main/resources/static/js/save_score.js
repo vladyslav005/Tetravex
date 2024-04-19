@@ -1,4 +1,3 @@
-
 is_saved = false;
 
 function set_handler_for_message() {
@@ -31,7 +30,7 @@ function saveScore() {
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(data),
         headers: {
-            "Authorization": "Bearer " + jwt_token
+            "Authorization": "Bearer " + JWT_TOKEN
         },
 
         success: function (result) {

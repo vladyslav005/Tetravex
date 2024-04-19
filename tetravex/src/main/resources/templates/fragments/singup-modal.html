@@ -1,0 +1,24 @@
+<div th:fragment="modal">
+    <div id="back"></div>
+    <div class="card mb-4" id="modal">
+        <div class="card-body p-4">
+            <div class="form-group row">
+                <label class="col">Your name: </label>
+                <input aria-describedby="emailHelp" class="form-control col comment-input" id="modal-name"
+                       placeholder="Enter name" type="email">
+            </div>
+
+            <div class="form-group row">
+                <label class="col">Password:</label>
+                <input aria-describedby="emailHelp" class="form-control col comment-input" id="modal-password"
+                       placeholder="Enter password" type="password">
+
+            </div>
+            <div class="row">
+                <button class="btn btn-outline-secondary col mx-1" id="modal-cancel" type="submit">Cancel</button>
+
+                <button class="btn btn-primary col mx-1" id="modal-submit" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

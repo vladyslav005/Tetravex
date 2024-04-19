@@ -24,7 +24,7 @@ public class JwtCore {
 
     public String generateToken(Authentication auth, boolean longToken) {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
-        int expirationTime  = longToken ? longLifeTime : lifeTime;
+        int expirationTime = longToken ? longLifeTime : lifeTime;
 
         return Jwts.builder().setSubject(
                         userDetails.getUsername()).setIssuedAt(new Date())

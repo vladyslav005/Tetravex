@@ -6,8 +6,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import tetravex.data.service.CommentService;
 import tetravex.data.service.RatingService;
 import tetravex.data.service.ScoreService;
@@ -43,8 +41,6 @@ public class GameStudioServer {
     protected RatingService ratingService() {
         return new RatingServiceJPA();
     }
-
-
 
 
 }

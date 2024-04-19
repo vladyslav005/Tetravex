@@ -13,7 +13,7 @@ $(".star").click(function (event) {
     i = parseInt($(current).attr("id"));
 
     if (!SIGNED_IN) {
-        alert("Sign in to rate game");
+        alert("Log in to rate game");
     } else {
         data = {
             player: USERNAME,
@@ -28,7 +28,7 @@ $(".star").click(function (event) {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             headers: {
-                "Authorization": "Bearer " + jwt_token
+                "Authorization": "Bearer " + JWT_TOKEN
             },
 
             success: function (result) {

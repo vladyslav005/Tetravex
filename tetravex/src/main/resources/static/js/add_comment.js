@@ -8,7 +8,7 @@ var comment;
 function addCommentBtnClickHandler() {
 
     if (!SIGNED_IN) {
-        alert("Sign in to add comments");
+        alert("Log in to add comments");
         return;
     }
     comment = $("#input-comment").val();
@@ -30,7 +30,7 @@ function addCommentBtnClickHandler() {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             headers: {
-                "Authorization": "Bearer " + jwt_token
+                "Authorization": "Bearer " + JWT_TOKEN
             },
 
             success: function (result) {
