@@ -1,32 +1,47 @@
-function saveScore() {
 
-    if (confirm("Do you want to save your results?\nYour score is " + score)) {
-        name = prompt("Enter your name");
+is_saved = false;
 
-        data = {
-            player: name,
-            game: "tetravex",
-            playedOn: new Date(),
-            points: score
-        };
-        if (name.length != 0) {
-            $.ajax({
-                type: "post",
-                url: "/api/score",
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(data),
-
-                success: function (result) {
-                    showAllScores()
-                },
-
-                error: function (ex) {
-                    console.log("error", ex);
-                }
-            });
-        } else {
-            alert("Please enter your name");
+function set_handler_for_message() {
+    $("#message").click(function () {
+        if (isSolved && !is_saved) {
             saveScore();
+        } else {
+
         }
+    })
+}
+
+function saveScore() {
+    if (!SIGNED_IN) {
+        alert("Sign in first");
+        return;
     }
+
+
+    data = {
+        player: USERNAME,
+        game: "tetravex",
+        playedOn: new Date(),
+        points: score
+    };
+
+    $.ajax({
+        type: "post",
+        url: "/api/score",
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data),
+        headers: {
+            "Authorization": "Bearer " + jwt_token
+        },
+
+        success: function (result) {
+            showAllScores();
+            is_saved = true;
+            alert("Saved!");
+        },
+
+        error: function (ex) {
+            console.log("error", ex);
+        }
+    });
 }

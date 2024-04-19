@@ -59,7 +59,6 @@ public class LoginController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-//        SecurityContextHolder.getContext().setAuthentication(auth);
 
         String token = jwtCore.generateToken(auth);
         HttpSession session = req.getSession(true);

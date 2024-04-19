@@ -11,12 +11,12 @@ function onMouseEnter(event) {
 $(".star").click(function (event) {
     let current = $(event.target).hasClass("star") ? $(event.target) : $(event.target).parent();
     i = parseInt($(current).attr("id"));
-    let player = prompt("Please enter your name", "");
-    if (player.length === 0) {
-        alert("You didn't enter name");
+
+    if (!SIGNED_IN) {
+        alert("Sign in to rate game");
     } else {
         data = {
-            player: player,
+            player: USERNAME,
             game: "tetravex",
             ratedOn: new Date(),
             rating: i
@@ -27,6 +27,10 @@ $(".star").click(function (event) {
             url: "/api/rating",
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
+            headers: {
+                "Authorization": "Bearer " + jwt_token
+            },
+
             success: function (result) {
                 getAvgRate();
                 alert("Rating was added");

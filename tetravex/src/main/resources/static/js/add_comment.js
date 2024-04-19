@@ -7,12 +7,15 @@ var comment;
 
 function addCommentBtnClickHandler() {
 
-    playerName = $("#input-player").val();
+    if (!SIGNED_IN) {
+        alert("Sign in to add comments");
+        return;
+    }
     comment = $("#input-comment").val();
 
-    if (playerName.length !== 0 && comment.length !== 0) {
+    if (comment.length !== 0) {
         data = {
-            player: playerName,
+            player: USERNAME,
             game: "tetravex",
             commentedOn: new Date(),
             comment: comment
@@ -26,6 +29,9 @@ function addCommentBtnClickHandler() {
             url: "/api/comment",
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
+            headers: {
+                "Authorization": "Bearer " + jwt_token
+            },
 
             success: function (result) {
                 alert("Comment was added")
@@ -37,7 +43,7 @@ function addCommentBtnClickHandler() {
             },
 
             error: function (ex) {
-
+                console.log(ex)
             }
 
         });

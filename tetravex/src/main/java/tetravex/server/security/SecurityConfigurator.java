@@ -2,6 +2,7 @@ package tetravex.server.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 
@@ -79,9 +80,10 @@ public class SecurityConfigurator {
                         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 )
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(("/tetravex/**")).permitAll()
-                        .requestMatchers("/api/**").authenticated()
+                        .requestMatchers("/tetravex/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/**").authenticated()
                         .anyRequest().permitAll()
+
                 )
                 .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

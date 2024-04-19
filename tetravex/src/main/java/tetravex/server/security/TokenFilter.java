@@ -41,6 +41,8 @@ public class TokenFilter extends OncePerRequestFilter {
 
         System.out.println("--------------------------TokenFilter START");
         System.out.println(  SecurityContextHolder.getContext().toString());
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("Authorization: " + request.getHeader("Authorization"));
 
         try {
             String authHeader = request.getHeader("Authorization");

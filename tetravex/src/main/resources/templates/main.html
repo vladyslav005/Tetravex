@@ -18,7 +18,29 @@
 
 </head>
 <body>
-<!-- Responsive navbar-->
+    <!-- Responsive navbar-->
+    <div class="card mb-4" id="modal">
+        <div class="card-body p-4">
+            <div class="form-group row">
+                <label class="col">Your name: </label>
+                <input aria-describedby="emailHelp" class="form-control col comment-input" id="modal-name"
+                       placeholder="Enter name" type="email">
+            </div>
+
+            <div class="form-group row">
+                <label class="col">Comment:</label>
+                <input aria-describedby="emailHelp" class="form-control col comment-input" id="modal-password"
+                       placeholder="Enter password" type="email">
+
+            </div>
+            <div class="row">
+                <button class="btn btn-outline-secondary col mx-1" id="modal-cancel" type="submit">Cancel</button>
+
+                <button class="btn btn-primary col mx-1" id="modal-submit" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
 
 
 <span th:replace="~{fragments/header :: header}"></span>
@@ -72,6 +94,8 @@
     <script src="/js/rate_game.js"></script>
     <script src="/js/show_top_scores.js"></script>
     <script src="/js/save_score.js"></script>
+    <script src="/js/signup.js"></script>
+
 </footer>
 </body>
 </html>

@@ -6,11 +6,10 @@ var timer = $("#timer");
 var setIntervalId;
 var score = 0;
 var isSolutionShowed = false;
-
+isSolved = false;
 
 function stopTimer() {
     clearInterval(setIntervalId);
-
 }
 
 function resetTimer() {
@@ -146,10 +145,12 @@ function sendRequest(dataObj) {
         success: function (result) {
             for (const resultKey in result) {
                 if (result[resultKey] === "SOLVED" && result[resultKey] !== previousState) {
-                    $("#message").replaceWith("<p class=\"lead mb-0 animated-message good-message\" id=\"message\">Congratulations, you won!</p>");
+                    $("#message").replaceWith("<p class=\"lead mb-0 animated-message good-message\" id=\"message\">Congratulations, you won! Click to save your results</p>");
+                    set_handler_for_message();
                     stopTimer();
-                    if (!isSolutionShowed) saveScore();
+                    if (!isSolutionShowed) isSolved = true;
                     setTimeout(set_message_anim, 1000);
+
                 } else if (result[resultKey] !== previousState) {
                     $("#message").replaceWith("<p class=\"lead mb-0 just-message\" id=\"message\">Good luck ;)</p>");
                     setTimeout(set_message_anim, 1000);
@@ -160,7 +161,6 @@ function sendRequest(dataObj) {
 
         error: function (ex) {
             console.log("error", ex);
-            // setTimeout(() =>sendRequest(dataObj), 100);
         }
     });
 }
