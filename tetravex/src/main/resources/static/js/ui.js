@@ -29,27 +29,44 @@ modal.hide();
 $("#back").hide();
 
 
+
 $("#modal-cancel").click(function (event) {
-    modal.hide();
+
+    modal.removeClass("modal-slide-in");
+    modal.addClass("modal-slide-out");
+    setTimeout(() => modal.hide(), 500);
+
     modal_name.val('');
     modal_password.val('');
     $("#back").hide();
 });
+
 
 $("#back").click(function (event) {
-    modal.hide();
+    modal.removeClass("modal-slide-in");
+    modal.addClass("modal-slide-out");
+
+    setTimeout(() => modal.hide(), 500);
     modal_name.val('');
     modal_password.val('');
     $("#back").hide();
 });
 
+
 $("#LogIn").click(() => {
+    modal.removeClass("modal-slide-out");
+    modal.addClass("modal-slide-in");
+
     modal.show();
+
     action = "signin";
     $("#back").show();
 });
 
 $("#SignUp").click(() => {
+    modal.removeClass("modal-slide-out");
+    modal.addClass("modal-slide-in");
+
     modal.show();
     action = "signup";
     $("#back").show();

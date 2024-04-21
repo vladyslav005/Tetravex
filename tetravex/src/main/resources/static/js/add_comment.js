@@ -1,6 +1,15 @@
+form = $("#add-comment-form");
+
+
 $("#add-cmnt-submit").click(addCommentBtnClickHandler);
-$("#add-comment-form").hide();
-$("#add-comment-header").click(() => $("#add-comment-form").toggle());
+form.hide();
+
+is_showed = false
+
+$("#add-comment-header").click(() => {
+
+    form.toggle()
+});
 
 var playerName;
 var comment;
@@ -34,11 +43,9 @@ function addCommentBtnClickHandler() {
             },
 
             success: function (result) {
-                alert("Comment was added")
-
                 if (window.isCommentsShowed) {
-                    hideAllComments();
-                    showAllComments();
+                    $(".comment-block").remove();
+                    render_comments();
                 }
             },
 

@@ -2,6 +2,7 @@ window.isCommentsShowed = false;
 comments = $("#show-comments-block");
 commentBlock = $("#template-comment");
 commentBlock.hide();
+commentBlockOuter =  $("#show-comments-block-outer").removeClass("dropdown-comments"),
 
 $("#show-comment-header").click(showAllComments);
 
@@ -14,31 +15,42 @@ function hideAllComments() {
 
 function showAllComments() {
     if (window.isCommentsShowed) {
-        hideAllComments()
+        commentBlockOuter.removeClass("dropdown-comments");
+        commentBlockOuter.addClass("pickup-comments");
+        hideAllComments();
         return;
     }
 
+
+    render_comments();
+
+    commentBlockOuter.removeClass("pickup-comments");
+    commentBlockOuter.addClass("dropdown-comments")
+    // setTimeout(() => commentBlockOuter.removeClass("dropdown-comments"), 500);
+
+}
+
+function render_comments() {
     $.ajax({
         type: "get",
         url: "/api/comment/tetravex",
         contentType: 'application/json; charset=utf-8',
 
         success: function (result) {
-            commentBlock.toggle()
             for (i in result) {
                 showComment(result[i]);
             }
+            window.isCommentsShowed = true;
 
-            commentBlock.toggle();
         },
 
         error: function (ex) {
             console.log("error", ex);
+            window.isCommentsShowed = false;
+            commentBlockOuter.removeClass("dropdown-comments");
+            commentBlockOuter.addClass("pickup-comments");
         }
     });
-
-    window.isCommentsShowed = true;
-
 }
 
 function showComment(data) {
@@ -58,5 +70,6 @@ function showComment(data) {
     );
 
     newComment.appendTo(comments);
+    newComment.show();
 }
 

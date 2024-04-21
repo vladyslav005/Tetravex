@@ -93,6 +93,27 @@ body {
 }
 
 
+@keyframes slidein-top-logform {
+    from {
+        top: -500px;
+    }
+
+    to {
+        top: 150px;
+    }
+}
+
+@keyframes slideout-top-logform {
+    from {
+        top: 150px;
+    }
+
+    to {
+        top: -500px;
+    }
+}
+
+
 #modal {
     position: fixed;
     margin-left: auto;
@@ -103,10 +124,25 @@ body {
     width: 40vh;
     top: 150px;
 
-
     z-index: 10000;
+
 }
 
+
+.modal-slide-out {
+    animation-duration: 0.5s;
+    animation-name: slideout-top-logform;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+}
+
+
+.modal-slide-in {
+    animation-duration: 0.5s;
+    animation-name: slidein-top-logform;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+}
 
 #back {
     z-index: 100;
@@ -184,10 +220,81 @@ table.scores tr:nth-child(odd) {
     margin: 20px;
 }
 
+@keyframes dropdown-comm {
+    from {
+        height: 41px;
+    }
+
+    to {
+        height: 441px;
+    }
+}
+
+@keyframes pickup-comm {
+    from {
+        height: 441px;
+    }
+
+    to {
+        height: 41px;
+    }
+}
+
+.dropdown-comments {
+    animation-duration: 0.6s;
+    animation-name: dropdown-comm;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+}
+
+.pickup-comments {
+    animation-duration: 0.6s;
+    animation-name: pickup-comm;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+}
+
+
+#show-comments-block {
+    max-height: 400px;
+    overflow: auto;
+
+}
+
 #show-comment-header:hover {
     background-color: #dcdbdb;
 
 }
+
+@keyframes dropdown-form {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 128px;
+    }
+
+}
+
+.slide-up, .slide-down {
+    overflow:hidden
+}
+.slide-up, .slide-down {
+    margin-top: -25%;
+    transition: margin-top 0.4s ease-in-out;
+}
+.slide-down {
+    margin-top: 0;
+}
+
+
+
+#add-comment-form {
+
+/*    todo add animation*/
+}
+
 
 #add-cmnt-submit {
     width: 60%;

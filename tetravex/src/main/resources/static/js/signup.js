@@ -64,6 +64,10 @@ function modal_submit_click_handler() {
     else if (action == "signup") {
         signup_request(name, password)
     }
+
+    modal.removeClass("modal-slide-in");
+    modal.addClass("modal-slide-out");
+    setTimeout(() => modal.hide(), 500);
 }
 
 function log_in_request(name, password) {
@@ -92,7 +96,6 @@ function log_in_request(name, password) {
                 Cookies.set(COOKIE_NAME, USERNAME, {expires: 0.003472 })
                 Cookies.set(COOKIE_TOKEN, JWT_TOKEN, {expires: 0.003472 });
             }
-
 
         },
 
@@ -184,7 +187,13 @@ function signup_request(name, password) {
         success: function (result) {
             console.log(result);
             modal.hide();
+
+            modal.hide();
+            modal_name.val('');
+            modal_password.val('');
+
             $("#back").hide();
+            alert("Account created successfully")
         },
 
         error: function (ex) {

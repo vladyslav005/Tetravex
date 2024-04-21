@@ -6,10 +6,11 @@ formMessage.hide();
 var isFormValid = false;
 
 var complexity = urlParams.has("complexity") ? urlParams.get("complexity") : "Hard";
-width = 3;
-height = 3;
+width = urlParams.has("width") ? urlParams.get("width") : 3;
+height = urlParams.has("height") ? urlParams.get("height") : 3;
 
 $("#complexity-btn").text(complexity);
+
 
 $(document).ready(function () {
     $(".size-of-field").keyup(function (event) {

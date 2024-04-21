@@ -10,17 +10,14 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tetravex.data.entity.User;
 import tetravex.server.dto.SignInRequest;
 import tetravex.server.dto.SignUpRequest;
 import tetravex.server.security.token.JwtCore;
 import tetravex.server.security.user.UserRepository;
 
-
+@ControllerAdvice
 @RestController
 @RequestMapping("/auth")
 public class LoginController {
