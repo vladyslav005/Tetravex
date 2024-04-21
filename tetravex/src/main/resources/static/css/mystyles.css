@@ -268,31 +268,39 @@ table.scores tr:nth-child(odd) {
 
 @keyframes dropdown-form {
     from {
-        height: 0;
+        height: 1px;
     }
 
     to {
         height: 128px;
     }
+}
+
+@keyframes pickup-form {
+    from {
+        height: 128px;
+    }
+
+    to {
+        height: 1px;
+    }
 
 }
 
-.slide-up, .slide-down {
-    overflow:hidden
-}
-.slide-up, .slide-down {
-    margin-top: -25%;
-    transition: margin-top 0.4s ease-in-out;
-}
-.slide-down {
-    margin-top: 0;
+.pickup-comment-form {
+    animation-name: pickup-form;
+
+    animation-duration: 0.5s;
+
+    animation-timing-function: ease;
 }
 
+.dropdown-comment-form {
+    animation-name: dropdown-form;
 
+    animation-duration: 0.5s;
 
-#add-comment-form {
-
-/*    todo add animation*/
+    animation-timing-function: ease;
 }
 
 

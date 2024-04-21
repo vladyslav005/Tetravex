@@ -1,5 +1,5 @@
 form = $("#add-comment-form");
-
+form_outer = $("#add-comment-form-outer");
 
 $("#add-cmnt-submit").click(addCommentBtnClickHandler);
 form.hide();
@@ -8,7 +8,18 @@ is_showed = false
 
 $("#add-comment-header").click(() => {
 
+    if (is_showed) {
+        form_outer.removeClass("dropdown-comment-form");
+        form_outer.addClass("pickup-comment-form");
+    } else {
+        form_outer.removeClass("pickup-comment-form");
+        form_outer.addClass("dropdown-comment-form");
+    }
+
     form.toggle()
+    is_showed = !is_showed;
+
+
 });
 
 var playerName;

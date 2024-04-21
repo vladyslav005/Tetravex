@@ -1,16 +1,18 @@
 <span th:fragment="add-comment">
     <div class="card mb-4" >
         <div class="card-header" id="add-comment-header">Add comment</div>
-        <div class="card-body" id="add-comment-form">
+        <div id="add-comment-form-outer">
+            <div class="card-body" id="add-comment-form">
 
-            <div class="form-group row">
-                <label class="col">Comment:</label>
-                <input aria-describedby="emailHelp" class="form-control col comment-input" id="input-comment"
-                       placeholder="Enter comment" type="email">
+                <div class="form-group row">
+                    <label class="col">Comment:</label>
+                    <input aria-describedby="emailHelp" class="form-control col comment-input" id="input-comment"
+                           placeholder="Enter comment" type="email">
 
-            </div>
-            <div class="row">
-                <button class="btn btn-primary" id="add-cmnt-submit" type="submit">Submit</button>
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary" id="add-cmnt-submit" type="submit">Submit</button>
+                </div>
             </div>
         </div>
     </div>
