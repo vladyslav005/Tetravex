@@ -1,5 +1,3 @@
-// TODO : show logged in user
-// TODO : create fragment
 
 //init vars
 TOKEN_LIFETIME = 300000;
@@ -65,13 +63,10 @@ function modal_submit_click_handler() {
         signup_request(name, password)
     }
 
-    modal.removeClass("modal-slide-in");
-    modal.addClass("modal-slide-out");
-    setTimeout(() => modal.hide(), 500);
+
 }
 
 function log_in_request(name, password) {
-    console.log("logging in")
     let data = {username: name, password: password, longToken: false};
 
     $.ajax({
@@ -89,7 +84,13 @@ function log_in_request(name, password) {
             modal_name.val('');
             modal_password.val('');
             $("#back").hide();
+
             update_logged_usr_label()
+            getPlayersRating();
+
+            modal.removeClass("modal-slide-in");
+            modal.addClass("modal-slide-out");
+            setTimeout(() => modal.hide(), 500);
 
             if (confirm("Do you want to stay logged in?")) stay_logged_in(name, password);
             else {
@@ -152,7 +153,6 @@ function stay_logged_in(name, password) {
         data: JSON.stringify(data),
 
         success: function (result) {
-            console.log(result, "GOT long token");
             JWT_TOKEN = result;
             USERNAME = name;
             SIGNED_IN = true;
@@ -185,10 +185,8 @@ function signup_request(name, password) {
         data: JSON.stringify(data),
 
         success: function (result) {
-            console.log(result);
             modal.hide();
 
-            modal.hide();
             modal_name.val('');
             modal_password.val('');
 
@@ -198,7 +196,7 @@ function signup_request(name, password) {
 
         error: function (ex) {
             console.log("error", ex);
-            alert("This name is already used or too short");
+            alert("Some error occurred, maybe this name is already taken or too short");
         }
     });
 }
@@ -213,6 +211,8 @@ $("#LogOut").click(() => {
         Cookies.remove(COOKIE_TOKEN);
         Cookies.remove(COOKIE_NAME);
         update_logged_usr_label();
+        getPlayersRating();
+
 
     }
 })

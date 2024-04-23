@@ -3,8 +3,9 @@ var isFirstMove = true;
 
 var startTimestamp;
 var timer = $("#timer");
+var score = $("#score")
 var setIntervalId;
-var score = 0;
+var SCORE = 5000;
 var isSolutionShowed = false;
 isSolved = false;
 
@@ -20,11 +21,16 @@ function resetTimer() {
 
 function timerHandler() {
     let currentTime = Math.round((new Date().getTime() - startTimestamp) / 1000);
-    score = currentTime;
+
+    if (SCORE > 0) {
+        SCORE -=  Math.round(60 / (width + height));
+    }
+
     let seconds = currentTime % 60;
     let minutes = (currentTime - seconds) / 60;
-    timer.text((minutes < 10 ? "0" + minutes : minutes)
+    timer.text("Time: " + (minutes < 10 ? "0" + minutes : minutes)
         + ":" + (seconds < 10 ? "0" + seconds : seconds));
+    score.text("Score: " + SCORE);
 }
 
 

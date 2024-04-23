@@ -1,7 +1,7 @@
 # gamestudio
 
 ###
-# @name http://localhost:8080/api/score
+# @name http://localhost:8080/api/SCORE
 POST http://localhost:8080/api/score
 Content-Type: application/json
 
@@ -37,7 +37,7 @@ Content-Type: application/json
 }
 
 ###
-# @name http://localhost:8080/api/score/tetravex
+# @name http://localhost:8080/api/SCORE/tetravex
 GET http://localhost:8080/api/score/tetravex
 
 ###

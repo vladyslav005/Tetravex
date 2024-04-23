@@ -4,11 +4,12 @@ form_outer = $("#add-comment-form-outer");
 $("#add-cmnt-submit").click(addCommentBtnClickHandler);
 form.hide();
 
-is_showed = false
+is_form_showed = false
+
 
 $("#add-comment-header").click(() => {
 
-    if (is_showed) {
+    if (is_form_showed) {
         form_outer.removeClass("dropdown-comment-form");
         form_outer.addClass("pickup-comment-form");
     } else {
@@ -17,7 +18,7 @@ $("#add-comment-header").click(() => {
     }
 
     form.toggle()
-    is_showed = !is_showed;
+    is_form_showed = !is_form_showed;
 
 
 });

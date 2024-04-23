@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 
-    <meta content="" name="description"/>
-    <meta content="" name="author"/>
-    <title>Tetravex</title>
+    <meta content="" name="The Tetravex game"/>
+    <meta content="" name="Vladyslav Futrak"/>
 
+
+    <title>Tetravex</title>
     <!-- Favicon-->
     <link href="/assets/star.png" rel="icon"/>
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -31,8 +32,8 @@
         <!-- Main entries-->
         <div class="col-lg-8">
             <span th:replace="~{fragments/gamefield :: gamefield (${solved}, ${shuffled})}"></span>
-            <span th:replace="~{fragments/comments :: comments}"></span>
             <span th:replace="~{fragments/add-comment-form :: add-comment}"></span>
+            <span th:replace="~{fragments/comments :: comments}"></span>
             <span th:replace="~{fragments/game-rules :: game-rules}"></span>
         </div>
 
@@ -56,9 +57,9 @@
 
 <!-- Footer-->
 <footer class="py-5 bg-dark">
-    <div class="container"><p class="m-0 text-center text-white">&copy 2024 by Vladyslav Futrak</p></div>
+    <div class="container"><p class="m-0 text-center text-white">&copy Vladyslav Futrak 2024</p></div>
     <div class="container">
-        <p class="m-0 text-center text-white"><a href="mailto:vladysalv.futrak@student.tuke.sk">vladysalv.futrak@student.tuke.sk</a>
+<!--        <p class="m-0 text-center text-white"><a href="mailto:vladysalv.futrak@student.tuke.sk">vladysalv.futrak@student.tuke.sk</a>-->
         </p>
     </div>
 
@@ -71,10 +72,10 @@
     <script src="/js/ui.js"></script>
     <script src="/js/parametrized_game_form.js"></script>
     <script src="/js/add_comment.js"></script>
-    <script src="/js/rate_game.js"></script>
     <script src="/js/show_top_scores.js"></script>
     <script src="/js/save_score.js"></script>
     <script src="/js/signup.js"></script>
+    <script src="/js/rate_game.js"></script>
 
 </footer>
 </body>

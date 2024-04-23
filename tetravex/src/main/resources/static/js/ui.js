@@ -2,11 +2,42 @@ $("#solved").hide();
 $("#solved").children().children().off("click");
 $("#show-solution").click(show_solution);
 
+solved = $("#solved");
+
+
+is_solution_showed = false;
 function show_solution() {
-    $("#solved").toggle();
+
+
+
+    if (is_solution_showed) {
+        solved.children().children().css("animation-direction", "reverse");
+        solved.children().children().removeClass("off");
+        setTimeout(function () {
+            solved.toggle();
+        }, 300);
+    }
+    else {
+        solved.toggle();
+        solved.children().children().css("animation-direction", "normal");
+        solved.children().children().removeClass("off");
+    }
+
+    is_solution_showed = !is_solution_showed;
+
+
+    setTimeout(function () {
+        solved.children().children().addClass("off");
+
+    }, 300);
+
+
+
+
     isSolutionShowed = true;
     stopTimer();
-    score = 0;
+    SCORE = 0;
+
 }
 
 function set_message_anim() {
@@ -58,7 +89,6 @@ $("#LogIn").click(() => {
     modal.addClass("modal-slide-in");
 
     modal.show();
-
     action = "signin";
     $("#back").show();
 });

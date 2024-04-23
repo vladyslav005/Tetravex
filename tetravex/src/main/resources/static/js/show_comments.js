@@ -21,7 +21,6 @@ function showAllComments() {
         return;
     }
 
-
     render_comments();
 
     commentBlockOuter.removeClass("pickup-comments");
@@ -40,6 +39,7 @@ function render_comments() {
             for (i in result) {
                 showComment(result[i]);
             }
+
             window.isCommentsShowed = true;
 
         },

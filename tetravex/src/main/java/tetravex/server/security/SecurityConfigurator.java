@@ -22,6 +22,7 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import tetravex.server.security.user.UserService;
 
@@ -48,7 +49,6 @@ public class SecurityConfigurator {
         return SCryptPasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 
-
     @Bean
     @Primary
     public AuthenticationManagerBuilder authenticationManagerConfigure(
@@ -68,6 +68,7 @@ public class SecurityConfigurator {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+//                .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .cors(httpSecurityCorsConfigurer ->
                         httpSecurityCorsConfigurer.configurationSource(request ->
                                 new CorsConfiguration().applyPermitDefaultValues())

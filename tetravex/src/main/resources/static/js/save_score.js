@@ -21,7 +21,7 @@ function saveScore() {
         player: USERNAME,
         game: "tetravex",
         playedOn: new Date(),
-        points: score
+        points: SCORE
     };
 
     $.ajax({

@@ -1,5 +1,43 @@
 $(".star").mouseenter(onMouseEnter);
 
+PLAYERS_RATING = 0;
+getPlayersRating();
+
+function setStarsOnRating(result) {
+    for (let i = 1; i < 6; i++) {
+        $("#" + i).css("color", "black");
+
+    }
+    for (let j = 1; j <= result; j++) {
+        $("#" + j).css("color", "#ffae00");
+    }
+}
+
+function getPlayersRating() {
+    if (SIGNED_IN) {
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "/api/rating/tetravex/" + USERNAME,
+            headers: {
+                "Authorization": "Bearer " + JWT_TOKEN
+            },
+
+            success: function (result) {
+                PLAYERS_RATING = result;
+            },
+
+            error: function (ex) {
+            }
+        });
+    } else PLAYERS_RATING = 0;
+
+
+    setStarsOnRating(PLAYERS_RATING);
+
+}
+
+
 function onMouseEnter(event) {
     let current = $(event.target).hasClass("star") ? $(event.target) : $(event.target).parent();
     i = parseInt($(current).attr("id"));
@@ -33,7 +71,9 @@ $(".star").click(function (event) {
 
             success: function (result) {
                 getAvgRate();
-                alert("Rating was added");
+                PLAYERS_RATING = i;
+                setStarsOnRating(i);
+
             },
 
             error: function (ex) {
@@ -42,7 +82,12 @@ $(".star").click(function (event) {
     }
 });
 
-$(".star").mouseleave(() => $(".star").css("color", "black"));
+$(".star").mouseleave(() => {
+    $(".star").css("color", "black");
+}
+);
+
+$(".rate-field").mouseleave(() => setStarsOnRating(PLAYERS_RATING));
 
 function getAvgRate() {
     $.ajax({

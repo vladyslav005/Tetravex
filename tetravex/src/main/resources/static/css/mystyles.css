@@ -40,6 +40,15 @@ body {
     }
 }
 
+@media screen and (max-width: 540px) {
+
+    #time-score {
+        /*flex-direction: column;*/
+    }
+
+
+}
+
 @media screen and (max-width: 400px) {
     :root {
         --tile-size: 20px;
@@ -263,7 +272,7 @@ table.scores tr:nth-child(odd) {
 
 #show-comment-header:hover {
     background-color: #dcdbdb;
-
+    cursor: pointer;
 }
 
 @keyframes dropdown-form {
@@ -311,6 +320,7 @@ table.scores tr:nth-child(odd) {
 
 #add-comment-header:hover {
     background-color: #dcdbdb;
+    cursor: pointer;
 
 }
 
@@ -341,6 +351,8 @@ table.scores tr:nth-child(odd) {
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+
+    cursor: grab;
 }
 
 
@@ -361,8 +373,12 @@ table.scores tr:nth-child(odd) {
     animation-fill-mode: forwards;
 }
 
+
+
+
 .empty:hover::before {
     right: -14px;
+    border: none;
 }
 
 .selected::before {
@@ -404,6 +420,14 @@ table.scores tr:nth-child(odd) {
     border-color: transparent;
 }
 
+#solved>div>.tile {
+    cursor: default;
+}
+
+
+.off {
+    animation-name: none;
+}
 
 @keyframes slidein {
     from {
@@ -466,7 +490,7 @@ table.scores tr:nth-child(odd) {
 }
 
 .just-message {
-    background-color: orange;
+    background-color: #ff9900;
     color: white;
     padding: 10px;
     margin-top: 50px;
@@ -476,12 +500,16 @@ table.scores tr:nth-child(odd) {
 
 
 .bad-message {
-    background-color: red;
+    background-color: #F97174;
     color: white;
     padding: 10px;
     margin-top: 50px;
     font-weight: bold !important;
     border-radius: 5px;
+}
+
+.just-message, .good-message {
+    border-radius: 20px;
 }
 
 #logged-in-user {
@@ -518,6 +546,7 @@ table.scores tr:nth-child(odd) {
 
 .empty {
     background-color: lightgray;
+    cursor: default;
 }
 
 .red {

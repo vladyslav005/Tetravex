@@ -1,6 +1,7 @@
 package tetravex.data.service.serviceimpl.jpa;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import tetravex.data.entity.Rating;
@@ -43,12 +44,16 @@ public class RatingServiceJPA implements RatingService {
 
     @Override
     public int getRating(String game, String player) throws RatingException {
-        return entityManager.createQuery(
-                "select r.rating from Rating r WHERE game = '${game}' AND player = '${player}'"
-                        .replace("${game}", game)
-                        .replace("${player}", player),
-                Integer.class).getSingleResult();
+        Integer rating = 0;
+        try {
+            rating = entityManager.createQuery(
+                    "select r.rating from Rating r WHERE game = '${game}' AND player = '${player}'"
+                            .replace("${game}", game)
+                            .replace("${player}", player),
+                    Integer.class).getSingleResult();
+        } catch (NoResultException ignored) {}
 
+        return rating;
     }
 
     @Override

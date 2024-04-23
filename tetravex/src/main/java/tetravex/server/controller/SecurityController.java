@@ -17,10 +17,11 @@ import tetravex.server.dto.SignUpRequest;
 import tetravex.server.security.token.JwtCore;
 import tetravex.server.security.user.UserRepository;
 
+
 @ControllerAdvice
 @RestController
 @RequestMapping("/auth")
-public class LoginController {
+public class SecurityController {
 
     @Autowired
     private UserRepository userRepository;
