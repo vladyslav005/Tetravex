@@ -31,7 +31,6 @@ public class JwtCore {
                 .setExpiration(new Date((new Date()).getTime() + expirationTime))
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
-
     }
 
     public String getNameFromJwtToken(String token) {

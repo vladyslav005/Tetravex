@@ -23,7 +23,7 @@ function timerHandler() {
     let currentTime = Math.round((new Date().getTime() - startTimestamp) / 1000);
 
     if (SCORE > 0) {
-        SCORE -=  Math.round(60 / (width + height));
+        SCORE -= Math.round(60 / (width + height));
     }
 
     let seconds = currentTime % 60;
@@ -148,7 +148,9 @@ function sendRequest(dataObj) {
         url: "/tetravex/handler",
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(dataObj),
-        success: function (result) {
+        headers: {'X-XSRF-TOKEN': CSRF},
+
+        success: function (result, status, xhr) {
             for (const resultKey in result) {
                 if (result[resultKey] === "SOLVED" && result[resultKey] !== previousState) {
                     $("#message").replaceWith("<p class=\"lead mb-0 animated-message good-message\" id=\"message\">Congratulations, you won! Click to save your results</p>");
@@ -162,6 +164,8 @@ function sendRequest(dataObj) {
                     setTimeout(set_message_anim, 1000);
                 }
                 previousState = result[resultKey];
+                update_csrf_token(result, status, xhr)
+
             }
         },
 

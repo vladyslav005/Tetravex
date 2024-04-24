@@ -51,14 +51,17 @@ function addCommentBtnClickHandler() {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             headers: {
-                "Authorization": "Bearer " + JWT_TOKEN
+                "Authorization": "Bearer " + JWT_TOKEN,
+                'X-XSRF-TOKEN': CSRF
             },
 
-            success: function (result) {
+            success: function (result, status, xhr) {
                 if (window.isCommentsShowed) {
                     $(".comment-block").remove();
                     render_comments();
                 }
+
+                update_csrf_token(result, status, xhr)
             },
 
             error: function (ex) {

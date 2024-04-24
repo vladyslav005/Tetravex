@@ -51,7 +51,8 @@ public class RatingServiceJPA implements RatingService {
                             .replace("${game}", game)
                             .replace("${player}", player),
                     Integer.class).getSingleResult();
-        } catch (NoResultException ignored) {}
+        } catch (NoResultException ignored) {
+        }
 
         return rating;
     }

@@ -30,13 +30,15 @@ function saveScore() {
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(data),
         headers: {
-            "Authorization": "Bearer " + JWT_TOKEN
+            "Authorization": "Bearer " + JWT_TOKEN,
+            'X-XSRF-TOKEN': CSRF
         },
 
-        success: function (result) {
+        success: function (result, status, xhr) {
             showAllScores();
             is_saved = true;
-            alert("Saved!");
+            update_csrf_token(result, status, xhr)
+            // alert("Saved!");
         },
 
         error: function (ex) {

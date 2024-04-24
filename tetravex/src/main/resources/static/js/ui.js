@@ -6,8 +6,8 @@ solved = $("#solved");
 
 
 is_solution_showed = false;
-function show_solution() {
 
+function show_solution() {
 
 
     if (is_solution_showed) {
@@ -16,8 +16,7 @@ function show_solution() {
         setTimeout(function () {
             solved.toggle();
         }, 300);
-    }
-    else {
+    } else {
         solved.toggle();
         solved.children().children().css("animation-direction", "normal");
         solved.children().children().removeClass("off");
@@ -30,8 +29,6 @@ function show_solution() {
         solved.children().children().addClass("off");
 
     }, 300);
-
-
 
 
     isSolutionShowed = true;
@@ -58,7 +55,6 @@ var modal = $("#modal");
 modalIsOpened = false;
 modal.hide();
 $("#back").hide();
-
 
 
 $("#modal-cancel").click(function (event) {
@@ -101,7 +97,6 @@ $("#SignUp").click(() => {
     action = "signup";
     $("#back").show();
 });
-
 
 
 //TODO : METRIC FOR SCORE

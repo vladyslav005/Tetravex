@@ -374,8 +374,6 @@ table.scores tr:nth-child(odd) {
 }
 
 
-
-
 .empty:hover::before {
     right: -14px;
     border: none;
@@ -420,7 +418,7 @@ table.scores tr:nth-child(odd) {
     border-color: transparent;
 }
 
-#solved>div>.tile {
+#solved > div > .tile {
     cursor: default;
 }
 

@@ -23,8 +23,10 @@ function getPlayersRating() {
                 "Authorization": "Bearer " + JWT_TOKEN
             },
 
-            success: function (result) {
+            success: function (result, status, xhr) {
                 PLAYERS_RATING = result;
+                update_csrf_token(result, status, xhr)
+
             },
 
             error: function (ex) {
@@ -66,13 +68,15 @@ $(".star").click(function (event) {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             headers: {
-                "Authorization": "Bearer " + JWT_TOKEN
+                "Authorization": "Bearer " + JWT_TOKEN,
+                'X-XSRF-TOKEN': CSRF
             },
 
-            success: function (result) {
+            success: function (result, status, xhr) {
                 getAvgRate();
                 PLAYERS_RATING = i;
                 setStarsOnRating(i);
+                update_csrf_token(result, status, xhr)
 
             },
 
@@ -83,8 +87,8 @@ $(".star").click(function (event) {
 });
 
 $(".star").mouseleave(() => {
-    $(".star").css("color", "black");
-}
+        $(".star").css("color", "black");
+    }
 );
 
 $(".rate-field").mouseleave(() => setStarsOnRating(PLAYERS_RATING));
@@ -94,9 +98,11 @@ function getAvgRate() {
         type: "get",
         url: "/api/rating/tetravex",
         contentType: 'application/json; charset=utf-8',
-        success: function (result) {
+        success: function (result, status, xhr) {
 
             $("#avg-rate").text(" " + result);
+            update_csrf_token(result, status, xhr)
+
         },
 
         error: function (ex) {

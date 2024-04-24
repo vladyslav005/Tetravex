@@ -13,12 +13,14 @@ function showAllScores() {
         url: "/api/score/tetravex",
         contentType: 'application/json; charset=utf-8',
 
-        success: function (result) {
+        success: function (result, status, xhr) {
             scoreTemplate.show();
             for (i in result) {
                 showPlayerScore(result[i], parseInt(i) + 1);
             }
             scoreTemplate.hide();
+            update_csrf_token(result, status, xhr)
+
         },
 
         error: function (ex) {

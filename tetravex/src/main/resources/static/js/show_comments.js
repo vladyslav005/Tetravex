@@ -2,9 +2,9 @@ window.isCommentsShowed = false;
 comments = $("#show-comments-block");
 commentBlock = $("#template-comment");
 commentBlock.hide();
-commentBlockOuter =  $("#show-comments-block-outer").removeClass("dropdown-comments"),
+commentBlockOuter = $("#show-comments-block-outer").removeClass("dropdown-comments"),
 
-$("#show-comment-header").click(showAllComments);
+    $("#show-comment-header").click(showAllComments);
 
 
 function hideAllComments() {
@@ -35,7 +35,7 @@ function render_comments() {
         url: "/api/comment/tetravex",
         contentType: 'application/json; charset=utf-8',
 
-        success: function (result) {
+        success: function (result, status, xhr) {
             for (i in result) {
                 showComment(result[i]);
             }
