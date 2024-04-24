@@ -178,40 +178,6 @@ function renew_token(name, password) {
 
 }
 
-function stay_logged_in(name, password) {
-    let data = {username: name, password: password, longToken: true};
-
-    $.ajax({
-        type: "post",
-        url: "/auth/signin",
-        contentType: 'application/json; charset=utf-8',
-        headers: {'X-XSRF-TOKEN': CSRF},
-        data: JSON.stringify(data),
-        async: false,
-
-
-        success: function (result, status, xhr) {
-            JWT_TOKEN = result;
-            USERNAME = name;
-            SIGNED_IN = true;
-            STAY_LOGGED_IN = true;
-            modal.hide();
-            modal_name.val('');
-            modal_password.val('');
-            $("#back").hide();
-            clearTimeout(RENEW_TOKEN);
-
-            console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-
-            update_csrf_token(result, status, xhr)
-        },
-
-        error: function (ex) {
-            console.log("error", ex);
-        }
-    });
-}
-
 function signup_request(name, password) {
 
     if (JWT_TOKEN != null) return;
@@ -243,6 +209,7 @@ function signup_request(name, password) {
         }
     });
 }
+
 
 $("#LogOut").click(() => {
     if (SIGNED_IN) {
@@ -278,7 +245,4 @@ window.onbeforeunload = function () {
 
     return null;
 };
-
-
-
 
