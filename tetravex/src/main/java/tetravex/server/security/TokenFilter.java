@@ -32,12 +32,14 @@ public class TokenFilter extends OncePerRequestFilter {
         UserDetails userDetails = null;
         UsernamePasswordAuthenticationToken authentication = null;
 
+
         try {
             String authHeader = request.getHeader("Authorization");
             String url = request.getRequestURI();
 
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
                 jwt = authHeader.substring(7);
+
 
                 if (jwt != null) {
                     try {
@@ -56,7 +58,10 @@ public class TokenFilter extends OncePerRequestFilter {
                         SecurityContextHolder.getContext().setAuthentication(authentication);
                     }
                 }
-            } else SecurityContextHolder.getContext().setAuthentication(null);
+            } else {
+
+                SecurityContextHolder.getContext().setAuthentication(null);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(403);

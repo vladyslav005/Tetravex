@@ -24,6 +24,7 @@ function timerHandler() {
 
     if (SCORE > 0) {
         SCORE -= Math.round(60 / (width + height));
+
     }
 
     let seconds = currentTime % 60;

@@ -32,7 +32,7 @@ $(document).ready(function () {
         heightFromForm = height;
         widthFromForm = width;
 
-        if (width > 0 && width < 7 && height > 0 && height < 7) {
+        if (width > 2 && width < 7 && height > 2 && height < 7) {
             formMessage.hide();
             isFormValid = true;
 
@@ -48,10 +48,11 @@ $(document).ready(function () {
 });
 
 buttonPlay.click(function () {
-    console.log(complexity);
+    // console.log(complexity);
     if (!isFormValid) return;
     let url = "/tetravex/play/parameters" + "?width=" + widthFromForm + "&height=" + heightFromForm + "&complexity=" + complexity;
     window.location.replace(url);
+
     $("#reload").attr("href", url);
 })
 

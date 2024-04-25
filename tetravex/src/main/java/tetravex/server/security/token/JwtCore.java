@@ -24,7 +24,7 @@ public class JwtCore {
 
     public String generateToken(Authentication auth, boolean longToken) {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
-        int expirationTime = longToken ? longLifeTime : lifeTime;
+        int expirationTime =  lifeTime;
 
         return Jwts.builder().setSubject(
                         userDetails.getUsername()).setIssuedAt(new Date())
@@ -32,6 +32,18 @@ public class JwtCore {
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }
+
+
+    public String generateToken(UserDetails userDetails, boolean longToken) {
+        int expirationTime = lifeTime;
+
+        return Jwts.builder().setSubject(
+                        userDetails.getUsername()).setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + expirationTime))
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
+    }
+
 
     public String getNameFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();

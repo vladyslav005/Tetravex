@@ -81,6 +81,8 @@ public class SecurityConfigurator {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/tetravex/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/score").denyAll()
+                        .requestMatchers("/auth/renew").authenticated()
                         .anyRequest().permitAll()
 
                 )

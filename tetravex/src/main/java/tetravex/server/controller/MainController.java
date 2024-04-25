@@ -3,12 +3,17 @@ package tetravex.server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import tetravex.core.Complexity;
+import tetravex.core.GameState;
+import tetravex.data.entity.Score;
+import tetravex.data.service.ScoreService;
 import tetravex.server.dto.ClientRequestDto;
 import tetravex.server.dto.ServerResponseDto;
+import tetravex.server.webservice.ScoreServiceRest;
 import tetravex.server.webui.WebUI;
 
 import java.util.List;
@@ -21,6 +26,9 @@ public class MainController {
 
     @Autowired
     private WebUI webUI;
+
+    @Autowired
+    private ScoreServiceRest scoreServiceRest;
 
 
     @GetMapping("/play")
@@ -52,5 +60,20 @@ public class MainController {
         webUI.swapTiles(clientRequestDto.get(0), clientRequestDto.get(1));
         return new ServerResponseDto(webUI.getGameState());
     }
+
+
+    @ResponseBody
+    @PostMapping("/savescore")
+    public ResponseEntity<String> saveScore(@RequestBody Score score) {
+
+        if (webUI.getGameState() == GameState.SOLVED) {
+            scoreServiceRest.addScore(score);
+            return ResponseEntity.ok("saved score");
+        } else
+            return ResponseEntity.badRequest().body("score not saved");
+    }
+
+
+
 
 }

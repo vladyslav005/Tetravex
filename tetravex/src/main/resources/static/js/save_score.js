@@ -1,5 +1,7 @@
 is_saved = false;
 
+set_handler_for_message()
+
 function set_handler_for_message() {
     $("#message").click(function () {
         if (isSolved && !is_saved) {
@@ -26,7 +28,7 @@ function saveScore() {
 
     $.ajax({
         type: "post",
-        url: "/api/score",
+        url: "/tetravex/savescore",
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(data),
         headers: {

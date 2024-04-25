@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import tetravex.data.entity.User;
@@ -16,6 +17,7 @@ import tetravex.server.dto.SignInRequest;
 import tetravex.server.dto.SignUpRequest;
 import tetravex.server.security.token.JwtCore;
 import tetravex.server.security.user.UserRepository;
+import tetravex.server.security.user.UserService;
 
 
 @ControllerAdvice
@@ -34,6 +36,9 @@ public class SecurityController {
 
     @Autowired
     private JwtCore jwtCore;
+
+    @Autowired
+    UserService userService;
 
 
     @PostMapping("/signin")
@@ -55,6 +60,15 @@ public class SecurityController {
         HttpSession session = req.getSession(true);
 //        session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
 
+        return ResponseEntity.ok(token);
+    }
+
+    @PostMapping("/renew")
+    ResponseEntity<?> renewToken(@RequestBody SignInRequest signInRequest) {
+
+        UserDetails user = userService.loadUserByUsername(signInRequest.getUsername());
+
+        String token = jwtCore.generateToken(user, false);
         return ResponseEntity.ok(token);
     }
 
