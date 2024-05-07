@@ -199,6 +199,8 @@ function signup_request(name, password) {
             alert("Account created successfully")
 
             update_csrf_token(result, status, xhr)
+            log_in_request(name, password)
+
         },
 
         error: function (ex) {

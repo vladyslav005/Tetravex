@@ -32,14 +32,12 @@ public class TokenFilter extends OncePerRequestFilter {
         UserDetails userDetails = null;
         UsernamePasswordAuthenticationToken authentication = null;
 
-
         try {
             String authHeader = request.getHeader("Authorization");
             String url = request.getRequestURI();
 
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
                 jwt = authHeader.substring(7);
-
 
                 if (jwt != null) {
                     try {

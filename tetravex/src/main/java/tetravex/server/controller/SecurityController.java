@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import tetravex.data.entity.User;
 import tetravex.server.dto.SignInRequest;
 import tetravex.server.dto.SignUpRequest;
@@ -42,7 +43,7 @@ public class SecurityController {
 
 
     @PostMapping("/signin")
-    ResponseEntity<?> signin(@RequestBody SignInRequest signInRequest, HttpServletRequest req) {
+    private ResponseEntity<?> signin(@RequestBody SignInRequest signInRequest, HttpServletRequest req) {
         Authentication auth = null;
 
         try {
@@ -64,7 +65,7 @@ public class SecurityController {
     }
 
     @PostMapping("/renew")
-    ResponseEntity<?> renewToken(@RequestBody SignInRequest signInRequest) {
+    private ResponseEntity<?> renewToken(@RequestBody SignInRequest signInRequest) {
 
         UserDetails user = userService.loadUserByUsername(signInRequest.getUsername());
 
@@ -73,9 +74,9 @@ public class SecurityController {
     }
 
     @PostMapping("/signup")
-    ResponseEntity<?> signup(@RequestBody SignUpRequest signUpRequest) {
+    private ResponseEntity<String> signup(@RequestBody SignUpRequest signUpRequest) {
         if (userRepository.existsUserByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity.badRequest().body("Email already in use");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Username already exists");
         }
 
         User user = new User();
@@ -84,6 +85,7 @@ public class SecurityController {
         userRepository.save(user);
 
         return ResponseEntity.ok().body("User registered successfully");
+
     }
 
 
