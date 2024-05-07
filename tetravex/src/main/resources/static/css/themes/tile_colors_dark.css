@@ -1,0 +1,39 @@
+.red {
+    border-color: darkred !important;
+}
+
+.green {
+    border-color: darkgreen !important;
+}
+
+.yellow {
+    border-color: darkgoldenrod !important;
+}
+
+.black {
+    border-color: black !important;
+}
+
+.cyan {
+    border-color: darkblue !important;
+}
+
+.magenta {
+    border-color: deeppink !important;
+}
+
+.bright_green {
+    border-color: greenyellow !important;
+}
+
+.orange {
+    border-color: darkorange !important;
+}
+
+.purple {
+    border-color: darkviolet !important;
+}
+
+.bright_magenta {
+    border-color: darkmagenta !important;
+}

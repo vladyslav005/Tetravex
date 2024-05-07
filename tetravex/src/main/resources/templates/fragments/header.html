@@ -2,12 +2,31 @@
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
+
           <div>
             <a class="navbar-brand" href="/tetravex/play">TETRAVEX</a>
 
-            <button class="btn btn-outline-success m-1 p-1" onclick="location.reload()">Regenerate field</button>
+            <button class="btn btn-outline-success px-1 mx-1" onclick="location.reload()" style="">Reload</button>
+            <!-- TILE COLORS -->
+            <div class="dropdown" style="display: inline">
+                <button aria-expanded="false" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown"
+                        id="" style=""
+                        type="button">
+                    Color scheme
+                </button>
 
+                <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+                    <li><span class="dropdown-item tile-color-scheme">Palette</span></li>
+                    <li><span class="dropdown-item tile-color-scheme">Dark</span></li>
+                    <li><span class="dropdown-item tile-color-scheme">Earth</span></li>
+                    <li><span class="dropdown-item tile-color-scheme">Seasonal</span></li>
+                    <li><span class="dropdown-item tile-color-scheme">Neon</span></li>
+                    <li><span class="dropdown-item tile-color-scheme">Jewel</span></li>
+
+                </ul>
+            </div>
           </div>
+
           <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                   class="navbar-toggler"
                   data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span

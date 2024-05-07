@@ -1,0 +1,39 @@
+.red {
+    border-color: #00FF7F !important;
+}
+
+.green {
+    border-color: #F0E68C !important;
+}
+
+.yellow {
+    border-color: #FFA500 !important;
+}
+
+.black {
+    border-color: #4682B4 !important;
+}
+
+.cyan {
+    border-color: #FFB7C5 !important;
+}
+
+.magenta {
+    border-color: #FFD700 !important;
+}
+
+.bright_green {
+    border-color: #C11B17 !important;
+}
+
+.orange {
+    border-color: #AEEEEE !important;
+}
+
+.purple {
+    border-color: #FF7518 !important;
+}
+
+.bright_magenta {
+    border-color: #73ff00 !important;
+}

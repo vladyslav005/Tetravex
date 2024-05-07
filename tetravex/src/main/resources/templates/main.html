@@ -14,6 +14,8 @@
     <!-- Favicon-->
     <link href="/assets/star.png" rel="icon"/>
     <!-- Core theme CSS (includes Bootstrap)-->
+
+    <link href="/css/themes/tile_colors_palette.css" rel="stylesheet" type="text/css" id="tile-color-link">
     <link href="/css/styles.css" rel="stylesheet" type="text/css"/>
 
     <!-- Include JQuery-->
@@ -33,7 +35,7 @@
 
         <!-- Main entries-->
         <div class="col-lg-8">
-            <span th:replace="~{fragments/gamefield :: gamefield (${solved}, ${shuffled})}"></span>
+            <span th:replace="~{fragments/game-field :: gamefield (${solved}, ${shuffled})}"></span>
             <span th:replace="~{fragments/add-comment-form :: add-comment}"></span>
             <span th:replace="~{fragments/comments :: comments}"></span>
             <span th:replace="~{fragments/game-rules :: game-rules}"></span>
@@ -68,6 +70,7 @@
     <!-- Bootstrap core JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- JS -->
+    <script src="/js/switch_colors.js"></script>
     <script src="/js/show_comments.js"></script>
     <script src="/js/game_logic.js"></script>
     <script src="/js/ui.js"></script>
@@ -77,6 +80,7 @@
     <script src="/js/save_score.js"></script>
     <script src="/js/signup.js"></script>
     <script src="/js/rate_game.js"></script>
+
 </footer>
 </body>
 </html>
